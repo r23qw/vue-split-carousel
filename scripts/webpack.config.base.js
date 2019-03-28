@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const path = require("path");
 const VueLoaderPlugin = require("vue-loader/lib/plugin");
 
@@ -5,8 +6,7 @@ module.exports = {
   mode: "production",
   entry: path.resolve(__dirname, "../src/index.js"),
   output: {
-    path: path.resolve(__dirname, "../dist"),
-    filename: "vue-split-carousel.js",
+    filename: "vue-split-carousel.js"
   },
   module: {
     rules: [
@@ -17,11 +17,16 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"]
+        use: [
+          process.env.NODE_ENV !== "production"
+            ? "vue-style-loader"
+            : MiniCssExtractPlugin.loader,
+          "css-loader",
+          "postcss-loader",
+          "sass-loader"
+        ]
       }
     ]
   },
-  plugins: [
-    new VueLoaderPlugin()
-  ]
+  plugins: [new VueLoaderPlugin()]
 };
