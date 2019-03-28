@@ -17,10 +17,17 @@
     "vue",
     "components"
   ],
+  "browserslist": [
+    "last 2 version",
+    "> 0.5%",
+    "maintained node versions",
+    "not dead",
+    "ie >= 9"
+  ],
   "scripts": {
     "dev": "",
-    "build": "webpack --config ./scripts/webpack.config.prod.js",
-    "build:umd": "webpack --config ./scripts/webpack.config.umd.js",
+    "build": "NODE_ENV=production webpack --config ./scripts/webpack.config.prod.js --mode production",
+    "build:umd": "NODE_ENV=production webpack --config ./scripts/webpack.config.umd.js --mode production",
     "lint": "eslint ./**/*.vue ./**/*.js --fix"
   },
   "repository": {
@@ -47,6 +54,7 @@
     "postcss-loader": "^3.0.0",
     "pre-commit": "^1.2.2",
     "sass-loader": "^7.1.0",
+    "vue": "^2.6.10",
     "vue-loader": "^15.7.0",
     "vue-template-compiler": "^2.6.10",
     "webpack": "^4.29.6",

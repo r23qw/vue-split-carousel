@@ -3,10 +3,11 @@ const config = require("./webpack.config.base");
 const merge = require("webpack-merge");
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-let prodConfig = merge(config, {
+
+const prodConfig = merge(config, {
   output: {
-    path: path.resolve(__dirname, "../dist/es"),
-    libraryTarget:''
+    path: path.resolve(__dirname, "../dist"),
+    libraryTarget:'amd'
   },
   plugins: [
     new MiniCssExtractPlugin({
@@ -14,4 +15,5 @@ let prodConfig = merge(config, {
     })
   ]
 });
+
 module.exports = prodConfig;

@@ -1,18 +1,18 @@
 <template>
   <div>
-    <h3 v-if="true">TEST</h3>
+    <h3>
+      TEST
+    </h3>
   </div>
 </template>
 
 <script>
-  export default {
-    name:'vue-split-caousel',
-    beforeCreate(){
-
-    }
-  }
+export default {
+  name: "VueSplitCaousel",
+  beforeCreate() {}
+};
 </script>
 
 <style lang="scss">
-@import './main.scss'
+@import "./style.scss";
 </style>
