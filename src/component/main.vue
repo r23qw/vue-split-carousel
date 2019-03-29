@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3 v-for>
+    <h3>
       TEST
     </h3>
   </div>
@@ -8,7 +8,7 @@
 
 <script>
 export default {
-  name: "VueSplitCaousel",
+  name: "SplitCarousel",
   beforeCreate() {}
 };
 </script>

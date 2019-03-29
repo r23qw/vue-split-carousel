@@ -8,6 +8,9 @@ module.exports = {
     filename: "vue-split-carousel.js",
     library: "vueSplitCarousel"
   },
+  resolve: {
+    extensions: ['.js', '.vue', '.json']
+  },
   module: {
     rules: [
       { test: /\.vue$/, use: "vue-loader" },

@@ -1,7 +1,9 @@
 import VueSplitCarousel from "./component/main.vue";
 
-export let install = Vue => {
-  Vue.Component("vue-split-carousel", VueSplitCarousel);
+let plugin = {
+  install: Vue => {
+    Vue.component("split-carousel", VueSplitCarousel);
+  }
 };
 
-export default install
+export default plugin;
