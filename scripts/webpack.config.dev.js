@@ -6,23 +6,33 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const devConfig = merge(config, {
   mode: "development",
   devtool: "inline-source-map",
-  entry:{
-    app: path.resolve(__dirname,'../examples/index.js')
+  entry: {
+    app: path.resolve(__dirname, "../examples/index.js")
   },
   output: {
     path: path.resolve(__dirname, "../examples"),
-    filename: '[name].[hash:7].js',
+    filename: "[name].[hash:7].js"
+  },
+  module: {
+    rules: [
+      {
+        enforce: "pre",
+        test: /\.(js|vue)$/,
+        use: ["eslint-loader"]
+      }
+    ]
   },
   devServer: {
     port: 4242,
-    publicPath:'/',
-    hot: true
+    publicPath: "/",
+    hot: true,
+    overlay: true
   },
-  plugins:[
+  plugins: [
     new HtmlWebpackPlugin({
-      template: './examples/index.tpl.html',
-      filename: './index.html'
-    }),
+      template: "./examples/index.tpl.html",
+      filename: "./index.html"
+    })
   ]
 });
 module.exports = devConfig;

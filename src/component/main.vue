@@ -1,7 +1,7 @@
 <template>
   <div>
     <h3>
-      TEST123
+      😄123、、、、、、、、、、、、
     </h3>
   </div>
 </template>
@@ -12,7 +12,6 @@ export default {
   beforeCreate() {
     let map = new Map();
     map.set('a','1234')
-    console.log(map)
   }
 };
 </script>
