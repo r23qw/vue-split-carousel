@@ -22,11 +22,11 @@
     "> 0.5%",
     "maintained node versions",
     "not dead",
-    "ie >= 9"
+    "ie > 8"
   ],
   "scripts": {
     "dev": "webpack-dev-server --open --config ./scripts/webpack.config.dev.js",
-    "build": "npm run build:umd && npm run build:esm",
+    "build": "npm run clean && npm run build:umd && npm run build:esm",
     "build:umd": "cross-env NODE_ENV=production webpack --config ./scripts/webpack.config.umd.js --mode production",
     "build:esm": "webpack --config ./scripts/webpack.config.esm.js",
     "clean": "rimraf ./dist",
@@ -44,9 +44,12 @@
   "homepage": "https://github.com/Aaron00101010/vue-split-carousel#readme",
   "devDependencies": {
     "@babel/core": "^7.4.0",
+    "@babel/plugin-transform-runtime": "^7.4.0",
     "@babel/preset-env": "^7.4.2",
     "autoprefixer": "^9.5.0",
     "babel-loader": "^8.0.5",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "core-js": "^2.6.5",
     "cross-env": "^5.2.0",
     "css-loader": "^2.1.1",
     "eslint": "^5.15.3",

@@ -9,7 +9,11 @@
 <script>
 export default {
   name: "SplitCarousel",
-  beforeCreate() {}
+  beforeCreate() {
+    let map = new Map();
+    map.set('a','1234')
+    console.log(map)
+  }
 };
 </script>
 
