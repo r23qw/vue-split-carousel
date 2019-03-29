@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3>
+    <h3 v-for>
       TEST
     </h3>
   </div>
