@@ -16,7 +16,7 @@ const devConfig = merge(config, {
   devServer: {
     port: 4242,
     publicPath:'/',
-    // watch: true
+    hot: true
   },
   plugins:[
     new HtmlWebpackPlugin({
