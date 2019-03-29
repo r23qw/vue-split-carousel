@@ -1,12 +1,12 @@
-/* eslint-disable no-undef */
 const path = require("path");
 const VueLoaderPlugin = require("vue-loader/lib/plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const isProd = (module.exports = {
+
+module.exports = {
   entry: path.resolve(__dirname, "../src/index.js"),
   output: {
     filename: "vue-split-carousel.js",
-    library: "vue-split-carousel"
+    library: "vueSplitCarousel"
   },
   module: {
     rules: [
@@ -29,4 +29,4 @@ const isProd = (module.exports = {
     ]
   },
   plugins: [new VueLoaderPlugin()]
-});
+};
