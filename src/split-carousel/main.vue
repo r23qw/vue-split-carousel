@@ -8,8 +8,7 @@
       <slot name="left-arrow" />
     </div>
     <div class="content">
-      <div class="item-container"
-           :style="{width:containerWidth}">
+      <div class="item-container" :style="{width:containerWidth}">
         <slot />
       </div>
     </div>

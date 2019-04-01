@@ -4,14 +4,10 @@
       1
     </template>
     <split-carousel>
-      <split-carousel-item
-        v-for="item in list"
-        :key="item"
-      >
-        <img
-          src="https://placehold.it/200x100"
-          alt="item"
-        >
+      <split-carousel-item v-for="item in list"
+                           :key="item">
+        <img src="https://placehold.it/200x100"
+             alt="item">
       </split-carousel-item>
     </split-carousel>
   </div>

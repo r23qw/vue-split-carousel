@@ -3,9 +3,9 @@ module.exports = {
   rules: {
     indent: ["error", 2],
     "vue/max-attributes-per-line": ["error", {
-      "singleline": 1,
+      "singleline": 3,
       "multiline": {
-        "max": 3,
+        "max": 1,
         "allowFirstLine": true
       }
     }],
