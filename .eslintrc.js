@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ["eslint:recommended", "plugin:vue/strongly-recommended"],
+  extends: ["standard", "plugin:vue/strongly-recommended"],
   rules: {
     indent: ["error", 2]
   },

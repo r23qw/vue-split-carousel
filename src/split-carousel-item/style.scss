@@ -1,0 +1,11 @@
+.split-carousel-item{
+  display: inline-block;
+  font-size: initial;
+  overflow: hidden;
+  width: 20%;
+  box-sizing: border-box;
+  img{
+    width: 100%;
+    display: block;
+  }
+}

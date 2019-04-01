@@ -1,0 +1,25 @@
+.split-carousel {
+  font-size: 0;
+  position: relative;
+  padding: 0 50px;
+  .content{
+    width: 100%;
+    overflow: hidden;
+  }
+  .arrow-control{
+    position: absolute;
+    top:50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    &.left-arrow{
+      left: 0px;
+    }
+    &.right-arrow{
+      right: 0px;
+    }
+  }
+  .left-arrow,
+  .right-arrow {
+    font-size: initial;
+  }
+}

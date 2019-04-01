@@ -1,10 +1,16 @@
 {
+    "editor.formatOnSave": false,
     "eslint.validate":[
         {
             "language": "vue",
             "autoFix": true
         },
-        "javascriptreact",
+    
+        {
+            "language":"javascript",
+            "autoFix": true
+        }
+        
     ],
     "eslint.alwaysShowStatus": true
 }
