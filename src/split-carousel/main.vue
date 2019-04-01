@@ -54,7 +54,7 @@ export default {
   },
   mounted () {
     // eslint-disable-next-line no-console
-    console.log(this)
+    // console.log(this)
     let containerWidth = window.getComputedStyle(this.$el).width
     containerWidth = Number.parseInt(containerWidth)
     let space = (containerWidth - this.displayAmount * this.itemWidth) / (this.displayAmount - 1)
