@@ -1,0 +1,11 @@
+language: node_js
+node_js:
+  - "7"
+cache: npm
+branches: 
+  only:
+  - dev
+install:
+  - npm i
+script:
+  - npm run build

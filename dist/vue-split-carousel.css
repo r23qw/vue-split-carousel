@@ -1,4 +1,40 @@
-h3 {
-  color: red;
+.split-carousel {
+  font-size: 0;
+  position: relative;
+  padding: 0 50px;
+}
+.split-carousel .content {
+    width: 100%;
+    overflow: hidden;
+}
+.split-carousel .arrow-control {
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+    cursor: pointer;
+}
+.split-carousel .arrow-control.left-arrow {
+      left: 0px;
+}
+.split-carousel .arrow-control.right-arrow {
+      right: 0px;
+}
+.split-carousel .left-arrow,
+  .split-carousel .right-arrow {
+    font-size: initial;
+}
+
+.split-carousel-item {
+  display: inline-block;
+  font-size: initial;
+  overflow: hidden;
+  width: 20%;
+  box-sizing: border-box;
+}
+.split-carousel-item img {
+    width: 100%;
+    display: block;
 }
 
