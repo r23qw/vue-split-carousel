@@ -1,8 +1,6 @@
 <template>
-  <div
-    class="split-carousel-item"
-    :style="{'padding-right':`${parent.itemBetweenSpace}px`,'width':`${parent.itemWidth}`}"
-  >
+  <div class="split-carousel-item"
+       :style="{'padding-right':`${parent.itemBetweenSpace}px`,'width':`${parent.itemWidth}`}">
     <slot />
   </div>
 </template>

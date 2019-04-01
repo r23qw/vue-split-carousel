@@ -1,19 +1,15 @@
 <template>
   <div class="split-carousel">
     <!-- 左箭头 -->
-    <div
-      class="arrow-control left-arrow"
-    >
+    <div class="arrow-control left-arrow">
       <div v-if="!$slots['left-arrow']">
         left
       </div>
       <slot name="left-arrow" />
     </div>
     <div class="content">
-      <div
-        class="item-container"
-        :style="{width:containerWidth}"
-      >
+      <div class="item-container"
+           :style="{width:containerWidth}">
         <slot />
       </div>
     </div>
