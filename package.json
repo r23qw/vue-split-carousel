@@ -30,7 +30,8 @@
     "build:umd": "cross-env NODE_ENV=production webpack --config ./scripts/webpack.config.umd.js --mode production",
     "build:esm": "webpack --config ./scripts/webpack.config.esm.js",
     "clean": "rimraf ./dist",
-    "lint": "lint-staged"
+    "lint": "eslint ./**/*.vue ./**/*.js --fix",
+    "test": "npm"
   },
   "repository": {
     "type": "git",
@@ -77,14 +78,13 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged",
-      "pre-push": "lint-staged"
+      "pre-commit": "lint-staged"
     }
   },
   "lint-staged": {
-    "src/**/*.{js|vue}": [
+    "*.{js,vue}": [
       "eslint ./**/*.vue ./**/*.js --fix",
-      "git add ."
+      "git add"
     ]
   }
 }
