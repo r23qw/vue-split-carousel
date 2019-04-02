@@ -5,6 +5,14 @@
   .content{
     width: 100%;
     overflow: hidden;
+    &--container{
+      $position: left center right;
+      @each $key in $position{
+        &__#{$key}{
+          text-align: $key;
+        }
+      }
+    }
   }
   .arrow-control{
     position: absolute;
@@ -18,8 +26,8 @@
       right: 0px;
     }
   }
-  .left-arrow,
-  .right-arrow {
+  &  * {
+    font-size: 16px;
     font-size: initial;
   }
 }

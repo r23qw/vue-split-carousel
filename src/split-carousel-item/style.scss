@@ -4,8 +4,9 @@
   overflow: hidden;
   width: 20%;
   box-sizing: border-box;
-  img{
-    width: 100%;
-    display: block;
+  &--content{
+    box-sizing: border-box;
+    border: 1px solid;
+    min-height: 10px;
   }
 }
