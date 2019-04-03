@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <split-carousel item-align="right">
+    <split-carousel>
       <template slot="left-arrow">
         <h3>left</h3>
       </template>
@@ -9,7 +9,7 @@
       </split-carousel-item>
     </split-carousel>
     <div class="operate">
-      <button @click="list.push(list.length+1)">
+      <button @click="list.push(list.length + 1)">
         add
       </button>
       <button @click="list.pop()">
@@ -26,7 +26,7 @@ export default {
   },
   data () {
     return {
-      list: [1, 2, 3, 4, 5, 6]
+      list: [1, 2, 3, 4, 5, 6, 7, 8, 9]
       // list: []
     }
   }

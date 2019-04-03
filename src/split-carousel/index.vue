@@ -8,9 +8,13 @@
       <slot v-else name="left-arrow" />
     </div>
     <div class="content">
-      <div class="content--container"
-           :class="{[`content--container__${itemAlign}`]:containerWidth === 'auto'}"
-           :style="{width:`${containerWidth}${containerWidth !== 'auto' ? this.cssUnit:''}`,}">
+      <div
+        class="content--container"
+        :class="{[`content--container__${itemAlign}`] : isStaticMode}"
+        :style="{
+          width:`${isStaticMode ? 'auto':`${(itemWidth+itemSpace)*(displayAmount+2)}${cssUnit}`}`,
+          marginLeft: `${isStaticMode ? 0 :-(itemWidth+itemSpace)}${cssUnit}`
+        }">
         <slot />
       </div>
     </div>
@@ -81,24 +85,30 @@ export default {
   computed: {
     itemAmount () {
       return this.itemList.length
+    },
+    isStaticMode () {
+      return this.itemAmount <= this.displayAmount
+    },
+    stageIndexList () {
+      return []
     }
   },
-  watch: {
-  },
+  watch: {},
   methods: {
     initCarousel () {
       let containerWidth = window.getComputedStyle(this.$el).width
       containerWidth = Number.parseInt(containerWidth)
-      let space = (containerWidth - this.displayAmount * this.itemWidth) / (this.displayAmount - 1)
+      let space =
+          (containerWidth - this.displayAmount * this.itemWidth) /
+          (this.displayAmount - 1)
       if (process.env.NODE_ENV !== 'production') {
         if (space < 0) {
           throw Error(`item space has computed as a negative value:${space},
-                      itemWith * displayAmount should less than the width of carousel container,
-                      please adjust container width and item width`)
+                       itemWith * displayAmount should less than the width of carousel container,
+                       please adjust container width and item width`)
         }
       }
       this.itemSpace = space
-      this.computeData()
     },
     getItems () {
       let list = []
@@ -107,19 +117,10 @@ export default {
       }
       this.itemList = list
     },
-    computeData () {
-      this.getItems()
-      if (this.itemAmount < this.displayAmount) {
-        this.containerWidth = 'auto'
-      } else {
-        this.containerWidth = (this.itemAmount + 2) * (this.itemWidth + this.itemSpace)
-      }
-    },
     updateItems () {
-      this.computeData()
+      this.getItems()
     }
   }
-
 }
 </script>
 

@@ -1,5 +1,5 @@
-import SplitCarousel from './split-carousel/main.vue'
-import SplitCarouselItem from './split-carousel-item/main.vue'
+import SplitCarousel from './split-carousel/index.vue'
+import SplitCarouselItem from './split-carousel-item/index.vue'
 
 export default {
   install: Vue => {

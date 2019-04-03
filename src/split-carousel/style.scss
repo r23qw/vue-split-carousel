@@ -6,6 +6,9 @@
     width: 100%;
     overflow: hidden;
     &--container{
+      transition-property: transform;
+      transition-duration: 0.3s;
+      transform: translate3d(0,0,0);
       $position: left center right;
       @each $key in $position{
         &__#{$key}{
