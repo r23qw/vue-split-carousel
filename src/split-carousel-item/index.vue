@@ -31,8 +31,11 @@ export default {
       return this.$parent.isStaticMode && this.itemIndex === this.$parent.itemAmount - 1
     },
     inStage () {
-      return (this.$parent.isStaticMode) ||
-             (this.itemIndex >= 1 && this.itemIndex <= this.$parent.displayAmount)
+      if (this.$parent.isStaticMode) {
+        return true
+      }
+
+      return true
     }
   }
 }

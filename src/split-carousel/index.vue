@@ -5,7 +5,9 @@
       <div v-if="$slots['left-arrow'] === void 0">
         left
       </div>
-      <slot v-else name="left-arrow" />
+      <slot
+        v-else
+        name="left-arrow" />
     </div>
     <div class="content">
       <div
@@ -23,12 +25,15 @@
       <div v-if="$slots['right-arrow'] === void 0">
         right
       </div>
-      <slot v-else name="right-arrow" />
+      <slot
+        v-else
+        name="right-arrow" />
     </div>
   </div>
 </template>
 
 <script>
+import LinkNode from 'link-node'
 export default {
   props: {
     /* play */
@@ -78,6 +83,7 @@ export default {
     return {
       itemSpace: 0,
       itemList: [],
+      itemListLinkList: null,
       playIndex: this.startIndex,
       containerWidth: 'auto'
     }
@@ -89,11 +95,12 @@ export default {
     isStaticMode () {
       return this.itemAmount <= this.displayAmount
     },
-    stageIndexList () {
+    itemIndexList () {
+      if (this.isStaticMode) return []
+
       return []
     }
   },
-  watch: {},
   methods: {
     initCarousel () {
       let containerWidth = window.getComputedStyle(this.$el).width
@@ -104,8 +111,8 @@ export default {
       if (process.env.NODE_ENV !== 'production') {
         if (space < 0) {
           throw Error(`item space has computed as a negative value:${space},
-                       itemWith * displayAmount should less than the width of carousel container,
-                       please adjust container width and item width`)
+                           itemWith * displayAmount should less than the width of carousel container,
+                           please adjust container width and item width`)
         }
       }
       this.itemSpace = space
@@ -115,6 +122,15 @@ export default {
       if (this.$slots.default !== void 0) {
         list = this.$slots.default.filter(item => item.tag !== void 0)
       }
+      let root = new LinkNode(null)
+      let current = root
+      list.forEach((item, index) => {
+        let node = new LinkNode(index)
+        current.next = node
+        current = node
+      })
+      current.next = root.next
+      this.itemList =
       this.itemList = list
     },
     updateItems () {
