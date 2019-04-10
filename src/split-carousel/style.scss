@@ -1,14 +1,16 @@
 .split-carousel {
   font-size: 0;
   position: relative;
-  padding: 0 50px;
+  overflow: hidden;
   .content{
     width: 100%;
+    padding: 1px;
     overflow: hidden;
     &--container{
       transition-property: transform;
       transition-duration: 0.3s;
       transform: translate3d(0,0,0);
+      position: relative;
       $position: left center right;
       @each $key in $position{
         &__#{$key}{
@@ -22,6 +24,7 @@
     top:50%;
     transform: translateY(-50%);
     cursor: pointer;
+    user-select: none;
     &.left-arrow{
       left: 0px;
     }

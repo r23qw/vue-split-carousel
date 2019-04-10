@@ -1,12 +1,21 @@
-.split-carousel-item{
+.split-carousel-item {
   display: inline-block;
   font-size: initial;
   overflow: hidden;
-  width: 20%;
   box-sizing: border-box;
-  &--content{
+  transition-property: transform,left;
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  height: 100%;
+  &.is-static{
+    position: relative;
+    left: auto;
+  }
+  &--content {
     box-sizing: border-box;
     border: 1px solid;
-    min-height: 10px;
+    height: 100%;
   }
 }
