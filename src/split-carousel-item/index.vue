@@ -32,8 +32,7 @@ export default {
       return this.$parent.itemList.indexOf(this.$vnode)
     },
     stageIndex () {
-      let index = this.$parent.itemStageIndexList.indexOf(this.itemIndex)
-      return index
+      return this.$parent.itemStageIndexList.indexOf(this.itemIndex)
     },
     noMarginRight () {
       return (
@@ -49,11 +48,12 @@ export default {
     },
     noAnimate () {
       let last = this.$parent.itemStageIndexList.length - 1
-      return (this.prevIndex === 0 && this.stageIndex === last) ||
+      return this.$parent.isReseting ||
+      !this.isMounted ||
+      (this.prevIndex === 0 && this.stageIndex === last) ||
       (this.prevIndex === last && this.stageIndex === 0) ||
-      (this.prevIndex === last && this.stageIndex === last) ||
-      (this.prevIndex === 0 && this.stageIndex === 0) ||
-      !this.isMounted
+      (this.prevIndex === this.stageIndex)
+      // (this.prevIndex === 0 && this.stageIndex === 0) ||
     },
     itemStyle () {
       let style = {
@@ -62,7 +62,6 @@ export default {
       }
       if (!this.$parent.isStaticMode) {
         style = Object.assign(style, {
-          // 'transform': `translateX(${`${this.stageIndex * (this.$parent.itemWidthWithSpace)}${this.$parent.cssUnit}`})`,
           'left': `${this.stageIndex * (this.$parent.itemWidthWithSpace)}${this.$parent.cssUnit}`,
           'transition-duration': `${this.noAnimate ? 0 : this.$parent.speed}ms`
         })
@@ -72,7 +71,7 @@ export default {
   },
   watch: {
     stageIndex (val, oldVal) {
-      this.prevIndex = oldVal || this.stageIndex
+      this.prevIndex = oldVal === void 0 ? this.stageIndex : oldVal
     }
   }
 }

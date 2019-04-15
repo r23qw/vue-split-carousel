@@ -30,6 +30,7 @@
 </template>
 
 <script>
+// import { throttle } from 'throttle-debounce'
 export default {
   props: {
     /* play */
@@ -83,6 +84,10 @@ export default {
     // eslint-disable-next-line no-console
     console.log(this)
     this.initCarousel()
+    setTimeout(() => { this.isInit = true }, 16)
+  },
+  destroyed () {
+    clearTimeout(this.timer)
   },
   data () {
     return {
@@ -91,7 +96,10 @@ export default {
       itemStageIndexList: [],
       playIndex: this.startIndex,
       containerWidth: 'auto',
-      isAnimating: false
+      isReseting: false,
+      isInProcess: false,
+      isInit: false,
+      timer: null
     }
   },
   computed: {
@@ -103,6 +111,9 @@ export default {
     },
     isStaticMode () {
       return this.itemAmount <= this.displayAmount
+    },
+    isNeedReset () {
+      return this.itemAmount > this.displayAmount && this.itemAmount === this.displayAmount + 1
     }
   },
   methods: {
@@ -129,8 +140,8 @@ export default {
       this.itemList = list
     },
     setPlayIndex (index) {
-      let toRight = this.playIndex < index
-
+      if (this.isReseting || this.isInProcess) return
+      let toRight = index > this.playIndex
       if (
         !this.loop &&
         (index < 0 || index > this.itemAmount - this.displayAmount)
@@ -144,16 +155,15 @@ export default {
       if (index >= this.itemAmount) {
         index %= this.itemAmount
       }
-      this.isAnimating = toRight ? 'right' : 'left'
 
       this.playIndex = index
-      this.updateStageIndexList()
+      this.updateStageIndexList(toRight)
     },
     updateItems () {
       this.getItems()
       this.updateStageIndexList()
     },
-    updateStageIndexList () {
+    updateStageIndexList (toRight) {
       if (!this.isStaticMode) {
         let indexList = []
         for (let i = 0; i < this.displayAmount + 2; i++) {
@@ -165,7 +175,34 @@ export default {
             indexList[i] %= this.itemAmount
           }
         }
-        this.itemStageIndexList = indexList
+        if (this.isNeedReset && this.isInit) {
+          clearTimeout(this.timer)
+          this.isReseting = true
+          this.isInProcess = true
+          if (toRight) {
+            this.itemStageIndexList.splice(0, 1, -1)
+            this.timer = setTimeout(() => {
+              this.itemStageIndexList = indexList
+              this.isReseting = false
+              this.isInProcess = false
+            }, 16)
+          } else {
+            let cloneList = indexList.slice()
+            cloneList[0] = -1
+            this.itemStageIndexList = cloneList
+            this.isReseting = false
+            this.timer = setTimeout(() => {
+              this.isReseting = true
+              this.itemStageIndexList = indexList
+              this.timer = setTimeout(() => {
+                this.isReseting = false
+                this.isInProcess = false
+              }, 16)
+            }, this.speed)
+          }
+        } else {
+          this.itemStageIndexList = indexList
+        }
       }
     }
   }

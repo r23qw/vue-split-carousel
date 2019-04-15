@@ -77,7 +77,9 @@
     "webpack-dev-server": "^3.2.1",
     "webpack-merge": "^4.2.1"
   },
-  "dependencies": {},
+  "dependencies": {
+    "throttle-debounce": "^2.1.0"
+  },
   "peerDependencies": {
     "vue": "^2.0.0"
   },

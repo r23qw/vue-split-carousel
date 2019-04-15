@@ -28,7 +28,7 @@ export default {
   created () {},
   data () {
     return {
-      list: 6
+      list: 5
     }
   }
 }
