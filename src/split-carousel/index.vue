@@ -1,14 +1,20 @@
 <template>
-  <div class="split-carousel" :style="{padding:`0 ${arrowAreaWidth}${cssUnit}`}">
+  <div
+    class="split-carousel"
+    :style="{padding:`0 ${arrowAreaWidth}${cssUnit}`}">
     <!-- left arrow controller -->
-    <div @click="setPlayIndex(playIndex-1)"
+    <div @click="handleControl('left')"
          class="arrow-control left-arrow">
       <div v-if="$slots['left-arrow'] === void 0">
         left
       </div>
-      <slot v-else name="left-arrow" />
+      <slot v-else
+            name="left-arrow" />
     </div>
-    <div class="content">
+    <!-- carousel container -->
+    <div @mouseenter="cancelPlay()"
+         @mouseleave="play()"
+         class="content">
       <div class="content--container"
            :class="{[`content--container__${itemAlign}`] : isStaticMode}"
            :style="{
@@ -20,17 +26,18 @@
       </div>
     </div>
     <!-- right arrow controller -->
-    <div class="arrow-control right-arrow" @click="setPlayIndex(playIndex+1)">
+    <div class="arrow-control right-arrow"
+         @click="handleControl('right')">
       <div v-if="$slots['right-arrow'] === void 0">
         right
       </div>
-      <slot v-else name="right-arrow" />
+      <slot v-else
+            name="right-arrow" />
     </div>
   </div>
 </template>
 
 <script>
-// import { throttle } from 'throttle-debounce'
 export default {
   props: {
     /* play */
@@ -41,6 +48,20 @@ export default {
     autoplay: {
       type: Boolean,
       default: true
+    },
+    hoverCanclePlay: {
+      type: Boolean,
+      default: true
+    },
+    playDirection: {
+      default: 'ltr',
+      validator (val) {
+        return ['rtl', 'ltr'].indexOf(val) !== -1
+      }
+    },
+    interval: {
+      type: Number,
+      default: 3000
     },
     loop: {
       type: Boolean,
@@ -65,9 +86,13 @@ export default {
       default: 50
     },
     /* item */
+    timingFunction: {
+      type: String,
+      default: 'easein'
+    },
     displayAmount: {
       type: Number,
-      default: 4
+      default: 1
     },
     itemWidth: {
       type: Number,
@@ -81,12 +106,16 @@ export default {
     }
   },
   mounted () {
-    // eslint-disable-next-line no-console
-    console.log(this)
     this.initCarousel()
-    setTimeout(() => { this.isInit = true }, 16)
+    setTimeout(() => {
+      this.isInit = true
+      if (this.autoplay) {
+        this.play()
+      }
+    }, 16)
   },
   destroyed () {
+    this.cancelPlay()
     clearTimeout(this.timer)
   },
   data () {
@@ -94,12 +123,13 @@ export default {
       itemSpace: 0,
       itemList: [],
       itemStageIndexList: [],
-      playIndex: this.startIndex,
+      index: this.startIndex,
       containerWidth: 'auto',
       isReseting: false,
       isInProcess: false,
       isInit: false,
-      timer: null
+      timer: null,
+      autoplayTimer: null
     }
   },
   computed: {
@@ -113,7 +143,19 @@ export default {
       return this.itemAmount <= this.displayAmount
     },
     isNeedReset () {
-      return this.itemAmount > this.displayAmount && this.itemAmount === this.displayAmount + 1
+      return (
+        this.itemAmount > this.displayAmount &&
+          this.itemAmount === this.displayAmount + 1
+      )
+    }
+  },
+  watch: {
+    autoplay () {
+      if (this.autoplay) {
+        this.play()
+      } else {
+        this.cancelPlay()
+      }
     }
   },
   methods: {
@@ -123,11 +165,16 @@ export default {
       let space =
           (containerWidth - this.displayAmount * this.itemWidth) /
           (this.displayAmount - 1)
+      if (Math.abs(containerWidth - this.itemWidth) < 1) {
+        space = 0
+      }
       if (process.env.NODE_ENV !== 'production') {
         if (space < 0) {
-          throw Error(`item space has computed as a negative value:${space},
-                                                 itemWith * displayAmount should less than the width of carousel container,
-                                                 please adjust container width and item width`)
+          throw Error(`
+              item space has computed as a negative value:${space},
+              itemWith * displayAmount should less than the width of carousel container,
+              please adjust container width and item width
+            `)
         }
       }
       this.itemSpace = space
@@ -139,12 +186,12 @@ export default {
       }
       this.itemList = list
     },
-    setPlayIndex (index) {
+    setIndex (index) {
       if (this.isReseting || this.isInProcess) return
-      let toRight = index > this.playIndex
+      let toRight = index > this.index
       if (
         !this.loop &&
-        (index < 0 || index > this.itemAmount - this.displayAmount)
+          (index < 0 || index > this.itemAmount - this.displayAmount)
       ) {
         return
       }
@@ -156,18 +203,19 @@ export default {
         index %= this.itemAmount
       }
 
-      this.playIndex = index
+      this.index = index
       this.updateStageIndexList(toRight)
     },
     updateItems () {
       this.getItems()
       this.updateStageIndexList()
     },
+    /* caculate order of carousel items */
     updateStageIndexList (toRight) {
       if (!this.isStaticMode) {
         let indexList = []
         for (let i = 0; i < this.displayAmount + 2; i++) {
-          indexList[i] = this.playIndex - 1 + i
+          indexList[i] = this.index - 1 + i
           if (indexList[i] < 0) {
             indexList[i] += this.itemAmount
           }
@@ -175,6 +223,11 @@ export default {
             indexList[i] %= this.itemAmount
           }
         }
+        /*
+            when item amount equal display amount plus 1,
+            to ensure animation visual effects,
+            need to reset edge item position by carousel's next move direction
+          */
         if (this.isNeedReset && this.isInit) {
           clearTimeout(this.timer)
           this.isReseting = true
@@ -201,8 +254,41 @@ export default {
             }, this.speed)
           }
         } else {
+          if (this.isInit) {
+            this.$emit('change', this.index)
+          }
           this.itemStageIndexList = indexList
         }
+      }
+    },
+    play () {
+      clearTimeout(this.autoplayTimer)
+      this.autoplayTimer = setTimeout(() => {
+        if (this.playDirection !== 'rtl') {
+          this.setIndex(this.index + 1)
+        } else {
+          this.setIndex(this.index - 1)
+        }
+        this.play()
+      }, this.interval)
+    },
+    cancelPlay () {
+      clearTimeout(this.autoplayTimer)
+    },
+    handleControl (direction) {
+      if (direction === 'right') {
+        this.setIndex(this.index + 1)
+      } else {
+        this.setIndex(this.index - 1)
+      }
+
+      if (this.autoplay) {
+        this.cancelPlay()
+        this.autoplayTimer = setTimeout(() => {
+          if (this.autoplay) {
+            this.play()
+          }
+        }, this.interval)
       }
     }
   }

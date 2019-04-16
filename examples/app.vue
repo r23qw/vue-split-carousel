@@ -1,12 +1,14 @@
 <template>
   <div class="container">
-    <split-carousel :loop="true">
+    <split-carousel :loop="true"
+                    :autoplay="autoplay"
+                    play-direction="ltr"
+                    :display-amount="4"
+                    @change="handleChange">
       <template slot="left-arrow">
         <h3>left</h3>
       </template>
-      <split-carousel-item
-        v-for="item in list"
-        :key="item">
+      <split-carousel-item v-for="item in list" :key="item">
         <div class="item">
           {{ item }}
         </div>
@@ -19,6 +21,9 @@
       <button @click="list--">
         delete
       </button>
+      <button @click="autoplay = !autoplay">
+        autoplay
+      </button>
     </div>
   </div>
 </template>
@@ -28,7 +33,13 @@ export default {
   created () {},
   data () {
     return {
-      list: 5
+      list: 5,
+      autoplay: false
+    }
+  },
+  methods: {
+    handleChange () {
+      console.log(arguments)
     }
   }
 }
@@ -48,5 +59,8 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
+    box-sizing: border-box;
+    border: 1px seagreen solid;
+    height: 100%;
   }
 </style>

@@ -1,5 +1,6 @@
 <template>
   <div v-if="inStage"
+       v-show="isMounted"
        class="split-carousel-item"
        :class="{'is-static':$parent.isStaticMode}"
        :style="itemStyle">
@@ -25,7 +26,7 @@ export default {
   },
   mounted () {
     this.prevIndex = this.stageIndex
-    setTimeout(() => { this.isMounted = true }, 100)
+    this.$nextTick(() => { this.isMounted = true })
   },
   computed: {
     itemIndex () {
@@ -35,30 +36,25 @@ export default {
       return this.$parent.itemStageIndexList.indexOf(this.itemIndex)
     },
     noMarginRight () {
-      return (
-        this.$parent.isStaticMode &&
-          this.itemIndex === this.$parent.itemAmount - 1
-      )
+      return this.$parent.isStaticMode &&
+             this.itemIndex === this.$parent.itemAmount - 1
     },
     inStage () {
-      if (this.$parent.isStaticMode) {
-        return true
-      }
-      return this.stageIndex !== -1
+      return this.$parent.isStaticMode || this.stageIndex !== -1
     },
     noAnimate () {
       let last = this.$parent.itemStageIndexList.length - 1
       return this.$parent.isReseting ||
-      !this.isMounted ||
-      (this.prevIndex === 0 && this.stageIndex === last) ||
-      (this.prevIndex === last && this.stageIndex === 0) ||
-      (this.prevIndex === this.stageIndex)
-      // (this.prevIndex === 0 && this.stageIndex === 0) ||
+             !this.isMounted ||
+             (this.prevIndex === 0 && this.stageIndex === last) ||
+             (this.prevIndex === last && this.stageIndex === 0) ||
+             (this.prevIndex === this.stageIndex)
     },
     itemStyle () {
       let style = {
         'margin-right': `${this.noMarginRight ? 0 : this.$parent.itemSpace}${this.$parent.cssUnit}`,
-        'width': `${this.$parent.itemWidth}${this.$parent.cssUnit}`
+        'width': `${this.$parent.itemWidth}${this.$parent.cssUnit}`,
+        'transition-timing-function': this.$parent.timingFunction
       }
       if (!this.$parent.isStaticMode) {
         style = Object.assign(style, {
