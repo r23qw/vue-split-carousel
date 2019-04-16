@@ -126,7 +126,7 @@ export default {
       index: this.startIndex,
       containerWidth: 'auto',
       isReseting: false,
-      isInProcess: false,
+      isUnavailable: false,
       isInit: false,
       timer: null,
       autoplayTimer: null
@@ -187,7 +187,7 @@ export default {
       this.itemList = list
     },
     setIndex (index) {
-      if (this.isReseting || this.isInProcess) return
+      if (this.isReseting || this.isUnavailable) return
       let toRight = index > this.index
       if (
         !this.loop &&
@@ -231,13 +231,13 @@ export default {
         if (this.isNeedReset && this.isInit) {
           clearTimeout(this.timer)
           this.isReseting = true
-          this.isInProcess = true
+          this.isUnavailable = true
           if (toRight) {
             this.itemStageIndexList.splice(0, 1, -1)
             this.timer = setTimeout(() => {
               this.itemStageIndexList = indexList
               this.isReseting = false
-              this.isInProcess = false
+              this.isUnavailable = false
             }, 16)
           } else {
             let cloneList = indexList.slice()
@@ -249,7 +249,7 @@ export default {
               this.itemStageIndexList = indexList
               this.timer = setTimeout(() => {
                 this.isReseting = false
-                this.isInProcess = false
+                this.isUnavailable = false
               }, 16)
             }, this.speed)
           }

@@ -2,7 +2,8 @@ const config = require("./webpack.config.base");
 const merge = require("webpack-merge");
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-process.env.NODE_ENV
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+
 const prodConfig = merge(config, {
   output: {
     path: path.resolve(__dirname, "../dist"),
@@ -13,7 +14,10 @@ const prodConfig = merge(config, {
     new MiniCssExtractPlugin({
       filename: "vue-split-carousel.css"
     })
-  ]
+  ],
+  optimization: {
+    minimizer: [new OptimizeCSSAssetsPlugin({})],
+  },
 });
 module.exports = prodConfig
 
