@@ -29,8 +29,13 @@
 </template>
 
 <script>
+import { SplitCarousel, SplitCarouselItem } from '../src/index.js'
 export default {
   created () {},
+  components: {
+    SplitCarousel,
+    SplitCarouselItem
+  },
   data () {
     return {
       list: 5,
