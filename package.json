@@ -25,8 +25,9 @@
   ],
   "scripts": {
     "dev": "webpack-dev-server --open --config ./scripts/webpack.config.dev.js",
-    "build": "npm run clean && npm run build:umd && npm run build:esm",
+    "build": "npm run clean && npm run build:umd && npm run build:common && npm run build:esm",
     "build:umd": "cross-env NODE_ENV=production webpack --config ./scripts/webpack.config.umd.js --mode production",
+    "build:common": "cross-env NODE_ENV=production webpack --config ./scripts/webpack.config.common.js --mode production",
     "build:esm": "webpack --config ./scripts/webpack.config.esm.js",
     "clean": "rimraf ./dist",
     "lint": "eslint ./**/*.vue ./**/*.js --fix",
@@ -68,6 +69,7 @@
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "postcss-loader": "^3.0.0",
     "sass-loader": "^7.1.0",
+    "uglifyjs-webpack-plugin": "^2.1.2",
     "vue": "^2.6.10",
     "vue-hot-reload-api": "^2.3.3",
     "vue-loader": "^15.7.0",

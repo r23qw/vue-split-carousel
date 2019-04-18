@@ -67,7 +67,7 @@ export default {
       type: Boolean,
       default: true
     },
-    startIndex: {
+    initialIndex: {
       type: Number,
       default: 0
     },
@@ -123,7 +123,7 @@ export default {
       itemSpace: 0,
       itemList: [],
       itemStageIndexList: [],
-      index: this.startIndex,
+      index: this.initialIndex,
       containerWidth: 'auto',
       isReseting: false,
       isUnavailable: false,

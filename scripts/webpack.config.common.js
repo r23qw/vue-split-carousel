@@ -4,12 +4,11 @@ const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
-
 const prodConfig = merge(config, {
   output: {
     path: path.resolve(__dirname, "../dist"),
-    libraryTarget: "umd",
-    filename: "vue-split-carousel.umd.js"
+    libraryTarget: "commonjs2",
+    filename: "vue-split-carousel.common.js"
   },
   plugins: [
     new MiniCssExtractPlugin({
@@ -17,7 +16,10 @@ const prodConfig = merge(config, {
     })
   ],
   optimization: {
-    minimizer: [new UglifyJsPlugin({}), new OptimizeCSSAssetsPlugin({})]
+    minimizer: [
+      new UglifyJsPlugin({}),
+      new OptimizeCSSAssetsPlugin({})
+    ]
   }
 });
 module.exports = prodConfig;

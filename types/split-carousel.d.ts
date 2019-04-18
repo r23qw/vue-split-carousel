@@ -4,7 +4,7 @@ export declare class SplitCarousel extends Component {
   autoplay: boolean;
   interval: number;
   loop: boolean;
-  startIndex: number;
+  initialIndex: number;
   displayAmount: number;
   itemWidth: number;
   itemAlign: 'center' | 'left' | 'right';
