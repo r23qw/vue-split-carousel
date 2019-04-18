@@ -21,7 +21,7 @@ module.exports = {
         }
       },
       {
-        test: /\.scss$/,
+        test: /\.s?css$/,
         use: [
           process.env.NODE_ENV !== "production"
             ? "vue-style-loader"
@@ -30,6 +30,10 @@ module.exports = {
           "postcss-loader",
           "sass-loader"
         ]
+      },
+      {
+        test: /\.(ttf|woff)$/,
+        use:'url-loader'
       }
     ]
   },

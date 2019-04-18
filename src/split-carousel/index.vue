@@ -4,15 +4,20 @@
     :style="{padding:`0 ${arrowAreaWidth}${cssUnit}`}">
     <!-- left arrow controller -->
     <div
+      v-show="isLeftArrowEnable"
       @click="handleControl('left')"
       class="split-carousel--arrow split-carousel--arrow__left">
-      <div class="split-carousel--arrow--left" v-if="$slots['left-arrow'] === void 0" />
-      <slot v-else name="left-arrow" />
+      <div
+        class="split-carousel--arrow--left"
+        v-if="$slots['left-arrow'] === void 0" />
+      <slot
+        v-else
+        name="left-arrow" />
     </div>
     <!-- carousel container -->
     <div
-      @mouseenter="cancelPlay()"
-      @mouseleave="play()"
+      @mouseenter="hoverCancelPlay&&cancelPlay()"
+      @mouseleave="hoverCancelPlay&&play()"
       class="split-carousel--content">
       <div
         class="split-carousel--content--container"
@@ -27,10 +32,15 @@
     </div>
     <!-- right arrow controller -->
     <div
+      v-show="isRightArrowEnable"
       class="split-carousel--arrow split-carousel--arrow__right"
       @click="handleControl('right')">
-      <div class="split-carousel--arrow--right" v-if="$slots['right-arrow'] === void 0" />
-      <slot v-else name="right-arrow" />
+      <div
+        class="split-carousel--arrow--right"
+        v-if="$slots['right-arrow'] === void 0" />
+      <slot
+        v-else
+        name="right-arrow" />
     </div>
   </div>
 </template>
@@ -47,7 +57,7 @@ export default {
       type: Boolean,
       default: true
     },
-    hoverCanclePlay: {
+    hoverCancelPlay: {
       type: Boolean,
       default: true
     },
@@ -83,14 +93,21 @@ export default {
       type: Number,
       default: 50
     },
+    arrowVisible: {
+      type: String,
+      default: 'enable',
+      validator (value) {
+        return ['enable', 'always'].indexOf(value) !== -1
+      }
+    },
     /* item */
     timingFunction: {
       type: String,
-      default: 'easein'
+      default: 'ease'
     },
     displayAmount: {
       type: Number,
-      default: 1
+      default: 4
     },
     itemWidth: {
       type: Number,
@@ -112,12 +129,18 @@ export default {
       }
     }, 16)
     /* fix animation effect while broswer tabs switch(broswer would stop to painting while the page is hidden) */
-    document.addEventListener('visibilitychange', this.handlePageVisiblityChange)
+    document.addEventListener(
+      'visibilitychange',
+      this.handlePageVisiblityChange
+    )
   },
   destroyed () {
     this.cancelPlay()
     clearTimeout(this.timer)
-    document.removeEventListener('visibilitychange', this.handlePageVisiblityChange)
+    document.removeEventListener(
+      'visibilitychange',
+      this.handlePageVisiblityChange
+    )
   },
   data () {
     return {
@@ -149,6 +172,29 @@ export default {
         this.itemAmount > this.displayAmount &&
           this.itemAmount === this.displayAmount + 1
       )
+    },
+    isLeftArrowEnable () {
+      let res = true
+      if (this.arrowVisible === 'enable') {
+        if (this.isStaticMode) {
+          res = false
+        } else if (this.loop === false && this.index <= 0) {
+          res = false
+        }
+      }
+      return res
+    },
+    isRightArrowEnable () {
+      let res = true
+      if (this.arrowVisible === 'enable') {
+        if (this.isStaticMode) {
+          res = false
+        } else if (this.loop === false && this.index >= this.itemAmount - this.displayAmount) {
+          res = false
+        }
+      }
+
+      return res
     }
   },
   watch: {
@@ -158,6 +204,15 @@ export default {
       } else {
         this.cancelPlay()
       }
+    },
+    displayAmount () {
+      this.initCarousel()
+    },
+    itemWidth () {
+      this.initCarousel()
+    },
+    arrowAreaWidth () {
+      this.initCarousel()
     }
   },
   methods: {
@@ -173,10 +228,10 @@ export default {
       if (process.env.NODE_ENV !== 'production') {
         if (space < 0) {
           throw Error(`
-                    item space has computed as a negative value:${space},
-                    itemWith * displayAmount should less than the width of carousel container,
-                    please adjust container width and item width
-                  `)
+                      item space has computed as a negative value:${space},
+                      itemWith * displayAmount should less than the width of carousel container,
+                      please adjust container width and item width
+                    `)
         }
       }
       this.itemSpace = space
@@ -226,10 +281,10 @@ export default {
           }
         }
         /*
-          when item amount equal display amount plus 1,
-          to ensure animation visual effects,
-          need to reset edge item position by carousel's next move direction
-        */
+            when item amount equal display amount plus 1,
+            to ensure animation visual effects,
+            need to reset edge item position by carousel's next move direction
+          */
         if (this.isNeedReset && this.isInit) {
           clearTimeout(this.timer)
           this.isReseting = true
@@ -298,7 +353,9 @@ export default {
         this.isPageVisible = false
       }
       if (document.visibilityState === 'visible') {
-        setTimeout(() => { this.isPageVisible = true })
+        setTimeout(() => {
+          this.isPageVisible = true
+        })
       }
     }
   }

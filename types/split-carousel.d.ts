@@ -11,6 +11,7 @@ export declare class SplitCarousel extends Component {
   height: number;
   timingFunction: string;
   arrowAreaWidth: number;
+  arrowVisible: 'enable' | 'always'
   hoverCanclePlay: boolean;
   playDirection: 'ltr' | 'rtl'
 }
