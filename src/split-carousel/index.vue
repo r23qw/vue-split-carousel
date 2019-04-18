@@ -3,36 +3,34 @@
     class="split-carousel"
     :style="{padding:`0 ${arrowAreaWidth}${cssUnit}`}">
     <!-- left arrow controller -->
-    <div @click="handleControl('left')"
-         class="arrow-control left-arrow">
-      <div v-if="$slots['left-arrow'] === void 0">
-        left
-      </div>
-      <slot v-else
-            name="left-arrow" />
+    <div
+      @click="handleControl('left')"
+      class="split-carousel--arrow split-carousel--arrow__left">
+      <div class="split-carousel--arrow--left" v-if="$slots['left-arrow'] === void 0" />
+      <slot v-else name="left-arrow" />
     </div>
     <!-- carousel container -->
-    <div @mouseenter="cancelPlay()"
-         @mouseleave="play()"
-         class="content">
-      <div class="content--container"
-           :class="{[`content--container__${itemAlign}`] : isStaticMode}"
-           :style="{
-             'width':`${isStaticMode ? 'auto':`${(itemWidthWithSpace)*(displayAmount+2)}${cssUnit}`}`,
-             'margin-left': `${isStaticMode ? 0 :-(itemWidthWithSpace)}${cssUnit}`,
-             'height':`${height}${cssUnit}`
-           }">
+    <div
+      @mouseenter="cancelPlay()"
+      @mouseleave="play()"
+      class="split-carousel--content">
+      <div
+        class="split-carousel--content--container"
+        :class="{[`split-carousel--content--container__${itemAlign}`] : isStaticMode}"
+        :style="{
+          'width':`${isStaticMode ? 'auto':`${(itemWidthWithSpace)*(displayAmount+2)}${cssUnit}`}`,
+          'margin-left': `${isStaticMode ? 0 :-(itemWidthWithSpace)}${cssUnit}`,
+          'height':`${height}${cssUnit}`
+        }">
         <slot />
       </div>
     </div>
     <!-- right arrow controller -->
-    <div class="arrow-control right-arrow"
-         @click="handleControl('right')">
-      <div v-if="$slots['right-arrow'] === void 0">
-        right
-      </div>
-      <slot v-else
-            name="right-arrow" />
+    <div
+      class="split-carousel--arrow split-carousel--arrow__right"
+      @click="handleControl('right')">
+      <div class="split-carousel--arrow--right" v-if="$slots['right-arrow'] === void 0" />
+      <slot v-else name="right-arrow" />
     </div>
   </div>
 </template>
@@ -113,10 +111,13 @@ export default {
         this.play()
       }
     }, 16)
+    /* fix animation effect while broswer tabs switch(broswer would stop to painting while the page is hidden) */
+    document.addEventListener('visibilitychange', this.handlePageVisiblityChange)
   },
   destroyed () {
     this.cancelPlay()
     clearTimeout(this.timer)
+    document.removeEventListener('visibilitychange', this.handlePageVisiblityChange)
   },
   data () {
     return {
@@ -129,7 +130,8 @@ export default {
       isUnavailable: false,
       isInit: false,
       timer: null,
-      autoplayTimer: null
+      autoplayTimer: null,
+      isPageVisible: true
     }
   },
   computed: {
@@ -171,10 +173,10 @@ export default {
       if (process.env.NODE_ENV !== 'production') {
         if (space < 0) {
           throw Error(`
-              item space has computed as a negative value:${space},
-              itemWith * displayAmount should less than the width of carousel container,
-              please adjust container width and item width
-            `)
+                    item space has computed as a negative value:${space},
+                    itemWith * displayAmount should less than the width of carousel container,
+                    please adjust container width and item width
+                  `)
         }
       }
       this.itemSpace = space
@@ -224,10 +226,10 @@ export default {
           }
         }
         /*
-            when item amount equal display amount plus 1,
-            to ensure animation visual effects,
-            need to reset edge item position by carousel's next move direction
-          */
+          when item amount equal display amount plus 1,
+          to ensure animation visual effects,
+          need to reset edge item position by carousel's next move direction
+        */
         if (this.isNeedReset && this.isInit) {
           clearTimeout(this.timer)
           this.isReseting = true
@@ -289,6 +291,14 @@ export default {
             this.play()
           }
         }, this.interval)
+      }
+    },
+    handlePageVisiblityChange () {
+      if (document.visibilityState === 'hidden') {
+        this.isPageVisible = false
+      }
+      if (document.visibilityState === 'visible') {
+        setTimeout(() => { this.isPageVisible = true })
       }
     }
   }
