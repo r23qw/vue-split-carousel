@@ -321,7 +321,7 @@ export default {
     play () {
       clearTimeout(this.autoplayTimer)
       this.autoplayTimer = setTimeout(() => {
-        if (this.playDirection !== 'ltr') {
+        if (this.playDirection === 'ltr') {
           this.setIndex(this.index + 1)
         } else {
           this.setIndex(this.index - 1)
@@ -334,9 +334,9 @@ export default {
     },
     handleControl (direction) {
       if (direction === 'right') {
-        this.setIndex(this.index - 1)
-      } else {
         this.setIndex(this.index + 1)
+      } else {
+        this.setIndex(this.index - 1)
       }
 
       if (this.autoplay) {
