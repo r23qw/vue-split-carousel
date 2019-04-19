@@ -1,6 +1,6 @@
 # Vue Split Carousel
 
-[![Build Status](https://travis-ci.com/Aaron00101010/vue-split-carousel.svg?branch=dev)](https://travis-ci.com/Aaron00101010/vue-split-carousel)
+[![Build Status](https://travis-ci.com/Aaron00101010/vue-split-carousel.svg?branch=master)](https://travis-ci.com/Aaron00101010/vue-split-carousel)
 ![](https://img.shields.io/npm/l/vue-split-carousel.svg)
 ![](https://img.shields.io/npm/v/vue-split-carousel.svg)
 ![](https://img.shields.io/bundlephobia/minzip/vue-split-carousel.svg)
