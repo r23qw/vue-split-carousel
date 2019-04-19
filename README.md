@@ -3,7 +3,6 @@
 [![Build Status](https://travis-ci.com/Aaron00101010/vue-split-carousel.svg?branch=master)](https://travis-ci.com/Aaron00101010/vue-split-carousel)
 ![GitHub](https://img.shields.io/github/license/aaron00101010/vue-split-carousel.svg)
 ![](https://img.shields.io/npm/v/vue-split-carousel.svg)
-![](https://img.shields.io/bundlephobia/minzip/vue-split-carousel.svg)
 <br>
 <br>
 A carousel component for vue, display several carousel item in carousel container.  
@@ -72,6 +71,7 @@ import Vue from "vue";
 import App from "./App.vue";
 
 import SplitCarousel from "vue-split-carousel";
+import "vue-split-carousel/dist/vue-split-carousel.css";
 Vue.use(SplitCarousel);
 
 new Vue({
