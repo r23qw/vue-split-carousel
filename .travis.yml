@@ -3,11 +3,18 @@ node_js:
   - "10"
 cache: npm
 branches: 
-  - dev
-  - master
+  only:
+    - master
 install:
   - npm i
-github_token: $GITHUB_TOKEN  
 script:
   - npm run build
-  - sh scripts/deploy.sh
+  - npm run docs:build
+deploy:
+  provider: pages
+  local_dir: docs/.vuepress/dist/
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
+  keep_history: true
+  on:
+    branch: master
