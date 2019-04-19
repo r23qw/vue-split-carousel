@@ -1,12 +1,12 @@
 # Vue Split Carousel
 
 [![Build Status](https://travis-ci.com/Aaron00101010/vue-split-carousel.svg?branch=master)](https://travis-ci.com/Aaron00101010/vue-split-carousel)
-![](https://img.shields.io/npm/l/vue-split-carousel.svg)
+![GitHub](https://img.shields.io/github/license/aaron00101010/vue-split-carousel.svg)
 ![](https://img.shields.io/npm/v/vue-split-carousel.svg)
 ![](https://img.shields.io/bundlephobia/minzip/vue-split-carousel.svg)
 <br>
 <br>
-A carousel component for vue, display several carousel-item in carousel container.  
+A carousel component for vue, display several carousel item in carousel container.  
 SSR supported, compatible IE 10+ and modern browsers
 <br>
 <br>
