@@ -3,9 +3,11 @@ node_js:
   - "10"
 cache: npm
 branches: 
-  only:
   - dev
+  - master
 install:
   - npm i
+github_token: $GITHUB_TOKEN  
 script:
   - npm run build
+  - sh scripts/deploy.sh

@@ -1,9 +1,9 @@
 {
   "name": "vue-split-carousel",
   "version": "0.0.1",
-  "description": "a carousel component of vue, display several carousel-item in the carousel container",
+  "description": "a carousel component for vue, display several carousel-item in carousel container",
   "main": "dist/vue-split-carousel.common.js",
-  "module": "dist/vue-split-carousel.esm.js",
+  "module": "src/index.js",
   "directories": {},
   "files": [
     "src",
@@ -19,8 +19,6 @@
   "browserslist": [
     "last 2 version",
     "> 0.5%",
-    "maintained node versions",
-    "not dead",
     "ie >= 10"
   ],
   "scripts": {
@@ -31,7 +29,10 @@
     "build:esm": "webpack --config ./scripts/webpack.config.esm.js",
     "clean": "rimraf ./dist",
     "lint": "eslint ./**/*.vue ./**/*.js --fix",
-    "test": "npm"
+    "test": "npm",
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs",
+    "docs:deploy": "bash ./scripts/deploy.sh"
   },
   "repository": {
     "type": "git",
@@ -76,8 +77,10 @@
     "vue-hot-reload-api": "^2.3.3",
     "vue-loader": "^15.7.0",
     "vue-template-compiler": "^2.6.10",
+    "vuepress": "^0.14.11",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0",
+    "webpack-dev-middleware": "^3.6.0",
     "webpack-dev-server": "^3.2.1",
     "webpack-merge": "^4.2.1"
   },

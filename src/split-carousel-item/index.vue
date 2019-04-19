@@ -83,6 +83,31 @@ export default {
 }
 </script>
 
-<style lang="scss">
-  @import "./style.scss";
+<style>
+.split-carousel * {
+  font-size: 16px;
+  font-size: medium;
+}
+.split-carousel-item {
+  display: inline-block;
+  font-size: medium;
+  overflow: hidden;
+  box-sizing: border-box;
+  transition-property: left, -webkit-transform;
+  transition-property: transform, left;
+  transition-property: transform, left, -webkit-transform;
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  height: 100%;
+}
+.split-carousel-item.is-static {
+  position: relative;
+  left: auto;
+}
+.split-carousel-item--content {
+  box-sizing: border-box;
+  height: 100%;
+}
 </style>

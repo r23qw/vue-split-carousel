@@ -321,7 +321,7 @@ export default {
     play () {
       clearTimeout(this.autoplayTimer)
       this.autoplayTimer = setTimeout(() => {
-        if (this.playDirection !== 'rtl') {
+        if (this.playDirection !== 'ltr') {
           this.setIndex(this.index + 1)
         } else {
           this.setIndex(this.index - 1)
@@ -334,9 +334,9 @@ export default {
     },
     handleControl (direction) {
       if (direction === 'right') {
-        this.setIndex(this.index + 1)
-      } else {
         this.setIndex(this.index - 1)
+      } else {
+        this.setIndex(this.index + 1)
       }
 
       if (this.autoplay) {
@@ -362,6 +362,84 @@ export default {
 }
 </script>
 
-<style lang="scss">
-  @import "./style.scss";
+<style>
+.split-carousel {
+  font-size: 0;
+  position: relative;
+  overflow: hidden;
+}
+.split-carousel--content {
+  width: 100%;
+  padding: 1px;
+  overflow: hidden;
+}
+.split-carousel--content--container {
+  transition-property: -webkit-transform;
+  transition-property: transform;
+  transition-property: transform, -webkit-transform;
+  transition-duration: 0.3s;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  position: relative;
+}
+.split-carousel--content--container__left {
+  text-align: left;
+}
+.split-carousel--content--container__center {
+  text-align: center;
+}
+.split-carousel--content--container__right {
+  text-align: right;
+}
+.split-carousel--arrow {
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.split-carousel--arrow__left {
+  left: 0;
+}
+.split-carousel--arrow__right {
+  right: 0;
+}
+.split-carousel--arrow--left,
+.split-carousel--arrow--right {
+  height: 30px;
+  width: 30px;
+  text-align: center;
+  line-height: 30px;
+  border: 1px solid #dcdfe6;
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  background-size: 35% 35%;
+  transition: border-color, background-color 0.15s;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.split-carousel--arrow--left {
+  background-position: 8px;
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0OTIuMDA0IDQ5Mi4wMDQiIHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIj48cGF0aCBkPSJNMTA5LjMyNiAyMjYuODA0TDMyOC4yNzQgNy44NkMzMzMuMzM4IDIuNzkyIDM0MC4wOTggMCAzNDcuMzA2IDBzMTMuOTY4IDIuNzkyIDE5LjAzMiA3Ljg2bDE2LjEyNCAxNi4xMmMxMC40OTIgMTAuNTA0IDEwLjQ5MiAyNy41NzYgMCAzOC4wNjRMMTk4LjYwNiAyNDUuOWwxODQuMDYgMTg0LjA2YzUuMDY0IDUuMDY4IDcuODYgMTEuODI0IDcuODYgMTkuMDI4IDAgNy4yMTItMi43OTYgMTMuOTY4LTcuODYgMTkuMDRsLTE2LjEyNCAxNi4xMTZjLTUuMDY4IDUuMDY4LTExLjgyNCA3Ljg2LTE5LjAzMiA3Ljg2cy0xMy45NjgtMi43OTItMTkuMDMyLTcuODZMMTA5LjMyNiAyNjVjLTUuMDc2LTUuMDg0LTcuODY0LTExLjg3Mi03Ljg0OC0xOS4wODgtLjAxNi03LjI0NCAyLjc3Mi0xNC4wMjggNy44NDgtMTkuMTA4eiIgZGF0YS1vcmlnaW5hbD0iIzAwMDAwMCIgY2xhc3M9ImFjdGl2ZS1wYXRoIiBkYXRhLW9sZF9jb2xvcj0iIyM2MDYyNiIgZmlsbD0iIzYwNjI2NiIvPjwvc3ZnPg==");
+}
+.split-carousel--arrow--right {
+  background-position: 10px;
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0OTIuMDA0IDQ5Mi4wMDQiIHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIj48cGF0aCBkPSJNMzgyLjY3OCAyMjYuODA0TDE2My43MyA3Ljg2QzE1OC42NjYgMi43OTIgMTUxLjkwNiAwIDE0NC42OTggMHMtMTMuOTY4IDIuNzkyLTE5LjAzMiA3Ljg2bC0xNi4xMjQgMTYuMTJjLTEwLjQ5MiAxMC41MDQtMTAuNDkyIDI3LjU3NiAwIDM4LjA2NEwyOTMuMzk4IDI0NS45bC0xODQuMDYgMTg0LjA2Yy01LjA2NCA1LjA2OC03Ljg2IDExLjgyNC03Ljg2IDE5LjAyOCAwIDcuMjEyIDIuNzk2IDEzLjk2OCA3Ljg2IDE5LjA0bDE2LjEyNCAxNi4xMTZjNS4wNjggNS4wNjggMTEuODI0IDcuODYgMTkuMDMyIDcuODZzMTMuOTY4LTIuNzkyIDE5LjAzMi03Ljg2TDM4Mi42NzggMjY1YzUuMDc2LTUuMDg0IDcuODY0LTExLjg3MiA3Ljg0OC0xOS4wODguMDE2LTcuMjQ0LTIuNzcyLTE0LjAyOC03Ljg0OC0xOS4xMDh6IiBkYXRhLW9yaWdpbmFsPSIjMDAwMDAwIiBjbGFzcz0iYWN0aXZlLXBhdGgiIGRhdGEtb2xkX2NvbG9yPSIjIzYwNjI2IiBmaWxsPSIjNjA2MjY2Ii8+PC9zdmc+");
+}
+.split-carousel--arrow--left:hover {
+  border-color: #c6e2ff;
+  background-color: #ecf5ff;
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0OTIuMDA0IDQ5Mi4wMDQiIHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIj48cGF0aCBkPSJNMTA5LjMyNiAyMjYuODA0TDMyOC4yNzQgNy44NkMzMzMuMzM4IDIuNzkyIDM0MC4wOTggMCAzNDcuMzA2IDBzMTMuOTY4IDIuNzkyIDE5LjAzMiA3Ljg2bDE2LjEyNCAxNi4xMmMxMC40OTIgMTAuNTA0IDEwLjQ5MiAyNy41NzYgMCAzOC4wNjRMMTk4LjYwNiAyNDUuOWwxODQuMDYgMTg0LjA2YzUuMDY0IDUuMDY4IDcuODYgMTEuODI0IDcuODYgMTkuMDI4IDAgNy4yMTItMi43OTYgMTMuOTY4LTcuODYgMTkuMDRsLTE2LjEyNCAxNi4xMTZjLTUuMDY4IDUuMDY4LTExLjgyNCA3Ljg2LTE5LjAzMiA3Ljg2cy0xMy45NjgtMi43OTItMTkuMDMyLTcuODZMMTA5LjMyNiAyNjVjLTUuMDc2LTUuMDg0LTcuODY0LTExLjg3Mi03Ljg0OC0xOS4wODgtLjAxNi03LjI0NCAyLjc3Mi0xNC4wMjggNy44NDgtMTkuMTA4eiIgZGF0YS1vcmlnaW5hbD0iIzAwMDAwMCIgY2xhc3M9ImFjdGl2ZS1wYXRoIiBkYXRhLW9sZF9jb2xvcj0iIzQwOWVmZiIgZmlsbD0iIzQwOWVmZiIvPjwvc3ZnPg==");
+}
+.split-carousel--arrow--right:hover {
+  border-color: #c6e2ff;
+  background-color: #ecf5ff;
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0OTIuMDA0IDQ5Mi4wMDQiIHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIj48cGF0aCBkPSJNMzgyLjY3OCAyMjYuODA0TDE2My43MyA3Ljg2QzE1OC42NjYgMi43OTIgMTUxLjkwNiAwIDE0NC42OTggMHMtMTMuOTY4IDIuNzkyLTE5LjAzMiA3Ljg2bC0xNi4xMjQgMTYuMTJjLTEwLjQ5MiAxMC41MDQtMTAuNDkyIDI3LjU3NiAwIDM4LjA2NEwyOTMuMzk4IDI0NS45bC0xODQuMDYgMTg0LjA2Yy01LjA2NCA1LjA2OC03Ljg2IDExLjgyNC03Ljg2IDE5LjAyOCAwIDcuMjEyIDIuNzk2IDEzLjk2OCA3Ljg2IDE5LjA0bDE2LjEyNCAxNi4xMTZjNS4wNjggNS4wNjggMTEuODI0IDcuODYgMTkuMDMyIDcuODZzMTMuOTY4LTIuNzkyIDE5LjAzMi03Ljg2TDM4Mi42NzggMjY1YzUuMDc2LTUuMDg0IDcuODY0LTExLjg3MiA3Ljg0OC0xOS4wODguMDE2LTcuMjQ0LTIuNzcyLTE0LjAyOC03Ljg0OC0xOS4xMDh6IiBkYXRhLW9yaWdpbmFsPSIjMDAwMDAwIiBjbGFzcz0iYWN0aXZlLXBhdGgiIGRhdGEtb2xkX2NvbG9yPSIjNDA5ZWZmIiBmaWxsPSIjNDA5ZWZmIi8+PC9zdmc+");
+}
 </style>
