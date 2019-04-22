@@ -21,6 +21,7 @@
     "> 0.5%",
     "ie >= 10"
   ],
+  "typings": "types/index.d.ts",
   "scripts": {
     "dev": "webpack-dev-server --open --config ./scripts/webpack.config.dev.js",
     "build": "npm run clean && npm run build:umd && npm run build:common && npm run build:esm",
