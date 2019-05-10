@@ -5,7 +5,7 @@
 ![](https://img.shields.io/npm/v/vue-split-carousel.svg)
 <br>
 <br>
-A carousel component for vue, display several carousel item in carousel container.  
+A carousel component for vue,meanwhile display several carousel item.  
 SSR supported, compatible IE 10+ and modern browsers
 <br>
 <br>
