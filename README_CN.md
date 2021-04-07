@@ -1,4 +1,5 @@
-[中文文档](./README_CN.md)
+[English Document](./README.md)
+
 # Vue Split Carousel
 
 [![Build Status](https://travis-ci.com/Aaron00101010/vue-split-carousel.svg?branch=master)](https://travis-ci.com/Aaron00101010/vue-split-carousel)
@@ -6,29 +7,28 @@
 ![](https://img.shields.io/npm/v/vue-split-carousel.svg)
 <br>
 <br>
-A carousel component for vue,meanwhile display several carousel item.  
-SSR supported, compatible IE 10+ and modern browsers
+同时展示多个轮播项的轮播图，支持服务段渲染，兼容 IE 10+ 以上浏览器
 <br>
 <br>
 ![show](./examples/GIF.gif)  
 
 ### [Playground](https://aaron00101010.github.io/vue-split-carousel/)  
 
-# Install
+# 安装
 
-## import by npm
+## npm 引用
 
-### install package
+### 安装依赖
 
 ```bash
 npm i vue-split-carousel -S
 ```
 
-### Local Usage
+### 组件内使用
 
 <details>
 
-<summary><strong>example code</strong></summary>
+<summary><strong>示例代码</strong></summary>
 
 ```html
 <template>
@@ -61,11 +61,11 @@ npm i vue-split-carousel -S
 
 </details>
 
-### Global Usage
+### 全局使用
 
 <details>
 
-<summary><strong>example code</strong></summary>
+<summary><strong>示例代码</strong></summary>
 
 ```js
 import Vue from "vue";
@@ -82,15 +82,15 @@ new Vue({
 
 </details>
 
-## import by `<script>`
+## `<script>` 标签应用
 
-1. import component style from dist dir
-2. import vue.js
-3. import vue-split-carousel.umd.js
+1. 引用组件样式
+2. 引用 vue.js
+3. 引用 vue-split-carousel.umd.js
 
 <details>
 
-<summary><strong>example code</strong></summary>
+<summary><strong>示例代码</strong></summary>
 
 ```html
 <!DOCTYPE html>
@@ -126,13 +126,13 @@ new Vue({
 
 </details>
 
-# Browser Compatibility
+# 浏览器兼容性
 
-animation effect is implent by CSS property `transition`, thus only support for IE 10+ and other modern browsers.
+动画通过 CSS `transition` 实现, 因此只支持 IE10 及以上现代浏览器.
 
-# Component Structure
+# 组件结构
 
-Use `<split-carousel-item>` in `<split-carousel>`,put your custom content in `split-carousel-item`.
+ `<split-carousel-item>` 在 `<split-carousel>` 内, 自定义元素在 `split-carousel-item` 内.
 
 ```html
 <split-carousel>
@@ -146,7 +146,7 @@ Use `<split-carousel-item>` in `<split-carousel>`,put your custom content in `sp
 </split-carousel>
 ```
 
-You can customize carousel arrow by slots `arrow-left` and `arrow-right`
+可以通过 `arrorw-left` `arrow-right` 插槽自定义组件按钮。
 
 ```html
 <split-carousel>
@@ -164,27 +164,27 @@ You can customize carousel arrow by slots `arrow-left` and `arrow-right`
 
 | Attribute         | Description                                                                     | Type    | Accpected Values  | Default |
 | ----------------- | ------------------------------------------------------------------------------- | ------- | ----------------- | ------- |
-| speed             | duration of carousel item animation,in milliseconds                             | Number  | -                 | 500     |
-| autoplay          | whether automatically switch carousel items                                     | Boolean | -                 | true    |
-| interval          | interval of switch carousel items, in milliseconds                              | Number  | -                 | 3000    |
-| loop              | whether display carousel items in loop                                          | Boolean | -                 | true    |
-| initial-index     | index of initally first carousel item                                           | Number  | -                 | 0       |
-| display-amount    | the amount of carousel items display in carousel container                      | Number  | -                 | 4       |
-| item-width        | the width of carousel items                                                     | Number  | -                 | 120     |
-| item-align        | carousel item alignment while carousel item amount less than display amount     | -       | center/left/right | center  |
-| height            | height of carousel                                                              | Number  | -                 | 80      |
-| timing-function   | the animation effect of carousel item,reference [transition-timing-function][1] | String  | -                 | ease    |
-| arrow-area-width  | the width of arrow area                                                         | Number  | -                 | 50      |
-| arrow-visible     | when arrows are show                                                            | -       | enable/always     | enable  |
-| hover-cancle-play | whether stop auto play while mouse hover                                        | Boolean | -                 | true    |
-| play-direction    | the moving direction of carousel item                                           | -       | ltr/rtl           | ltr     |
+| speed             | 每次轮播动画持续时间                            | Number  | -                 | 500     |
+| autoplay          | 是否自动轮播                                  | Boolean | -                 | true    |
+| interval          | 轮播间隔                          | Number  | -                 | 3000    |
+| loop              | 是否循环轮播                                      | Boolean | -                 | true    |
+| initial-index     | 初始轮播项索引，用于定位初始轮播位置                                          | Number  | -                 | 0       |
+| display-amount    | 同时展示的轮播项数量                   | Number  | -                 | 4       |
+| item-width        | 轮播项宽度                                                   | Number  | -                 | 120     |
+| item-align        | 当轮播项少于同时展示数量时的布局     | -       | center/left/right | center  |
+| height            | 组件高度                                                             | Number  | -                 | 80      |
+| timing-function   | 动画函数，参考 [transition-timing-function][1] | String  | -                 | ease    |
+| arrow-area-width  | 左右按钮宽度                                                       | Number  | -                 | 50      |
+| arrow-visible     | 按钮是否可见                                                        | -       | enable/always     | enable  |
+| hover-cancle-play | 鼠标悬停是否停止轮播                                     | Boolean | -                 | true    |
+| play-direction    | 轮播方向                                          | -       | ltr/rtl           | ltr     |
 
 ## Split Carousel Slots
 
 | Name        | Descrition         |
 | ----------- | ------------------ |
-| left-arrow  | customize left arrow  |
-| right-arrow | customize right arrow |
+| left-arrow  | 自定义左按钮  |
+| right-arrow | 自定义右按钮 |
 
 # Contribution
 
