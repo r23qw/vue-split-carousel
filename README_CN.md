@@ -10,9 +10,9 @@
 同时展示多个轮播项的轮播图，支持服务段渲染，兼容 IE 10+ 以上浏览器
 <br>
 <br>
-![show](./examples/GIF.gif)  
+![show](./examples/GIF.gif)
 
-### [Playground](https://aaron00101010.github.io/vue-split-carousel/)  
+### [Playground](https://aaron00101010.github.io/vue-split-carousel/)
 
 # 安装
 
@@ -46,8 +46,8 @@ npm i vue-split-carousel -S
   export default {
     components: {
       SplitCarousel,
-      SplitCarouselItem
-    }
+      SplitCarouselItem,
+    },
   };
 </script>
 
@@ -76,7 +76,7 @@ import "vue-split-carousel/dist/vue-split-carousel.css";
 Vue.use(SplitCarousel);
 
 new Vue({
-  render: h => h(App)
+  render: (h) => h(App),
 }).$mount("#app");
 ```
 
@@ -115,9 +115,9 @@ new Vue({
       new Vue({
         data() {
           return {
-            list: 6
+            list: 6,
           };
-        }
+        },
       }).$mount("#app");
     </script>
   </body>
@@ -132,7 +132,7 @@ new Vue({
 
 # 组件结构
 
- `<split-carousel-item>` 在 `<split-carousel>` 内, 自定义元素在 `split-carousel-item` 内.
+`<split-carousel-item>` 在 `<split-carousel>` 内, 自定义元素在 `split-carousel-item` 内.
 
 ```html
 <split-carousel>
@@ -162,44 +162,29 @@ new Vue({
 
 ## Split Carousel Attributes
 
-| Attribute         | Description                                                                     | Type    | Accpected Values  | Default |
-| ----------------- | ------------------------------------------------------------------------------- | ------- | ----------------- | ------- |
-| speed             | 每次轮播动画持续时间                            | Number  | -                 | 500     |
-| autoplay          | 是否自动轮播                                  | Boolean | -                 | true    |
-| interval          | 轮播间隔                          | Number  | -                 | 3000    |
-| loop              | 是否循环轮播                                      | Boolean | -                 | true    |
-| initial-index     | 初始轮播项索引，用于定位初始轮播位置                                          | Number  | -                 | 0       |
-| display-amount    | 同时展示的轮播项数量                   | Number  | -                 | 4       |
-| item-width        | 轮播项宽度                                                   | Number  | -                 | 120     |
-| item-align        | 当轮播项少于同时展示数量时的布局     | -       | center/left/right | center  |
-| height            | 组件高度                                                             | Number  | -                 | 80      |
+| Attribute         | Description                                    | Type    | Accpected Values  | Default |
+| ----------------- | ---------------------------------------------- | ------- | ----------------- | ------- |
+| speed             | 每次轮播动画持续时间                           | Number  | -                 | 500     |
+| autoplay          | 是否自动轮播                                   | Boolean | -                 | true    |
+| interval          | 轮播间隔                                       | Number  | -                 | 3000    |
+| loop              | 是否循环轮播                                   | Boolean | -                 | true    |
+| initial-index     | 初始轮播项索引，用于定位初始轮播位置           | Number  | -                 | 0       |
+| display-amount    | 同时展示的轮播项数量                           | Number  | -                 | 4       |
+| item-width        | 轮播项宽度                                     | Number  | -                 | 120     |
+| item-align        | 当轮播项少于同时展示数量时的布局               | -       | center/left/right | center  |
+| height            | 组件高度                                       | Number  | -                 | 80      |
 | timing-function   | 动画函数，参考 [transition-timing-function][1] | String  | -                 | ease    |
-| arrow-area-width  | 左右按钮宽度                                                       | Number  | -                 | 50      |
-| arrow-visible     | 按钮是否可见                                                        | -       | enable/always     | enable  |
-| hover-cancle-play | 鼠标悬停是否停止轮播                                     | Boolean | -                 | true    |
-| play-direction    | 轮播方向                                          | -       | ltr/rtl           | ltr     |
+| arrow-area-width  | 左右按钮宽度                                   | Number  | -                 | 50      |
+| arrow-visible     | 按钮是否可见                                   | -       | enable/always     | enable  |
+| hover-cancle-play | 鼠标悬停是否停止轮播                           | Boolean | -                 | true    |
+| play-direction    | 轮播方向                                       | -       | ltr/rtl           | ltr     |
 
 ## Split Carousel Slots
 
-| Name        | Descrition         |
-| ----------- | ------------------ |
-| left-arrow  | 自定义左按钮  |
+| Name        | Descrition   |
+| ----------- | ------------ |
+| left-arrow  | 自定义左按钮 |
 | right-arrow | 自定义右按钮 |
-
-# Contribution
-
-## Development
-
-```bash
-npm i
-npm run dev
-```
-
-## Build
-
-```bash
-npm run build
-```
 
 # License
 

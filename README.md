@@ -186,21 +186,6 @@ You can customize carousel arrow by slots `arrow-left` and `arrow-right`
 | left-arrow  | customize left arrow  |
 | right-arrow | customize right arrow |
 
-# Contribution
-
-## Development
-
-```bash
-npm i
-npm run dev
-```
-
-## Build
-
-```bash
-npm run build
-```
-
 # License
 
 [MIT](./LICENSE)

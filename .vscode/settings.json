@@ -1,16 +1,7 @@
 {   
+    "files.autoSave": "afterDelay",
     "editor.formatOnSave": false,
-    "eslint.validate":[
-        {
-            "language": "vue",
-            "autoFix": true
-        },
-    
-        {
-            "language":"javascript",
-            "autoFix": true
-        }
-        
-    ],
-    "eslint.alwaysShowStatus": true
+    "editor.codeActionsOnSave": {
+        "source.fixAll": true
+    }
 }
