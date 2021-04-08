@@ -1,16 +1,21 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+  <SplitCarousel>
+    <SplitCarouselItem v-for="item in 10" :key="item">
+      {{ item }}
+    </SplitCarouselItem>
+  </SplitCarousel>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import HelloWorld from "./components/HelloWorld.vue";
+import SplitCarousel from "./components/SplitCarousel.vue";
+import SplitCarouselItem from "./components/SplitCarouselItem.vue";
 
 export default defineComponent({
   name: "App",
   components: {
-    HelloWorld,
+    SplitCarousel,
+    SplitCarouselItem,
   },
 });
 </script>
