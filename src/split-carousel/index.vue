@@ -16,8 +16,8 @@
     </div>
     <!-- carousel container -->
     <div
-      @mouseenter="hoverCancelPlay&&cancelPlay()"
-      @mouseleave="hoverCancelPlay&&play()"
+      @mouseenter="autoplay && hoverCancelPlay && cancelPlay()"
+      @mouseleave="autoplay && hoverCancelPlay && play()"
       class="split-carousel--content">
       <div
         class="split-carousel--content--container"
