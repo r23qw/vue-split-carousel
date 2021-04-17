@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "dev": "vue-cli-service serve",
+    "build": "vue-cli-service build --target lib",
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
     "lint": "vue-cli-service lint"
@@ -29,6 +29,7 @@
     "@vue/eslint-config-typescript": "^7.0.0",
     "@vue/test-utils": "^2.0.0-0",
     "chromedriver": "89",
+    "element-plus": "^1.0.2-beta.40",
     "eslint": "^6.7.2",
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-vue": "^7.0.0",
