@@ -3,7 +3,7 @@
 
 [![Build Status](https://travis-ci.com/Aaron00101010/vue-split-carousel.svg?branch=master)](https://travis-ci.com/Aaron00101010/vue-split-carousel)
 ![GitHub](https://img.shields.io/github/license/aaron00101010/vue-split-carousel.svg)
-![](https://img.shields.io/npm/v/vue-split-carousel.svg)
+
 <br>
 <br>
 A carousel component for vue,meanwhile display several carousel item.  
@@ -21,7 +21,7 @@ SSR supported, compatible IE 10+ and modern browsers
 ### install package
 
 ```bash
-npm i vue-split-carousel -S
+npm i vue-split-carousel@1 -S
 ```
 
 ### Local Usage

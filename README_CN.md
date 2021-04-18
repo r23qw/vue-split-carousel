@@ -4,7 +4,6 @@
 
 [![Build Status](https://travis-ci.com/Aaron00101010/vue-split-carousel.svg?branch=master)](https://travis-ci.com/Aaron00101010/vue-split-carousel)
 ![GitHub](https://img.shields.io/github/license/aaron00101010/vue-split-carousel.svg)
-![](https://img.shields.io/npm/v/vue-split-carousel.svg)
 <br>
 <br>
 同时展示多个轮播项的轮播图，支持服务段渲染，兼容 IE 10+ 以上浏览器
@@ -21,7 +20,7 @@
 ### 安装依赖
 
 ```bash
-npm i vue-split-carousel -S
+npm i vue-split-carousel@1 -S
 ```
 
 ### 组件内使用
