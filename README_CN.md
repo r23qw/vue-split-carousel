@@ -1,21 +1,23 @@
-> 2.x 版本仅支持 Vue 3, Vue 2 使用 1.x 版本. 
-
-### [1.x version doc](https://github.com/Aaron00101010/vue-split-carousel/tree/1.x)
 
 ## Vue Split Carousel
 
 ![GitHub](https://img.shields.io/github/license/aaron00101010/vue-split-carousel.svg)
 ![](https://img.shields.io/npm/v/vue-split-carousel.svg)
-<br>
-<br>
+
 A carousel component for vue,meanwhile display several carousel item.
-<br>
-<br>
+
 ![show](https://raw.githubusercontent.com/Aaron00101010/vue-split-carousel/30dec58c513814a306ddd0fba08096ad291e4a7d/examples/GIF.gif)  
 
-### [Playground](https://codesandbox.io/s/elegant-bardeen-n6lg2?file=/src/App.vue)  
+  
+> 2.x 版本仅支持 Vue 3, Vue 2 使用 1.x 版本. 
 
-## Browser Compatibility
+### [1.x 版本文档](https://github.com/Aaron00101010/vue-split-carousel/tree/1.x)
+
+<br/>
+
+## [Playground/Demo](https://codesandbox.io/s/elegant-bardeen-n6lg2?file=/src/App.vue)  
+
+## 浏览器兼容性
 
 现代浏览器，跟随 Vue 3 兼容性
 
@@ -26,7 +28,7 @@ not ie 11
 not dead
 ```
 
-## Component Structure
+## 组件结构
 
  `<split-carousel-item>` 在 `<split-carousel>` 内使用, 自定义内容放置在 `split-carousel-item` 内.
 
@@ -74,7 +76,7 @@ npm i vue-split-carousel -S
 
 </details>
 
-### Global Component
+### 全局组件
 
 ```js
 import Vue from "vue";
@@ -87,7 +89,7 @@ app.mount("#app");
 
 ```
 
-### import by `<script>`
+### 通过 `<script>` 标签引入
 
 可以使用 dist 文件夹下的 vue-split-carousel.min.umd.js 安装 
 

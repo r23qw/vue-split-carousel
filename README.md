@@ -1,21 +1,22 @@
+
+## Vue Split Carousel
+
+![GitHub](https://img.shields.io/github/license/aaron00101010/vue-split-carousel.svg)
+![](https://img.shields.io/npm/v/vue-split-carousel.svg)
+
+A carousel component for vue,meanwhile display several carousel item.
+
+![show](https://raw.githubusercontent.com/Aaron00101010/vue-split-carousel/30dec58c513814a306ddd0fba08096ad291e4a7d/examples/GIF.gif)  
+
+[中文文档](./README_CN.md)
+
 > 2.x as lastest version only support vue 3, vue 2 should use 1.x version. 
 
 ### [1.x version doc](https://github.com/Aaron00101010/vue-split-carousel/tree/1.x)
 
-## Vue Split Carousel
+<br/>
 
-[中文文档](./README_CN.md)
-
-![GitHub](https://img.shields.io/github/license/aaron00101010/vue-split-carousel.svg)
-![](https://img.shields.io/npm/v/vue-split-carousel.svg)
-<br>
-<br>
-A carousel component for vue,meanwhile display several carousel item.
-<br>
-<br>
-![show](https://raw.githubusercontent.com/Aaron00101010/vue-split-carousel/30dec58c513814a306ddd0fba08096ad291e4a7d/examples/GIF.gif)  
-
-### [Playground](https://codesandbox.io/s/elegant-bardeen-n6lg2?file=/src/App.vue)  
+## [Playground](https://codesandbox.io/s/elegant-bardeen-n6lg2?file=/src/App.vue)  
 
 ## Browser Compatibility
 
@@ -123,7 +124,7 @@ can use vue-split-carousel.min.umd.js in the dist floder.
 | height          | height of carousel                                                              | Number  | -                | 80      |
 | timing-function | the animation effect of carousel item,reference [transition-timing-function][1] | String  | -                | ease    |
 | pause-on-hover  | whether pause autoplay while mouse hover                                        | Boolean | -                | true    |
-| arrow-visible   | when arrows are show, avaliable when `loop` set to `false`                      | String  | default/always   | default |
+| arrow-visible   | whether arrow visiable, avaliable when `loop` set to `false`                    | String  | default/always   | default |
 
 ## Slots
 
