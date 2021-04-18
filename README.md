@@ -10,6 +10,7 @@ A carousel component for vue,meanwhile display several carousel item.
 SSR supported, compatible IE 10+ and modern browsers
 <br>
 <br>
+
 ![show](./examples/GIF.gif)  
 
 ### [Playground](https://aaron00101010.github.io/vue-split-carousel/)  
