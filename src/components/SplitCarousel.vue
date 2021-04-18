@@ -1,7 +1,7 @@
 <template>
   <div class="split-carousel" :style="{ height: `${height}px` }">
-    <div class="split-carousel__left" @click="slide('prev')">
-      <slot v-if="data.hasLeftSlot" name="left"></slot>
+    <div class="split-carousel__left" @click="prev">
+      <slot v-if="hasLeftSlot" name="left"></slot>
       <button class="split-carousel__left-button" v-else>
         <div class="arrow left"></div>
       </button>
@@ -9,12 +9,14 @@
     <div
       ref="viewportDOMRef"
       class="split-carousel__viewport"
-      :class="{ 'split-carousel__viewport--static': isStatic }"
+      @mouseenter="enter"
+      @mouseleave="leave"
+      :class="{ 'split-carousel__viewport--static': layout.isStatic }"
     >
       <slot></slot>
     </div>
-    <div class="split-carousel__right" @click="slide('next')">
-      <slot v-if="data.hasRightSlot" name="right"></slot>
+    <div class="split-carousel__right" @click="next">
+      <slot v-if="hasRightSlot" name="right"></slot>
       <button class="split-carousel__right-button" v-else>
         <div class="arrow right"></div>
       </button>
@@ -25,6 +27,7 @@
 <script lang="ts">
 import {
   computed,
+  ComputedRef,
   defineComponent,
   nextTick,
   onMounted,
@@ -32,12 +35,15 @@ import {
   provide,
   reactive,
   ref,
+  toRefs,
+  watch,
 } from "vue";
 import type {
   CarouselItem,
-  InjectCarouselScope,
+  CarouselLayout,
+  CarouselReset,
   ComponentUid,
-  ResetInfo,
+  InjectCarouselScope,
 } from "./carousel";
 
 export default defineComponent({
@@ -57,7 +63,7 @@ export default defineComponent({
     },
     loop: {
       type: Boolean,
-      default: false,
+      default: true,
     },
     displayAmount: {
       type: Number,
@@ -75,16 +81,13 @@ export default defineComponent({
       type: Boolean,
       default: true,
     },
+    timingFunction: {
+      type: String,
+      default: "ease",
+    },
   },
   setup(props, context) {
     const viewportDOMRef = ref<null | HTMLElement>(null);
-    const data = reactive<{
-      hasLeftSlot: boolean;
-      hasRightSlot: boolean;
-    }>({
-      hasLeftSlot: context.slots.left !== undefined,
-      hasRightSlot: context.slots.right !== undefined,
-    });
 
     const items = ref<CarouselItem[]>([]);
     const addItem = (item: CarouselItem) => items.value.push(item);
@@ -94,17 +97,25 @@ export default defineComponent({
         items.value.splice(index, 1);
       }
     };
-
-    const isStatic = computed(() => items.value.length <= props.displayAmount);
-
+    // layout
     const viewportWidth = ref(0);
-    const gapWidth = computed(
-      () =>
+    const layout: ComputedRef<CarouselLayout> = computed(() => {
+      const gapWidth =
         (viewportWidth.value - props.itemWidth * props.displayAmount) /
-        (props.displayAmount - 1)
-    );
-    const itemBlockWidth = computed(() => gapWidth.value + props.itemWidth);
+        (props.displayAmount - 1);
+      const itemBlockWidth = gapWidth + props.itemWidth;
+      return {
+        isStatic: items.value.length <= props.displayAmount,
+        gapWidth,
+        viewportWidth: viewportWidth.value,
+        itemWidth: props.itemWidth,
+        itemBlockWidth,
+        prependPosition: -1 * itemBlockWidth,
+        appendPostion: viewportWidth.value + gapWidth,
+      };
+    });
 
+    // index
     const activeIndex = ref(0);
     const isLastIndex = computed(
       () => activeIndex.value + props.displayAmount === items.value.length
@@ -113,17 +124,18 @@ export default defineComponent({
     const isNeedReset = computed(
       () => props.displayAmount + 2 >= items.value.length
     );
-    const resetInfo = reactive<ResetInfo>({
-      value: false,
+    const reset = reactive<CarouselReset>({
+      resetting: false,
       action: "next",
     });
 
-    const slide = (action: ResetInfo["action"]) => {
-      if (isStatic.value) return;
+    const slide = (action: CarouselReset["action"]) => {
+      if (layout.value.isStatic) return;
       if (!props.loop) {
         if (action === "next" && isLastIndex.value) return;
         if (action === "prev" && isFirstIndex.value) return;
       }
+
       const setIndex = () => {
         if (action === "next") {
           activeIndex.value = (activeIndex.value + 1) % items.value.length;
@@ -134,21 +146,24 @@ export default defineComponent({
             : activeIndex.value - 1;
         }
       };
-      if (isNeedReset.value) {
-        resetInfo.value = true;
-        resetInfo.action = action;
-        requestAnimationFrame(() => {
-          requestAnimationFrame(() => {
-            resetInfo.value = false;
-            setIndex();
-          });
-        });
-      } else {
+
+      if (!isNeedReset.value) {
         setIndex();
+        return;
       }
+
+      reset.resetting = true;
+      reset.action = action;
+      requestAnimationFrame(() => {
+        // this frame setting edge item position
+        requestAnimationFrame(() => {
+          reset.resetting = false;
+          setIndex();
+        });
+      });
     };
 
-    const stagInfo = computed(() => {
+    const stag = computed(() => {
       const index = activeIndex.value;
       const list = items.value;
       const endIndex = list.length - 1;
@@ -163,53 +178,107 @@ export default defineComponent({
         appendUid: list[(index + props.displayAmount) % list.length]?.uid,
       };
       if (result.prependUid === result.appendUid) {
-        if (resetInfo.action === "prev") {
-          result.prependUid = -1;
+        const invalidUid = -1;
+        if (reset.action === "prev") {
+          result.prependUid = invalidUid;
         }
-        if (resetInfo.action === "next") {
-          result.appendUid = -1;
+        if (reset.action === "next") {
+          result.appendUid = invalidUid;
         }
       }
       return result;
     });
-
+    const refsProps = toRefs(props);
     provide<InjectCarouselScope>("injectCarouselScope", {
-      speed: props.speed,
-      isStatic,
-      stagInfo,
+      speed: refsProps.speed,
+      timingFunction: refsProps.timingFunction,
+      stag,
+      reset,
       addItem,
       removeItem,
-      viewportWidth,
-      itemWidth: props.itemWidth,
-      gapWidth,
-      itemBlockWidth,
-      resetInfo,
+      layout,
     });
 
-    let timer: ReturnType<typeof setInterval>;
-    //TODO:play
-
+    // play method
+    let timer: ReturnType<typeof setTimeout>;
+    const next = () => {
+      clearTimeout(timer);
+      slide("next");
+      if (props.autoplay) {
+        timer = setTimeout(() => next(), props.interval);
+      }
+    };
+    const prev = () => {
+      clearTimeout(timer);
+      slide("prev");
+      if (props.autoplay) {
+        timer = setTimeout(() => prev(), props.interval);
+      }
+    };
+    const enter = () => {
+      if (props.autoplay && props.pauseOnHover) {
+        clearTimeout(timer);
+      }
+    };
+    const leave = () => {
+      if (props.autoplay && props.pauseOnHover) {
+        clearTimeout(timer);
+        timer = setTimeout(() => next(), props.interval);
+      }
+    };
+    watch(
+      () => props.autoplay,
+      (autoplay) => {
+        if (autoplay) {
+          timer = setTimeout(() => next(), props.interval);
+        } else {
+          clearTimeout(timer);
+        }
+      }
+    );
+    // stop autoplay on page hidden
+    const handlePageVisiblityChange = () => {
+      if (document.visibilityState === "hidden") {
+        clearTimeout(timer);
+      }
+      if (document.visibilityState === "visible" && props.autoplay) {
+        timer = setTimeout(() => next(), props.interval);
+      }
+    };
     onMounted(() => {
       nextTick(() => {
         if (viewportDOMRef.value !== null) {
           viewportWidth.value = viewportDOMRef.value.clientWidth;
         }
+
         if (props.autoplay) {
-          timer = setInterval(() => {
-            slide("next");
-          }, props.interval);
+          timer = setTimeout(() => next(), props.interval);
         }
+
+        document.addEventListener(
+          "visibilitychange",
+          handlePageVisiblityChange
+        );
       });
-      onUnmounted(() => {
-        clearInterval(timer);
-      });
+    });
+    onUnmounted(() => {
+      clearTimeout(timer);
+
+      document.removeEventListener(
+        "visibilitychange",
+        handlePageVisiblityChange
+      );
     });
 
     return {
-      data,
-      slide,
-      isStatic,
+      prev,
+      next,
+      enter,
+      leave,
+      layout,
       viewportDOMRef,
+      hasLeftSlot: context.slots.left !== undefined,
+      hasRightSlot: context.slots.right !== undefined,
     };
   },
 });

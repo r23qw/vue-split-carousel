@@ -1,7 +1,7 @@
 <template>
   <div
     class="split-carousel__item"
-    :class="{ 'split-carousel__item--transition': !isStatic }"
+    :class="{ 'split-carousel__item--transition': !layout.isStatic }"
     :style="itemStyle"
   >
     <slot></slot>
@@ -18,8 +18,6 @@ import {
   inject,
   onMounted,
   onUnmounted,
-  watch,
-  nextTick,
 } from "vue";
 import type { ComponentStyle, InjectCarouselScope } from "./carousel";
 
@@ -34,9 +32,10 @@ export default defineComponent({
     if (!instance || !injectCarouselScope) {
       return {};
     }
+    const { layout, stag, reset, addItem, removeItem } = injectCarouselScope;
     // register/unregister
     onMounted(() => {
-      injectCarouselScope.addItem({ uid: instance.uid });
+      addItem({ uid: instance.uid });
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
           isMounted.value = true;
@@ -44,49 +43,44 @@ export default defineComponent({
       });
     });
     onUnmounted(() => {
-      injectCarouselScope.removeItem(instance.uid);
+      removeItem(instance.uid);
     });
 
-    const isPrepend = computed(
-      () => instance.uid === injectCarouselScope.stagInfo.value.prependUid
-    );
-    const isAppend = computed(
-      () => instance.uid === injectCarouselScope.stagInfo.value.appendUid
-    );
-
+    const isPrepend = computed(() => instance.uid === stag.value.prependUid);
+    const isAppend = computed(() => instance.uid === stag.value.appendUid);
     const stagIndex = computed(() => {
-      return injectCarouselScope.stagInfo.value.stagUids.findIndex(
-        (uid) => uid === instance.uid
-      );
+      return stag.value.stagUids.findIndex((uid) => uid === instance.uid);
     });
-    const prevIndex = ref(0);
-    watch(
-      () => stagIndex.value,
-      (val, prev) => {
-        prevIndex.value = prev;
-      }
-    );
+
     const inStag = computed(() => stagIndex.value !== -1);
     const noAnimate = computed(() => {
       if (!isMounted.value) {
         return true;
       }
-      if (injectCarouselScope.resetInfo.value) {
+      if (reset.resetting) {
         return true;
       }
       return false;
     });
 
     const itemStyle = computed(() => {
-      let style: ComponentStyle = {};
+      const {
+        itemWidth,
+        isStatic,
+        itemBlockWidth,
+        appendPostion,
+        prependPosition,
+      } = layout.value;
 
-      style.width = `${injectCarouselScope.itemWidth}px`;
-      console.log(noAnimate.value);
-      style.transitionDuration = `${
-        noAnimate.value ? 0 : injectCarouselScope.speed
-      }ms`;
+      let style: ComponentStyle = {
+        width: `${itemWidth}px`,
+        transitionDuration: `${
+          noAnimate.value ? 0 : injectCarouselScope.speed.value
+        }ms`,
+        transitionTimingFunction: injectCarouselScope.timingFunction.value,
+      };
 
-      if (injectCarouselScope.isStatic.value) {
+      if (isStatic) {
         style.display = "block";
         return style;
       }
@@ -95,38 +89,26 @@ export default defineComponent({
         style = {
           ...style,
           display: "block",
-          transform: `translateX(${
-            stagIndex.value * injectCarouselScope.itemBlockWidth.value
-          }px)`,
+          transform: `translateX(${stagIndex.value * itemBlockWidth}px)`,
         };
       }
       if (isPrepend.value) {
-        const needReset =
-          injectCarouselScope.resetInfo.value &&
-          injectCarouselScope.resetInfo.action === "next";
+        const needReset = reset.resetting && reset.action === "next";
         style = {
           ...style,
           display: "block",
           transform: `translateX(${
-            needReset
-              ? injectCarouselScope.viewportWidth.value +
-                injectCarouselScope.gapWidth.value
-              : -1 * injectCarouselScope.itemBlockWidth.value
+            needReset ? appendPostion : prependPosition
           }px)`,
         };
       }
       if (isAppend.value) {
-        const needReset =
-          injectCarouselScope.resetInfo.value &&
-          injectCarouselScope.resetInfo.action === "prev";
+        const needReset = reset.resetting && reset.action === "prev";
         style = {
           ...style,
           display: "block",
           transform: `translateX(${
-            needReset
-              ? -1 * injectCarouselScope.itemBlockWidth.value
-              : injectCarouselScope.viewportWidth.value +
-                injectCarouselScope.gapWidth.value
+            needReset ? prependPosition : appendPostion
           }px)`,
         };
       }
@@ -135,12 +117,7 @@ export default defineComponent({
     });
     return {
       itemStyle,
-      isStatic: injectCarouselScope.isStatic,
-      isPrepend,
-      isAppend,
-      inStag,
-      stagIndex,
-      prevIndex,
+      layout,
     };
   },
 });

@@ -1,6 +1,6 @@
+import { App } from "vue";
 import SplitCarousel from "./components/SplitCarousel.vue";
 import SplitCarouselItem from "./components/SplitCarouselItem.vue";
-import { App } from "vue";
 
 interface SplitCarouselOption {
   prefix: string;
