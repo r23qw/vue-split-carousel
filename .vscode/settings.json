@@ -1,7 +1,0 @@
-{   
-    "files.autoSave": "afterDelay",
-    "editor.formatOnSave": false,
-    "editor.codeActionsOnSave": {
-        "source.fixAll": true
-    }
-}

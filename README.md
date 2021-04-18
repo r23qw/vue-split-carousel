@@ -1,34 +1,55 @@
-[中文文档](./README_CN.md)
-# Vue Split Carousel
+> 2.x as lastest version only support vue 3, vue 2 should use 1.x version. 
 
-[![Build Status](https://travis-ci.com/Aaron00101010/vue-split-carousel.svg?branch=master)](https://travis-ci.com/Aaron00101010/vue-split-carousel)
+### [1.x version doc](https://github.com/Aaron00101010/vue-split-carousel/tree/1.x)
+
+## Vue Split Carousel
+
+[中文文档](./README_CN.md)
+
 ![GitHub](https://img.shields.io/github/license/aaron00101010/vue-split-carousel.svg)
 ![](https://img.shields.io/npm/v/vue-split-carousel.svg)
 <br>
 <br>
-A carousel component for vue,meanwhile display several carousel item.  
-SSR supported, compatible IE 10+ and modern browsers
+A carousel component for vue,meanwhile display several carousel item.
 <br>
 <br>
-![show](./examples/GIF.gif)  
+![show](https://raw.githubusercontent.com/Aaron00101010/vue-split-carousel/30dec58c513814a306ddd0fba08096ad291e4a7d/examples/GIF.gif)  
 
-### [Playground](https://aaron00101010.github.io/vue-split-carousel/)  
+### [Playground](https://codesandbox.io/s/elegant-bardeen-n6lg2?file=/src/App.vue)  
 
-# Install
+## Browser Compatibility
 
-## import by npm
+Mordern Browser, follow vue 3 compatibility.
 
-### install package
+```
+> 1%
+last 2 versions
+not ie 11
+not dead
+```
+
+## Component Structure
+
+Use `<split-carousel-item>` in `<split-carousel>`,put your custom content in `split-carousel-item`.
+
+```html
+<split-carousel>
+  <split-carousel-item>
+    custom content
+  </split-carousel-item>
+  <split-carousel-item>
+    custom content2
+  </split-carousel-item>
+</split-carousel>
+```
+
+## Install
 
 ```bash
 npm i vue-split-carousel -S
 ```
-
-### Local Usage
-
-<details>
-
-<summary><strong>example code</strong></summary>
+support prefix option prevent name conflict while install component with `app.use`
+### Local Component
 
 ```html
 <template>
@@ -50,141 +71,66 @@ npm i vue-split-carousel -S
     }
   };
 </script>
-
-<style>
-  #app {
-    width: 800px;
-    margin: 60px auto;
-  }
-</style>
 ```
 
 </details>
 
-### Global Usage
-
-<details>
-
-<summary><strong>example code</strong></summary>
+### Global Component
 
 ```js
 import Vue from "vue";
 import App from "./App.vue";
-
 import SplitCarousel from "vue-split-carousel";
-import "vue-split-carousel/dist/vue-split-carousel.css";
-Vue.use(SplitCarousel);
 
-new Vue({
-  render: h => h(App)
-}).$mount("#app");
+const app = createApp(App);
+app.use(SplitCarousel,{prefix:'El'});
+app.mount("#app");
+
 ```
 
-</details>
+### import by `<script>`
 
-## import by `<script>`
+can use vue-split-carousel.min.umd.js in the dist floder.
 
-1. import component style from dist dir
-2. import vue.js
-3. import vue-split-carousel.umd.js
-
-<details>
-
-<summary><strong>example code</strong></summary>
 
 ```html
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <!-- import component-style -->
-    <link rel="stylesheet" href="./vue-split-carousel.css" />
-  </head>
-  <body>
-    <div id="app" style="width:800px;margin:0 auto;">
+<div id="app"></div>
+<script src="https://unpkg.com/vue@next"></script>
+<script src="./vue-split-carousel.umd.min.js"></script>
+<script>
+  const app = Vue.createApp({
+    template:`
       <split-carousel>
-        <split-carousel-item v-for="item in list" :key="item">
-          {{ item }}
-        </split-carousel-item>
+        <split-carousel-item v-for="i in 8">{{i}}</split-carousel-item>
       </split-carousel>
-    </div>
-    <!-- import vue -->
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-    <!-- import component script vue-split-carousel.umd.js from dist dir -->
-    <script src="./vue-split-carousel.umd.js"></script>
-    <script>
-      new Vue({
-        data() {
-          return {
-            list: 6
-          };
-        }
-      }).$mount("#app");
-    </script>
-  </body>
-</html>
+    `
+  })
+  app.use(window['vue-split-carousel'])
+  app.mount('#app')
+</script>
 ```
 
-</details>
+## Props
 
-# Browser Compatibility
+| Attribute       | Description                                                                     | Type    | Accpected Values | Default |
+| --------------- | ------------------------------------------------------------------------------- | ------- | ---------------- | ------- |
+| speed           | transition duration of carousel item, in milliseconds                           | Number  | -                | 500     |
+| autoplay        | whether automatically switch carousel items                                     | Boolean | -                | true    |
+| interval        | interval of switch carousel items, in milliseconds                              | Number  | -                | 3000    |
+| loop            | whether display carousel items in loop                                          | Boolean | -                | true    |
+| display-amount  | the amount of carousel items display in carousel container                      | Number  | -                | 4       |
+| item-width      | the width of carousel items                                                     | Number  | -                | 120     |
+| height          | height of carousel                                                              | Number  | -                | 80      |
+| timing-function | the animation effect of carousel item,reference [transition-timing-function][1] | String  | -                | ease    |
+| pause-on-hover  | whether pause autoplay while mouse hover                                        | Boolean | -                | true    |
+| arrow-visible   | when arrows are show, avaliable when `loop` set to `false`                      | String  | default/always   | default |
 
-animation effect is implent by CSS property `transition`, thus only support for IE 10+ and other modern browsers.
+## Slots
 
-# Component Structure
-
-Use `<split-carousel-item>` in `<split-carousel>`,put your custom content in `split-carousel-item`.
-
-```html
-<split-carousel>
-  <split-carousel-item>
-    custom content
-  </split-carousel-item>
-  <split-carousel-item>
-    custom content2
-  </split-carousel-item>
-  ...
-</split-carousel>
-```
-
-You can customize carousel arrow by slots `arrow-left` and `arrow-right`
-
-```html
-<split-carousel>
-  <h3 slot="left-arrow">left</h3>
-  <split-carousel-item>
-    custom content
-  </split-carousel-item>
-  <h3 slot="right-arrow">right</h3>
-</split-carousel>
-```
-
-# Document
-
-## Split Carousel Attributes
-
-| Attribute         | Description                                                                     | Type    | Accpected Values  | Default |
-| ----------------- | ------------------------------------------------------------------------------- | ------- | ----------------- | ------- |
-| speed             | duration of carousel item animation,in milliseconds                             | Number  | -                 | 500     |
-| autoplay          | whether automatically switch carousel items                                     | Boolean | -                 | true    |
-| interval          | interval of switch carousel items, in milliseconds                              | Number  | -                 | 3000    |
-| loop              | whether display carousel items in loop                                          | Boolean | -                 | true    |
-| initial-index     | index of initally first carousel item                                           | Number  | -                 | 0       |
-| display-amount    | the amount of carousel items display in carousel container                      | Number  | -                 | 4       |
-| item-width        | the width of carousel items                                                     | Number  | -                 | 120     |
-| item-align        | carousel item alignment while carousel item amount less than display amount     | -       | center/left/right | center  |
-| height            | height of carousel                                                              | Number  | -                 | 80      |
-| timing-function   | the animation effect of carousel item,reference [transition-timing-function][1] | String  | -                 | ease    |
-| arrow-area-width  | the width of arrow area                                                         | Number  | -                 | 50      |
-| arrow-visible     | when arrows are show                                                            | -       | enable/always     | enable  |
-| hover-cancle-play | whether stop auto play while mouse hover                                        | Boolean | -                 | true    |
-| play-direction    | the moving direction of carousel item                                           | -       | ltr/rtl           | ltr     |
-
-## Split Carousel Slots
-
-| Name        | Descrition         |
-| ----------- | ------------------ |
-| left-arrow  | customize left arrow  |
-| right-arrow | customize right arrow |
+| Name  | Descrition            |
+| ----- | --------------------- |
+| left  | customize left arrow  |
+| right | customize right arrow |
 
 # License
 
