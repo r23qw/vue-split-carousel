@@ -1,10 +1,12 @@
 <template>
   <div class="split-carousel" :style="{ height: `${height}px` }">
     <div class="split-carousel__left" @click="prev">
-      <slot v-if="hasLeftSlot" name="left"></slot>
-      <button class="split-carousel__left-button" v-else>
-        <div class="arrow left"></div>
-      </button>
+      <div v-show="isLeftArrowVisiable">
+        <slot v-if="hasLeftSlot" name="left"></slot>
+        <button class="split-carousel__left-button" v-else>
+          <div class="arrow left"></div>
+        </button>
+      </div>
     </div>
     <div
       ref="viewportDOMRef"
@@ -16,10 +18,12 @@
       <slot></slot>
     </div>
     <div class="split-carousel__right" @click="next">
-      <slot v-if="hasRightSlot" name="right"></slot>
-      <button class="split-carousel__right-button" v-else>
-        <div class="arrow right"></div>
-      </button>
+      <div v-show="isRightArrowVisiable">
+        <slot v-if="hasRightSlot" name="right"></slot>
+        <button class="split-carousel__right-button" v-else>
+          <div class="arrow right"></div>
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -84,6 +88,11 @@ export default defineComponent({
     timingFunction: {
       type: String,
       default: "ease",
+    },
+    arrowVisible: {
+      type: String,
+      validator: (i: any) => ["default", "always"].includes(i),
+      default: "default",
     },
   },
   setup(props, context) {
@@ -199,6 +208,24 @@ export default defineComponent({
       layout,
     });
 
+    //arrow
+    const isLeftArrowVisiable = computed(() => {
+      if (props.arrowVisible === "default") {
+        if (isFirstIndex.value && !props.loop) {
+          return false;
+        }
+      }
+      return true;
+    });
+    const isRightArrowVisiable = computed(() => {
+      if (props.arrowVisible === "default") {
+        if (isLastIndex.value && !props.loop) {
+          return false;
+        }
+      }
+      return true;
+    });
+
     // play method
     let timer: ReturnType<typeof setTimeout>;
     const next = () => {
@@ -279,6 +306,8 @@ export default defineComponent({
       viewportDOMRef,
       hasLeftSlot: context.slots.left !== undefined,
       hasRightSlot: context.slots.right !== undefined,
+      isLeftArrowVisiable,
+      isRightArrowVisiable,
     };
   },
 });

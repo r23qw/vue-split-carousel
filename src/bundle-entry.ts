@@ -12,4 +12,4 @@ const install = (app: App, option?: SplitCarouselOption): void => {
   app.component(`${prefix}SplitCarouselItem`, SplitCarouselItem);
 };
 
-export { SplitCarousel, SplitCarouselItem, install };
+export default { SplitCarousel, SplitCarouselItem, install };

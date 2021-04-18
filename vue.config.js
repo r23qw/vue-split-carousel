@@ -1,4 +1,11 @@
-module.exports = {
+const config = {
   css: { extract: false },
-  configureWebpack: {},
 };
+
+if (process.env.NODE_ENV === "production") {
+  config.configureWebpack = {
+    devtool: false,
+  };
+}
+
+module.exports = config;

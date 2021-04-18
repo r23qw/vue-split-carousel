@@ -23,7 +23,13 @@
         <el-form-item label="pause-on-hover">
           <el-switch v-model="option.pauseOnHover" />
         </el-form-item>
-        <el-form-item label="timing-function (transition-timing-function)">
+        <el-form-item label="arrow-visible">
+          <el-radio-group v-model="option.arrowVisible">
+            <el-radio-button label="default" />
+            <el-radio-button label="always" />
+          </el-radio-group>
+        </el-form-item>
+        <el-form-item label="timing-function">
           <el-select
             style="width: 260px"
             v-model="option.timingFunction"
@@ -47,7 +53,7 @@
             </a>
           </span>
         </el-form-item>
-        <el-form-item label="speed (transition-duration)">
+        <el-form-item label="speed">
           <el-slider v-model="option.speed" :max="1500" />
         </el-form-item>
         <el-form-item label="interval">
@@ -68,44 +74,7 @@
 import { defineComponent } from "vue";
 import SplitCarousel from "./components/SplitCarousel.vue";
 import SplitCarouselItem from "./components/SplitCarouselItem.vue";
-/*
-autoplay: {
-      type: Boolean,
-      default: true,
-    },
-    speed: {
-      type: Number,
-      default: 500,
-    },
-    interval: {
-      type: Number,
-      default: 3000,
-    },
-    loop: {
-      type: Boolean,
-      default: false,
-    },
-    displayAmount: {
-      type: Number,
-      default: 4,
-    },
-    height: {
-      type: Number,
-      default: 80,
-    },
-    itemWidth: {
-      type: Number,
-      default: 120,
-    },
-    pauseOnHover: {
-      type: Boolean,
-      default: true,
-    },
-    timingFunction: {
-      type: String,
-      default: "ease",
-    },
-*/
+
 export default defineComponent({
   name: "App",
   components: {
@@ -125,6 +94,7 @@ export default defineComponent({
         itemWidth: 120,
         pauseOnHover: true,
         timingFunction: "ease",
+        arrowVisible: "default",
       },
       timingFuntionOptions: [
         {

@@ -1,10 +1,35 @@
 {
   "name": "vue-split-carousel",
-  "version": "0.1.0",
-  "private": true,
+  "version": "2.0.0",
+  "description": "a carousel component for vue, display several carousel-item in carousel container",
+  "main": "dist/vue-split-carousel.common.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Aaron00101010/vue-split-carousel.git"
+  },
+  "author": "Aaron00101010",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Aaron00101010/vue-split-carousel/issues"
+  },
+  "homepage": "https://github.com/Aaron00101010/vue-split-carousel#readme",
+  "files": [
+    "src/components",
+    "src/bundle-entry.ts",
+    "dist/*umd.min.js",
+    "README*.md"
+  ],
+  "keywords": [
+    "carousel split",
+    "carousel",
+    "vue",
+    "vue 3",
+    "vue3",
+    "vue components"
+  ],
   "scripts": {
     "dev": "vue-cli-service serve",
-    "build": "vue-cli-service build --target lib",
+    "build": "vue-cli-service build --target lib src/bundle-entry.ts",
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
     "lint": "vue-cli-service lint"
