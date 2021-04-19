@@ -211,6 +211,9 @@ export default defineComponent({
     //arrow
     const isLeftArrowVisiable = computed(() => {
       if (props.arrowVisible === "default") {
+        if (layout.value.isStatic) {
+          return false;
+        }
         if (isFirstIndex.value && !props.loop) {
           return false;
         }
@@ -219,6 +222,9 @@ export default defineComponent({
     });
     const isRightArrowVisiable = computed(() => {
       if (props.arrowVisible === "default") {
+        if (layout.value.isStatic) {
+          return false;
+        }
         if (isLastIndex.value && !props.loop) {
           return false;
         }
@@ -329,6 +335,9 @@ export default defineComponent({
       display: flex;
       align-items: center;
       justify-content: space-between;
+      ::v-deep .split-carousel__item {
+        align-self: stretch;
+      }
     }
   }
   &__left,
