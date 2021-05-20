@@ -91,7 +91,7 @@ app.mount("#app");
 
 ### import by `<script>`
 
-can use vue-split-carousel.min.umd.js in the dist floder.
+can use vue-split-carousel.min.umd.js in the dist folder.
 
 
 ```html
