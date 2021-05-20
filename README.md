@@ -20,7 +20,7 @@ A carousel component for vue,meanwhile display several carousel item.
 
 ## Browser Compatibility
 
-Mordern Browser, follow vue 3 compatibility.
+Modern Browser, follow vue 3 compatibility.
 
 ```
 > 1%
