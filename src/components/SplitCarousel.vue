@@ -91,7 +91,7 @@ export default defineComponent({
     },
     arrowVisible: {
       type: String,
-      validator: (i: any) => ["default", "always"].includes(i),
+      validator: (i: string) => ["default", "always"].includes(i),
       default: "default",
     },
   },
@@ -137,40 +137,6 @@ export default defineComponent({
       resetting: false,
       action: "next",
     });
-
-    const slide = (action: CarouselReset["action"]) => {
-      if (layout.value.isStatic) return;
-      if (!props.loop) {
-        if (action === "next" && isLastIndex.value) return;
-        if (action === "prev" && isFirstIndex.value) return;
-      }
-
-      const setIndex = () => {
-        if (action === "next") {
-          activeIndex.value = (activeIndex.value + 1) % items.value.length;
-        }
-        if (action === "prev") {
-          activeIndex.value = isFirstIndex.value
-            ? items.value.length - 1
-            : activeIndex.value - 1;
-        }
-      };
-
-      if (!isNeedReset.value) {
-        setIndex();
-        return;
-      }
-
-      reset.resetting = true;
-      reset.action = action;
-      requestAnimationFrame(() => {
-        // this frame setting edge item position
-        requestAnimationFrame(() => {
-          reset.resetting = false;
-          setIndex();
-        });
-      });
-    };
 
     const stag = computed(() => {
       const index = activeIndex.value;
@@ -233,6 +199,39 @@ export default defineComponent({
     });
 
     // play method
+    const slide = (action: CarouselReset["action"]) => {
+      if (layout.value.isStatic) return;
+      if (!props.loop) {
+        if (action === "next" && isLastIndex.value) return;
+        if (action === "prev" && isFirstIndex.value) return;
+      }
+
+      const setIndex = () => {
+        if (action === "next") {
+          activeIndex.value = (activeIndex.value + 1) % items.value.length;
+        }
+        if (action === "prev") {
+          activeIndex.value = isFirstIndex.value
+            ? items.value.length - 1
+            : activeIndex.value - 1;
+        }
+      };
+
+      if (!isNeedReset.value) {
+        setIndex();
+        return;
+      }
+
+      reset.resetting = true;
+      reset.action = action;
+      requestAnimationFrame(() => {
+        // this frame setting edge item position
+        requestAnimationFrame(() => {
+          reset.resetting = false;
+          setIndex();
+        });
+      });
+    };
     let timer: ReturnType<typeof setTimeout>;
     const next = () => {
       clearTimeout(timer);
@@ -259,6 +258,8 @@ export default defineComponent({
         timer = setTimeout(() => next(), props.interval);
       }
     };
+
+    // autoplay
     watch(
       () => props.autoplay,
       (autoplay) => {
@@ -269,7 +270,6 @@ export default defineComponent({
         }
       }
     );
-    // stop autoplay on page hidden
     const handlePageVisiblityChange = () => {
       if (document.visibilityState === "hidden") {
         clearTimeout(timer);
@@ -278,6 +278,8 @@ export default defineComponent({
         timer = setTimeout(() => next(), props.interval);
       }
     };
+
+    // init layout,handle page visibility
     onMounted(() => {
       nextTick(() => {
         if (viewportDOMRef.value !== null) {

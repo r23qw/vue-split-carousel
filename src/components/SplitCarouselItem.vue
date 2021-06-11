@@ -25,13 +25,15 @@ export default defineComponent({
   name: "SplitCarouselItem",
   setup() {
     const instance = getCurrentInstance() as ComponentInternalInstance;
-    const injectCarouselScope: InjectCarouselScope | undefined = inject(
+    const injectCarouselScope: InjectCarouselScope = inject(
       "injectCarouselScope"
     ) as InjectCarouselScope;
     const isMounted = ref(false);
+
     if (!instance || !injectCarouselScope) {
-      return {};
+      throw Error("SplitCarouselItem Must include by SplitCarousel");
     }
+
     const { layout, stag, reset, addItem, removeItem } = injectCarouselScope;
     // register/unregister
     onMounted(() => {
@@ -46,6 +48,7 @@ export default defineComponent({
       removeItem(instance.uid);
     });
 
+    // itemStyle
     const isPrepend = computed(() => instance.uid === stag.value.prependUid);
     const isAppend = computed(() => instance.uid === stag.value.appendUid);
     const stagIndex = computed(() => {
@@ -115,6 +118,7 @@ export default defineComponent({
 
       return style;
     });
+
     return {
       itemStyle,
       layout,
