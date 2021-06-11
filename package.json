@@ -1,6 +1,6 @@
 {
   "name": "vue-split-carousel",
-  "version": "2.0.5",
+  "version": "2.1.0",
   "description": "a carousel component for vue, display several carousel-item in carousel container",
   "main": "dist/vue-split-carousel.common.js",
   "repository": {
@@ -32,12 +32,11 @@
     "build": "vue-cli-service build --target lib src/bundle-entry.ts",
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "release": "npm run build & standard-version"
   },
   "dependencies": {},
   "devDependencies": {
-    "core-js": "^3.6.5",
-    "vue": "^3.0.0",
     "@types/jest": "^24.0.19",
     "@typescript-eslint/eslint-plugin": "^4.18.0",
     "@typescript-eslint/parser": "^4.18.0",
@@ -52,6 +51,7 @@
     "@vue/eslint-config-typescript": "^7.0.0",
     "@vue/test-utils": "^2.0.0-0",
     "chromedriver": "89",
+    "core-js": "^3.6.5",
     "element-plus": "^1.0.2-beta.40",
     "eslint": "^6.7.2",
     "eslint-plugin-prettier": "^3.3.1",
@@ -60,7 +60,9 @@
     "prettier": "^2.2.1",
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2",
+    "standard-version": "^9.3.0",
     "typescript": "~4.1.5",
+    "vue": "^3.0.0",
     "vue-jest": "^5.0.0-0"
   }
 }
