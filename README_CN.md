@@ -8,25 +8,15 @@ A carousel component for vue,meanwhile display several carousel item.
 
 ![show](https://raw.githubusercontent.com/Aaron00101010/vue-split-carousel/30dec58c513814a306ddd0fba08096ad291e4a7d/examples/GIF.gif)  
 
-  
-> 2.x 版本仅支持 Vue 3, Vue 2 使用 1.x 版本. 
+> ##  2.x 版本仅支持 Vue 3, Vue 2 使用 1.x 版本. 
 
 ### [1.x 版本文档](https://github.com/Aaron00101010/vue-split-carousel/tree/1.x)
-
-<br/>
 
 ## [Playground/Demo](https://codesandbox.io/s/elegant-bardeen-n6lg2?file=/src/App.vue)  
 
 ## 浏览器兼容性
 
 现代浏览器，跟随 Vue 3 兼容性
-
-```
-> 1%
-last 2 versions
-not ie 11
-not dead
-```
 
 ## 组件结构
 
@@ -46,7 +36,10 @@ not dead
 ## 安装
 
 ```bash
-npm i vue-split-carousel -S
+# npm
+npm i vue-split-carousel
+# yarn 
+yarn add vue-split-carousel
 ```
 当使用 `app.use` 安装组件时，支持 `prefix` 配置用于避免组件名冲突
 
