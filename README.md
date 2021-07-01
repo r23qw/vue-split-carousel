@@ -1,4 +1,6 @@
 
+[中文文档](./README_CN.md)
+
 ## Vue Split Carousel
 
 ![GitHub](https://img.shields.io/github/license/aaron00101010/vue-split-carousel.svg)
@@ -8,26 +10,15 @@ A carousel component for vue,meanwhile display several carousel item.
 
 ![show](https://raw.githubusercontent.com/Aaron00101010/vue-split-carousel/30dec58c513814a306ddd0fba08096ad291e4a7d/examples/GIF.gif)  
 
-[中文文档](./README_CN.md)
-
-> 2.x as lastest version only support vue 3, vue 2 should use 1.x version. 
+> ## 2.x as lastest version only support vue 3, vue 2 should use 1.x version. 
 
 ### [1.x version doc](https://github.com/Aaron00101010/vue-split-carousel/tree/1.x)
-
-<br/>
 
 ## [Playground](https://codesandbox.io/s/elegant-bardeen-n6lg2?file=/src/App.vue)  
 
 ## Browser Compatibility
 
-Modern Browser, follow vue 3 compatibility.
-
-```
-> 1%
-last 2 versions
-not ie 11
-not dead
-```
+Modern browser, follow vue 3 compatibility.
 
 ## Component Structure
 
@@ -47,7 +38,10 @@ Use `<split-carousel-item>` in `<split-carousel>`,put your custom content in `sp
 ## Install
 
 ```bash
-npm i vue-split-carousel -S
+# use npm
+npm i vue-split-carousel
+# use yarn
+yarn add vue-split-carousel
 ```
 support prefix option prevent name conflict while install component with `app.use`
 ### Local Component
