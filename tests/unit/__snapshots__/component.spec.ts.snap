@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Split Carousel Component Match snapshot 1`] = `
+<div class="split-carousel" style="height: 80px;">
+  <div class="split-carousel__left">
+    <div style="display: none;"><button class="split-carousel__left-button">
+        <div class="arrow left"></div>
+      </button></div>
+  </div>
+  <div class="split-carousel__viewport split-carousel__viewport--static">
+    <div class="split-carousel__item" style="width: 120px; transition-duration: 0ms; transition-timing-function: ease; display: block;">1</div>
+    <div class="split-carousel__item" style="width: 120px; transition-duration: 0ms; transition-timing-function: ease; display: block;">2</div>
+    <div class="split-carousel__item" style="width: 120px; transition-duration: 0ms; transition-timing-function: ease; display: block;">3</div>
+    <div class="split-carousel__item" style="width: 120px; transition-duration: 0ms; transition-timing-function: ease; display: block;">4</div>
+    <div class="split-carousel__item" style="width: 120px; transition-duration: 0ms; transition-timing-function: ease; display: block;">5</div>
+    <div class="split-carousel__item" style="width: 120px; transition-duration: 0ms; transition-timing-function: ease; display: block;">6</div>
+  </div>
+  <div class="split-carousel__right">
+    <div style="display: none;"><button class="split-carousel__right-button">
+        <div class="arrow right"></div>
+      </button></div>
+  </div>
+</div>
+`;
+
+exports[`Split Carousel Component Static carousel 1`] = `
+<div class="split-carousel" style="height: 80px;">
+  <div class="split-carousel__left">
+    <div style="display: none;"><button class="split-carousel__left-button">
+        <div class="arrow left"></div>
+      </button></div>
+  </div>
+  <div class="split-carousel__viewport split-carousel__viewport--static">
+    <div class="split-carousel__item" style="width: 120px; transition-duration: 0ms; transition-timing-function: ease; display: block;">1</div>
+    <div class="split-carousel__item" style="width: 120px; transition-duration: 0ms; transition-timing-function: ease; display: block;">2</div>
+    <div class="split-carousel__item" style="width: 120px; transition-duration: 0ms; transition-timing-function: ease; display: block;">3</div>
+  </div>
+  <div class="split-carousel__right">
+    <div style="display: none;"><button class="split-carousel__right-button">
+        <div class="arrow right"></div>
+      </button></div>
+  </div>
+</div>
+`;
