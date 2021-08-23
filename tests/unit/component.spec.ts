@@ -1,4 +1,4 @@
-import { mount } from "@vue/test-utils";
+import { mount, VueWrapper } from "@vue/test-utils";
 import { defineComponent } from "vue";
 import SplitCarousel from "@/components/SplitCarousel.vue";
 import SplitCarouselItem from "@/components/SplitCarouselItem.vue";
@@ -49,8 +49,10 @@ describe("Split Carousel Component", () => {
     expect(wrapper.html()).toMatchSnapshot();
   });
   it("Autoplay", async () => {
-    const wrapper = mount(CarouselWrapper);
-    await sleep(4000);
+    const wrapper = mount(CarouselWrapper, {
+      props: { option: { interval: 1000 } },
+    });
+    await sleep(1500);
     const first = wrapper.findAllComponents(SplitCarouselItem).filter((i) => {
       return (i.vm as any).itemStyle.transform === "translateX(0px)";
     });
@@ -58,12 +60,62 @@ describe("Split Carousel Component", () => {
   });
   it("Not autoplay", async () => {
     const wrapper = mount(CarouselWrapper, {
-      props: { option: { autoplay: false } },
+      props: { option: { autoplay: false, interval: 1000 } },
     });
-    await sleep(4000);
+    await sleep(1500);
     const first = wrapper.findAllComponents(SplitCarouselItem).filter((i) => {
       return (i.vm as any).itemStyle.transform === "translateX(0px)";
     });
     expect(first?.[0].text()).toBe("1");
+  });
+  it("Pause slide on hover", async () => {
+    const wrapper = mount(CarouselWrapper, {
+      props: { option: { interval: 1000 } },
+    });
+    const el = wrapper
+      .getComponent(SplitCarousel)
+      ?.element.querySelector(".split-carousel__viewport");
+    await sleep(100);
+    el?.dispatchEvent(new Event("mouseenter"));
+
+    await sleep(1500);
+    const first = wrapper.findAllComponents(SplitCarouselItem).filter((i) => {
+      return (i.vm as any).itemStyle.transform === "translateX(0px)";
+    });
+    expect(first?.[0].text()).toBe("1");
+
+    el?.dispatchEvent(new Event("mouseleave"));
+
+    await sleep(1500);
+
+    const second = wrapper.findAllComponents(SplitCarouselItem).filter((i) => {
+      return (i.vm as any).itemStyle.transform === "translateX(0px)";
+    });
+    expect(second?.[0].text()).toBe("2");
+  });
+  it("Not pause slide on hover", async () => {
+    const wrapper = mount(CarouselWrapper, {
+      props: { option: { interval: 1000, pauseOnHover: false } },
+    });
+    const el = wrapper
+      .getComponent(SplitCarousel)
+      ?.element.querySelector(".split-carousel__viewport");
+    await sleep(100);
+    el?.dispatchEvent(new Event("mouseenter"));
+
+    await sleep(1200);
+    const first = wrapper.findAllComponents(SplitCarouselItem).filter((i) => {
+      return (i.vm as any).itemStyle.transform === "translateX(0px)";
+    });
+    expect(first?.[0].text()).toBe("2");
+
+    el?.dispatchEvent(new Event("mouseleave"));
+
+    await sleep(1200);
+
+    const second = wrapper.findAllComponents(SplitCarouselItem).filter((i) => {
+      return (i.vm as any).itemStyle.transform === "translateX(0px)";
+    });
+    expect(second?.[0].text()).toBe("3");
   });
 });
