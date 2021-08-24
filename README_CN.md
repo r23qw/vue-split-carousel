@@ -77,7 +77,11 @@ import App from "./App.vue";
 import SplitCarousel from "vue-split-carousel";
 
 const app = createApp(App);
-app.use(SplitCarousel,{prefix:'El'});
+app.use(SplitCarousel);
+
+//接收prefix选项用于解决命名冲突, 注册组件名为 `<ElSplitCarousel>` 和 `<ElSplitCarouselItem>`
+//app.use(SplitCarousel,{prefix:'El'});
+
 app.mount("#app");
 
 ```
