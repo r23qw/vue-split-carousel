@@ -1,6 +1,6 @@
 {
   "name": "vue-split-carousel",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "a carousel component for vue, display several carousel-item in carousel container",
   "main": "dist/vue-split-carousel.common.js",
   "repository": {
