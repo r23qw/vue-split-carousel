@@ -109,18 +109,18 @@ app.mount("#app");
 
 ## Props
 
-| Attribute       | Description                                  | Type    | Accpected Values | Default |
-| --------------- | -------------------------------------------- | ------- | ---------------- | ------- |
-| speed           | 过渡动画时长                                 | Number  | -                | 500     |
-| autoplay        | 是否自动播放                                 | Boolean | -                | true    |
-| interval        | 自动播放时间间隔                             | Number  | -                | 3000    |
-| loop            | 是否循环轮播                                 | Boolean | -                | true    |
-| display-amount  | 展示轮播子项数量                             | Number  | -                | 4       |
-| item-width      | 轮播子项宽度                                 | Number  | -                | 120     |
-| height          | 轮播组件高度                                 | Number  | -                | 80      |
-| timing-function | 过渡动画函数 [transition-timing-function][1] | String  | -                | ease    |
-| pause-on-hover  | 鼠标悬浮是否停止自动播放                     | Boolean | -                | true    |
-| arrow-visible   | 是否显示箭头，当 `loop` 设置为 `false` 有效  | String  | default/always   | default |
+| Attribute       | Description                                                                       | Type          | Accpected Values | Default |
+| --------------- | --------------------------------------------------------------------------------- | ------------- | ---------------- | ------- |
+| speed           | 过渡动画时长                                                                      | Number        | -                | 500     |
+| autoplay        | 是否自动播放                                                                      | Boolean       | -                | true    |
+| interval        | 自动播放时间间隔                                                                  | Number        | -                | 3000    |
+| loop            | 是否循环轮播                                                                      | Boolean       | -                | true    |
+| display-amount  | 展示轮播子项数量                                                                  | Number        | -                | 4       |
+| item-width      | 轮播子项宽度                                                                      | Number        | -                | 120     |
+| height          | 轮播组件高度, 传入Number值则默认单位为px,使用其他单位可以传入字符串值，如：`40vh` | Number/String | -                | 80      |
+| timing-function | 过渡动画函数 [transition-timing-function][1]                                      | String        | -                | ease    |
+| pause-on-hover  | 鼠标悬浮是否停止自动播放                                                          | Boolean       | -                | true    |
+| arrow-visible   | 是否显示箭头，当 `loop` 设置为 `false` 有效                                       | String        | default/always   | default |
 
 ## Slots
 

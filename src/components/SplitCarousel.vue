@@ -1,5 +1,10 @@
 <template>
-  <div class="split-carousel" :style="{ height: `${height}px` }">
+  <div
+    class="split-carousel"
+    :style="{
+      height: `${typeof height === 'string' ? height : `${height}px`}`,
+    }"
+  >
     <div class="split-carousel__left" @click="prev">
       <div v-show="isLeftArrowVisiable">
         <slot v-if="hasLeftSlot" name="left"></slot>
@@ -74,7 +79,7 @@ export default defineComponent({
       default: 4,
     },
     height: {
-      type: Number,
+      type: [Number, String],
       default: 80,
     },
     itemWidth: {

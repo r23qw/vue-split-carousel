@@ -111,18 +111,18 @@ can use vue-split-carousel.min.umd.js in the dist folder.
 
 ## Props
 
-| Attribute       | Description                                                                     | Type    | Accpected Values | Default |
-| --------------- | ------------------------------------------------------------------------------- | ------- | ---------------- | ------- |
-| speed           | transition duration of carousel item, in milliseconds                           | Number  | -                | 500     |
-| autoplay        | whether automatically switch carousel items                                     | Boolean | -                | true    |
-| interval        | interval of switch carousel items, in milliseconds                              | Number  | -                | 3000    |
-| loop            | whether display carousel items in loop                                          | Boolean | -                | true    |
-| display-amount  | the amount of carousel items display in carousel container                      | Number  | -                | 4       |
-| item-width      | the width of carousel items                                                     | Number  | -                | 120     |
-| height          | height of carousel                                                              | Number  | -                | 80      |
-| timing-function | the animation effect of carousel item,reference [transition-timing-function][1] | String  | -                | ease    |
-| pause-on-hover  | whether pause autoplay while mouse hover                                        | Boolean | -                | true    |
-| arrow-visible   | whether arrow visiable, avaliable when `loop` set to `false`                    | String  | default/always   | default |
+| Attribute       | Description                                                                                                                               | Type          | Accpected Values | Default |
+| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ------------- | ---------------- | ------- |
+| speed           | transition duration of carousel item, in milliseconds                                                                                     | Number        | -                | 500     |
+| autoplay        | whether automatically switch carousel items                                                                                               | Boolean       | -                | true    |
+| interval        | interval of switch carousel items, in milliseconds                                                                                        | Number        | -                | 3000    |
+| loop            | whether display carousel items in loop                                                                                                    | Boolean       | -                | true    |
+| display-amount  | the amount of carousel items display in carousel container                                                                                | Number        | -                | 4       |
+| item-width      | the width of carousel items                                                                                                               | Number        | -                | 120     |
+| height          | height of carousel, if the prop value type is number,the unit is `px` by default. you can pass string value to use other unit, eg: `40vh` | Number/String | -                | 80      |
+| timing-function | the animation effect of carousel item,reference [transition-timing-function][1]                                                           | String        | -                | ease    |
+| pause-on-hover  | whether pause autoplay while mouse hover                                                                                                  | Boolean       | -                | true    |
+| arrow-visible   | whether arrow visiable, avaliable when `loop` set to `false`                                                                              | String        | default/always   | default |
 
 ## Slots
 
