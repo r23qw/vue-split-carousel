@@ -80,7 +80,7 @@ import SplitCarousel from "vue-split-carousel";
 const app = createApp(App);
 app.use(SplitCarousel);
 
-//accpect prefix for component name conflict, use as `<ElSplitCarousel>` and `ElSplitCarouselItem`
+//accpect prefix for component name conflict, use as `<ElSplitCarousel>` and `<ElSplitCarouselItem>`
 //app.use(SplitCarousel,{prefix:'El'});
 
 app.mount("#app");
