@@ -5,6 +5,10 @@
         <div class="box">{{ item }}</div>
       </SplitCarouselItem>
     </SplitCarousel>
+    <details>
+      <summary>Component Code By Current Config</summary>
+      <pre class="code">{{ componentCode }}</pre>
+    </details>
     <div class="operator">
       <el-form label-suffix=":" label-width="120px">
         <el-form-item label="item amount">
@@ -62,7 +66,7 @@
         <el-form-item v-if="typeof height === 'number'" label="height">
           <el-slider v-model="option.height" :min="20" :max="200" />
         </el-form-item>
-        <el-form-item label="itemWidth">
+        <el-form-item label="item-width">
           <el-slider v-model="option.itemWidth" :min="20" :max="200" />
         </el-form-item>
       </el-form>
@@ -70,32 +74,35 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
-import SplitCarousel from "./components/SplitCarousel.vue";
-import SplitCarouselItem from "./components/SplitCarouselItem.vue";
-
-export default defineComponent({
+<script>
+const defaultConfig = {
+  displayAmount: 4,
+  autoplay: true,
+  speed: 500,
+  interval: 3000,
+  loop: true,
+  height: 80,
+  itemWidth: 120,
+  pauseOnHover: true,
+  timingFunction: "ease",
+  arrowVisible: "default",
+};
+const kebabize = (str) => {
+  return str
+    .split("")
+    .map((letter, idx) => {
+      return letter.toUpperCase() === letter
+        ? `${idx !== 0 ? "-" : ""}${letter.toLowerCase()}`
+        : letter;
+    })
+    .join("");
+};
+export default {
   name: "App",
-  components: {
-    SplitCarousel,
-    SplitCarouselItem,
-  },
   data() {
     return {
       itemAmount: 6,
-      option: {
-        displayAmount: 4,
-        autoplay: true,
-        speed: 500,
-        interval: 3000,
-        loop: true,
-        height: 80,
-        itemWidth: 120,
-        pauseOnHover: true,
-        timingFunction: "ease",
-        arrowVisible: "default",
-      },
+      option: { ...defaultConfig },
       timingFuntionOptions: [
         {
           value: "ease",
@@ -128,10 +135,39 @@ export default defineComponent({
       ],
     };
   },
-});
+  computed: {
+    diffConfig() {
+      const keys = Object.keys(defaultConfig);
+      const result = {};
+      keys.forEach((key) => {
+        if (this.option[key] !== defaultConfig[key]) {
+          result[key] = this.option[key];
+        }
+      });
+      return result;
+    },
+    componentCode() {
+      const optionString = Object.entries(this.diffConfig)
+        .map(([key, value]) => {
+          const stringKey = ["timingFunction", "arrowVisible"];
+          return `${stringKey.includes(key) ? "" : ":"}${kebabize(
+            key
+          )}="${value}"`;
+        })
+        .join(" ");
+      return `
+<SplitCarousel ${optionString}>
+  <SplitCarouselItem v-for="item in ${this.itemAmount}" :key="item">
+    {{ item }}
+  </SplitCarouselItem>
+</SplitCarousel>
+`;
+    },
+  },
+};
 </script>
 
-<style lang="scss">
+<style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -139,6 +175,7 @@ export default defineComponent({
   color: #2c3e50;
   margin-top: 60px;
 }
+
 .wrapper {
   width: 800px;
   margin: 0 auto;
@@ -153,5 +190,11 @@ export default defineComponent({
 }
 .operator {
   padding: 30px 0;
+}
+.code {
+  margin: 0;
+}
+details {
+  padding: 25px 0 0 10px;
 }
 </style>
