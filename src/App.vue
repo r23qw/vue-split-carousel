@@ -63,7 +63,7 @@
         <el-form-item label="interval">
           <el-slider v-model="option.interval" :max="6000" />
         </el-form-item>
-        <el-form-item v-if="typeof height === 'number'" label="height">
+        <el-form-item v-if="typeof option.height === 'number'" label="height">
           <el-slider v-model="option.height" :min="20" :max="200" />
         </el-form-item>
         <el-form-item label="item-width">
