@@ -133,4 +133,4 @@ app.mount("#app");
 
 [MIT](./LICENSE)
 
-[1]: https://developer.mozilla.org/zh-CN/docs/Web/CSS/transition-timing-function
+[1]: https://developer.mozilla.org/en-US/docs/Web/CSS/transition-timing-function

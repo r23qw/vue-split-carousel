@@ -51,7 +51,7 @@
             <a
               style="color: seagreen"
               target="_blank"
-              href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/timing-function"
+              href="https://developer.mozilla.org/en-US/docs/Web/CSS/transition-timing-function"
             >
               css transition timing function
             </a>
@@ -74,7 +74,8 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from "vue";
 const defaultConfig = {
   displayAmount: 4,
   autoplay: true,
@@ -87,7 +88,7 @@ const defaultConfig = {
   timingFunction: "ease",
   arrowVisible: "default",
 };
-const kebabize = (str) => {
+const kebabize = (str: string) => {
   return str
     .split("")
     .map((letter, idx) => {
@@ -97,7 +98,8 @@ const kebabize = (str) => {
     })
     .join("");
 };
-export default {
+
+export default defineComponent({
   name: "App",
   data() {
     return {
@@ -164,8 +166,10 @@ export default {
 `;
     },
   },
-};
+});
 </script>
+
+<script setup></script>
 
 <style>
 #app {

@@ -135,4 +135,4 @@ can use vue-split-carousel.min.umd.js in the dist folder.
 
 [MIT](./LICENSE)
 
-[1]: https://developer.mozilla.org/zh-CN/docs/Web/CSS/transition-timing-function
+[1]: https://developer.mozilla.org/en-US/docs/Web/CSS/transition-timing-function
