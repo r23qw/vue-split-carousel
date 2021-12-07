@@ -54,7 +54,7 @@
     "element-plus": "1.0.2-beta.71",
     "eslint": "8.4.0",
     "eslint-plugin-prettier": "4.0.0",
-    "eslint-plugin-vue": "8.1.1",
+    "eslint-plugin-vue": "8.2.0",
     "geckodriver": "2.0.4",
     "prettier": "2.5.1",
     "sass": "1.44.0",
