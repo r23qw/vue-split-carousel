@@ -55,7 +55,7 @@
     "eslint": "8.5.0",
     "eslint-plugin-prettier": "4.0.0",
     "eslint-plugin-vue": "8.2.0",
-    "geckodriver": "2.0.4",
+    "geckodriver": "3.0.1",
     "prettier": "2.5.1",
     "sass": "1.45.1",
     "sass-loader": "12.4.0",
