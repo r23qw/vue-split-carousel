@@ -46,7 +46,7 @@
     "@vue/cli-plugin-unit-jest": "4.5.15",
     "@vue/cli-service": "4.5.15",
     "@vue/compiler-sfc": "3.2.26",
-    "@vue/eslint-config-prettier": "6.0.0",
+    "@vue/eslint-config-prettier": "7.0.0",
     "@vue/eslint-config-typescript": "9.1.0",
     "@vue/test-utils": "2.0.0-rc.18",
     "chromedriver": "96.0.0",
