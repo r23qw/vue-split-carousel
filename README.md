@@ -10,9 +10,9 @@ A carousel component for vue,meanwhile display several carousel item.
 
 ![show](https://raw.githubusercontent.com/Aaron00101010/vue-split-carousel/30dec58c513814a306ddd0fba08096ad291e4a7d/examples/GIF.gif)  
 
-> ## 2.x as lastest version only support vue 3, vue 2 should use 1.x version. 
-
-### [1.x version doc](https://github.com/Aaron00101010/vue-split-carousel/tree/1.x)
+> ## 2.x version for vue 3
+> ## 1.x version for vue 2 
+[1.x version doc](https://github.com/Aaron00101010/vue-split-carousel/tree/1.x)
 
 ## [Playground](https://codesandbox.io/s/elegant-bardeen-n6lg2?file=/src/App.vue)  
 
