@@ -52,7 +52,7 @@
     "chromedriver": "98.0.1",
     "core-js": "3.23.5",
     "element-plus": "2.2.9",
-    "eslint": "8.11.0",
+    "eslint": "8.20.0",
     "eslint-plugin-prettier": "4.0.0",
     "eslint-plugin-vue": "8.5.0",
     "geckodriver": "3.0.2",
