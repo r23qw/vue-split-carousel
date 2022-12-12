@@ -50,7 +50,7 @@
     "@vue/eslint-config-typescript": "10.0.0",
     "@vue/test-utils": "2.2.6",
     "chromedriver": "98.0.1",
-    "core-js": "3.25.5",
+    "core-js": "3.26.1",
     "element-plus": "2.2.26",
     "eslint": "8.22.0",
     "eslint-plugin-prettier": "4.2.1",
