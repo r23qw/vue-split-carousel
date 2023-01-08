@@ -48,7 +48,7 @@
     "@vue/compiler-sfc": "3.2.45",
     "@vue/eslint-config-prettier": "7.0.0",
     "@vue/eslint-config-typescript": "10.0.0",
-    "@vue/test-utils": "2.2.6",
+    "@vue/test-utils": "2.2.7",
     "chromedriver": "98.0.1",
     "core-js": "3.27.1",
     "element-plus": "2.2.28",
