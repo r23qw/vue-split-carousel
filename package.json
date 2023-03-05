@@ -51,7 +51,7 @@
     "@vue/test-utils": "2.2.10",
     "chromedriver": "98.0.1",
     "core-js": "3.27.2",
-    "element-plus": "2.2.32",
+    "element-plus": "2.2.33",
     "eslint": "8.32.0",
     "eslint-plugin-prettier": "4.2.1",
     "eslint-plugin-vue": "8.7.1",
