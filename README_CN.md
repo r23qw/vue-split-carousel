@@ -72,18 +72,17 @@ yarn add vue-split-carousel
 ### 全局组件
 
 ```js
-import Vue from "vue";
-import App from "./App.vue";
-import SplitCarousel from "vue-split-carousel";
+import Vue from 'vue'
+import SplitCarousel from 'vue-split-carousel'
+import App from './App.vue'
 
-const app = createApp(App);
-app.use(SplitCarousel);
+const app = createApp(App)
+app.use(SplitCarousel)
 
-//接收prefix选项用于解决命名冲突, 注册组件名为 `<ElSplitCarousel>` 和 `<ElSplitCarouselItem>`
-//app.use(SplitCarousel,{prefix:'El'});
+// 接收prefix选项用于解决命名冲突, 注册组件名为 `<ElSplitCarousel>` 和 `<ElSplitCarouselItem>`
+// app.use(SplitCarousel,{prefix:'El'});
 
-app.mount("#app");
-
+app.mount('#app')
 ```
 
 ### 通过 `<script>` 标签引入

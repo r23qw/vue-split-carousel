@@ -1,8 +1,98 @@
+<script setup lang="ts">
+import { computed, reactive, ref } from 'vue-demi'
+import SplitCarousel from './components/SplitCarousel.vue'
+import SplitCarouselItem from './components/SplitCarouselItem.vue'
+const defaultConfig = {
+  displayAmount: 4,
+  autoplay: true,
+  speed: 500,
+  interval: 3000,
+  loop: true,
+  height: 80,
+  itemWidth: 120,
+  pauseOnHover: true,
+  timingFunction: 'ease',
+  arrowVisible: 'default',
+}
+const kebabize = (str: string) => {
+  return str
+    .split('')
+    .map((letter, idx) => {
+      return letter.toUpperCase() === letter
+        ? `${idx !== 0 ? '-' : ''}${letter.toLowerCase()}`
+        : letter
+    })
+    .join('')
+}
+
+const itemAmount = ref(6)
+const option = reactive({ ...defaultConfig })
+const timingFuntionOptions = [
+  {
+    value: 'ease',
+    label: 'ease',
+  },
+  {
+    value: 'ease-in',
+    label: 'ease-in',
+  },
+  {
+    value: 'ease-out',
+    label: 'ease-out',
+  },
+  {
+    value: 'ease-in-out',
+    label: 'ease-in-out',
+  },
+  {
+    value: 'linear',
+    label: 'linear',
+  },
+  {
+    value: 'steps(2, start)',
+    label: 'steps(2, start)',
+  },
+  {
+    value: 'cubic-bezier(0.06, 0.29, 0.19, 1.4)',
+    label: 'cubic-bezier(0.06, 0.29, 0.19, 1.4)',
+  },
+]
+
+const diffConfig = computed(() => {
+  const keys = Object.keys(defaultConfig) as (keyof typeof defaultConfig)[]
+  const result: Partial<typeof defaultConfig> = {}
+  keys.forEach((key) => {
+    if (option[key] !== defaultConfig[key])
+      (result[key] as any) = option[key]
+  })
+  return result
+})
+
+const componentCode = computed(() => {
+  const optionString = Object.entries(diffConfig.value)
+    .map(([key, value]) => {
+      const stringKey = ['timingFunction', 'arrowVisible']
+      return `${stringKey.includes(key) ? '' : ':'}${kebabize(
+        key,
+      )}="${value}"`
+    })
+    .join(' ')
+  return `
+<SplitCarousel ${optionString}>
+  <SplitCarouselItem v-for="item in ${itemAmount.value}" :key="item">
+    {{ item }}
+  </SplitCarouselItem>
+</SplitCarousel>`
+})
+</script>
+
 <template>
   <div class="wrapper">
     <SplitCarousel v-bind="option">
       <SplitCarouselItem v-for="item in itemAmount" :key="item">
-        <div class="box">{{ item }}</div>
+        <div class="box">
+          {{ item }}
+        </div>
       </SplitCarouselItem>
     </SplitCarousel>
     <details>
@@ -34,23 +124,13 @@
           </el-radio-group>
         </el-form-item>
         <el-form-item label="timing-function">
-          <el-select
-            style="width: 260px"
-            v-model="option.timingFunction"
-            placeholder="timing function"
-          >
-            <el-option
-              v-for="item in timingFuntionOptions"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value"
-            />
+          <el-select v-model="option.timingFunction" style="width: 260px" placeholder="timing function">
+            <el-option v-for="item in timingFuntionOptions" :key="item.value" :label="item.label" :value="item.value" />
           </el-select>
           <span class="tips">
             🌏more details reference:
             <a
-              style="color: seagreen"
-              target="_blank"
+              style="color: seagreen" target="_blank"
               href="https://developer.mozilla.org/en-US/docs/Web/CSS/transition-timing-function"
             >
               css transition timing function
@@ -74,103 +154,6 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
-const defaultConfig = {
-  displayAmount: 4,
-  autoplay: true,
-  speed: 500,
-  interval: 3000,
-  loop: true,
-  height: 80,
-  itemWidth: 120,
-  pauseOnHover: true,
-  timingFunction: "ease",
-  arrowVisible: "default",
-};
-const kebabize = (str: string) => {
-  return str
-    .split("")
-    .map((letter, idx) => {
-      return letter.toUpperCase() === letter
-        ? `${idx !== 0 ? "-" : ""}${letter.toLowerCase()}`
-        : letter;
-    })
-    .join("");
-};
-
-export default defineComponent({
-  name: "App",
-  data() {
-    return {
-      itemAmount: 6,
-      option: { ...defaultConfig },
-      timingFuntionOptions: [
-        {
-          value: "ease",
-          label: "ease",
-        },
-        {
-          value: "ease-in",
-          label: "ease-in",
-        },
-        {
-          value: "ease-out",
-          label: "ease-out",
-        },
-        {
-          value: "ease-in-out",
-          label: "ease-in-out",
-        },
-        {
-          value: "linear",
-          label: "linear",
-        },
-        {
-          value: "steps(2, start)",
-          label: "steps(2, start)",
-        },
-        {
-          value: "cubic-bezier(0.06, 0.29, 0.19, 1.4)",
-          label: "cubic-bezier(0.06, 0.29, 0.19, 1.4)",
-        },
-      ],
-    };
-  },
-  computed: {
-    diffConfig() {
-      const keys = Object.keys(defaultConfig);
-      const result = {};
-      keys.forEach((key) => {
-        if (this.option[key] !== defaultConfig[key]) {
-          result[key] = this.option[key];
-        }
-      });
-      return result;
-    },
-    componentCode() {
-      const optionString = Object.entries(this.diffConfig)
-        .map(([key, value]) => {
-          const stringKey = ["timingFunction", "arrowVisible"];
-          return `${stringKey.includes(key) ? "" : ":"}${kebabize(
-            key
-          )}="${value}"`;
-        })
-        .join(" ");
-      return `
-<SplitCarousel ${optionString}>
-  <SplitCarouselItem v-for="item in ${this.itemAmount}" :key="item">
-    {{ item }}
-  </SplitCarouselItem>
-</SplitCarousel>
-`;
-    },
-  },
-});
-</script>
-
-<script setup></script>
-
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -184,6 +167,7 @@ export default defineComponent({
   width: 800px;
   margin: 0 auto;
 }
+
 .box {
   border: 1px solid #eee;
   height: 100%;
@@ -192,12 +176,15 @@ export default defineComponent({
   justify-content: center;
   align-items: center;
 }
+
 .operator {
   padding: 30px 0;
 }
+
 .code {
   margin: 0;
 }
+
 details {
   padding: 25px 0 0 10px;
 }

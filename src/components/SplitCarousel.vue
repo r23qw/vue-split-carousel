@@ -1,42 +1,7 @@
-<template>
-  <div
-    class="split-carousel"
-    :style="{
-      height: `${typeof height === 'string' ? height : `${height}px`}`,
-    }"
-  >
-    <div class="split-carousel__left" @click="prev">
-      <div v-show="isLeftArrowVisiable">
-        <slot v-if="hasLeftSlot" name="left"></slot>
-        <button class="split-carousel__left-button" v-else>
-          <div class="arrow left"></div>
-        </button>
-      </div>
-    </div>
-    <div
-      ref="viewportDOMRef"
-      class="split-carousel__viewport"
-      @mouseenter="enter"
-      @mouseleave="leave"
-      :class="{ 'split-carousel__viewport--static': layout.isStatic }"
-    >
-      <slot></slot>
-    </div>
-    <div class="split-carousel__right" @click="next">
-      <div v-show="isRightArrowVisiable">
-        <slot v-if="hasRightSlot" name="right"></slot>
-        <button class="split-carousel__right-button" v-else>
-          <div class="arrow right"></div>
-        </button>
-      </div>
-    </div>
-  </div>
-</template>
-
 <script lang="ts">
+import type { ComputedRef } from 'vue-demi'
 import {
   computed,
-  ComputedRef,
   defineComponent,
   nextTick,
   onMounted,
@@ -46,17 +11,17 @@ import {
   ref,
   toRefs,
   watch,
-} from "vue";
+} from 'vue-demi'
 import type {
   CarouselItem,
   CarouselLayout,
   CarouselReset,
   ComponentUid,
   InjectCarouselScope,
-} from "./carousel";
+} from './carousel'
 
 export default defineComponent({
-  name: "SplitCarousel",
+  name: 'SplitCarousel',
   props: {
     autoplay: {
       type: Boolean,
@@ -92,32 +57,31 @@ export default defineComponent({
     },
     timingFunction: {
       type: String,
-      default: "ease",
+      default: 'ease',
     },
     arrowVisible: {
       type: String,
-      validator: (i: string) => ["default", "always"].includes(i),
-      default: "default",
+      validator: (i: string) => ['default', 'always'].includes(i),
+      default: 'default',
     },
   },
   setup(props, context) {
-    const viewportDOMRef = ref<null | HTMLElement>(null);
+    const viewportDOMRef = ref<null | HTMLElement>(null)
 
-    const items = ref<CarouselItem[]>([]);
-    const addItem = (item: CarouselItem) => items.value.push(item);
+    const items = ref<CarouselItem[]>([])
+    const addItem = (item: CarouselItem) => items.value.push(item)
     const removeItem = (uid: ComponentUid) => {
-      const index = items.value.findIndex((item) => item.uid === uid);
-      if (index !== -1) {
-        items.value.splice(index, 1);
-      }
-    };
+      const index = items.value.findIndex(item => item.uid === uid)
+      if (index !== -1)
+        items.value.splice(index, 1)
+    }
     // layout
-    const viewportWidth = ref(0);
+    const viewportWidth = ref(0)
     const layout: ComputedRef<CarouselLayout> = computed(() => {
-      const gapWidth =
-        (viewportWidth.value - props.itemWidth * props.displayAmount) /
-        (props.displayAmount - 1);
-      const itemBlockWidth = gapWidth + props.itemWidth;
+      const gapWidth
+        = (viewportWidth.value - props.itemWidth * props.displayAmount)
+        / (props.displayAmount - 1)
+      const itemBlockWidth = gapWidth + props.itemWidth
       return {
         isStatic: items.value.length <= props.displayAmount,
         gapWidth,
@@ -126,50 +90,49 @@ export default defineComponent({
         itemBlockWidth,
         prependPosition: -1 * itemBlockWidth,
         appendPostion: viewportWidth.value + gapWidth,
-      };
-    });
+      }
+    })
 
     // index
-    const activeIndex = ref(0);
+    const activeIndex = ref(0)
     const isLastIndex = computed(
-      () => activeIndex.value + props.displayAmount === items.value.length
-    );
-    const isFirstIndex = computed(() => activeIndex.value === 0);
+      () => activeIndex.value + props.displayAmount === items.value.length,
+    )
+    const isFirstIndex = computed(() => activeIndex.value === 0)
     const isNeedReset = computed(
-      () => props.displayAmount + 2 >= items.value.length
-    );
+      () => props.displayAmount + 2 >= items.value.length,
+    )
     const reset = reactive<CarouselReset>({
       resetting: false,
-      action: "next",
-    });
+      action: 'next',
+    })
 
     const stag = computed(() => {
-      const index = activeIndex.value;
-      const list = items.value;
-      const endIndex = list.length - 1;
+      const index = activeIndex.value
+      const list = items.value
+      const endIndex = list.length - 1
 
       const stagUids = Array.from({ length: props.displayAmount }).map(
-        (v, offset) => list[(index + offset) % list.length]?.uid
-      );
+        (v, offset) => list[(index + offset) % list.length]?.uid,
+      )
 
       const result = {
         prependUid: list[isFirstIndex.value ? endIndex : index - 1]?.uid,
         stagUids,
         appendUid: list[(index + props.displayAmount) % list.length]?.uid,
-      };
-      if (result.prependUid === result.appendUid) {
-        const invalidUid = -1;
-        if (reset.action === "prev") {
-          result.prependUid = invalidUid;
-        }
-        if (reset.action === "next") {
-          result.appendUid = invalidUid;
-        }
       }
-      return result;
-    });
-    const refsProps = toRefs(props);
-    provide<InjectCarouselScope>("injectCarouselScope", {
+      if (result.prependUid === result.appendUid) {
+        const invalidUid = -1
+        if (reset.action === 'prev')
+          result.prependUid = invalidUid
+
+        if (reset.action === 'next')
+          result.appendUid = invalidUid
+      }
+      return result
+    })
+    const refsProps = toRefs(props)
+    provide<InjectCarouselScope>('injectCarouselScope', {
       speed: refsProps.speed,
       timingFunction: refsProps.timingFunction,
       stag,
@@ -177,138 +140,132 @@ export default defineComponent({
       addItem,
       removeItem,
       layout,
-    });
+    })
 
-    //arrow
+    // arrow
     const isLeftArrowVisiable = computed(() => {
-      if (props.arrowVisible === "default") {
-        if (layout.value.isStatic) {
-          return false;
-        }
-        if (isFirstIndex.value && !props.loop) {
-          return false;
-        }
+      if (props.arrowVisible === 'default') {
+        if (layout.value.isStatic)
+          return false
+
+        if (isFirstIndex.value && !props.loop)
+          return false
       }
-      return true;
-    });
+      return true
+    })
     const isRightArrowVisiable = computed(() => {
-      if (props.arrowVisible === "default") {
-        if (layout.value.isStatic) {
-          return false;
-        }
-        if (isLastIndex.value && !props.loop) {
-          return false;
-        }
+      if (props.arrowVisible === 'default') {
+        if (layout.value.isStatic)
+          return false
+
+        if (isLastIndex.value && !props.loop)
+          return false
       }
-      return true;
-    });
+      return true
+    })
 
     // play method
-    const slide = (action: CarouselReset["action"]) => {
-      if (layout.value.isStatic) return;
+    const slide = (action: CarouselReset['action']) => {
+      if (layout.value.isStatic)
+        return
       if (!props.loop) {
-        if (action === "next" && isLastIndex.value) return;
-        if (action === "prev" && isFirstIndex.value) return;
+        if (action === 'next' && isLastIndex.value)
+          return
+        if (action === 'prev' && isFirstIndex.value)
+          return
       }
 
       const setIndex = () => {
-        if (action === "next") {
-          activeIndex.value = (activeIndex.value + 1) % items.value.length;
-        }
-        if (action === "prev") {
+        if (action === 'next')
+          activeIndex.value = (activeIndex.value + 1) % items.value.length
+
+        if (action === 'prev') {
           activeIndex.value = isFirstIndex.value
             ? items.value.length - 1
-            : activeIndex.value - 1;
+            : activeIndex.value - 1
         }
-      };
-
-      if (!isNeedReset.value) {
-        setIndex();
-        return;
       }
 
-      reset.resetting = true;
-      reset.action = action;
+      if (!isNeedReset.value) {
+        setIndex()
+        return
+      }
+
+      reset.resetting = true
+      reset.action = action
       requestAnimationFrame(() => {
         // this frame setting edge item position
         requestAnimationFrame(() => {
-          reset.resetting = false;
-          setIndex();
-        });
-      });
-    };
-    let timer: ReturnType<typeof setTimeout>;
+          reset.resetting = false
+          setIndex()
+        })
+      })
+    }
+    let timer: ReturnType<typeof setTimeout>
     const next = () => {
-      clearTimeout(timer);
-      slide("next");
-      if (props.autoplay) {
-        timer = setTimeout(() => next(), props.interval);
-      }
-    };
+      clearTimeout(timer)
+      slide('next')
+      if (props.autoplay)
+        timer = setTimeout(() => next(), props.interval)
+    }
     const prev = () => {
-      clearTimeout(timer);
-      slide("prev");
-      if (props.autoplay) {
-        timer = setTimeout(() => prev(), props.interval);
-      }
-    };
+      clearTimeout(timer)
+      slide('prev')
+      if (props.autoplay)
+        timer = setTimeout(() => prev(), props.interval)
+    }
     const enter = () => {
-      if (props.autoplay && props.pauseOnHover) {
-        clearTimeout(timer);
-      }
-    };
+      if (props.autoplay && props.pauseOnHover)
+        clearTimeout(timer)
+    }
     const leave = () => {
       if (props.autoplay && props.pauseOnHover) {
-        clearTimeout(timer);
-        timer = setTimeout(() => next(), props.interval);
+        clearTimeout(timer)
+        timer = setTimeout(() => next(), props.interval)
       }
-    };
+    }
 
     // autoplay
     watch(
       () => props.autoplay,
       (autoplay) => {
-        if (autoplay) {
-          timer = setTimeout(() => next(), props.interval);
-        } else {
-          clearTimeout(timer);
-        }
-      }
-    );
+        if (autoplay)
+          timer = setTimeout(() => next(), props.interval)
+        else
+          clearTimeout(timer)
+      },
+    )
     const handlePageVisiblityChange = () => {
-      if (document.visibilityState === "hidden") {
-        clearTimeout(timer);
-      }
-      if (document.visibilityState === "visible" && props.autoplay) {
-        timer = setTimeout(() => next(), props.interval);
-      }
-    };
+      if (document.visibilityState === 'hidden')
+        clearTimeout(timer)
+
+      if (document.visibilityState === 'visible' && props.autoplay)
+        timer = setTimeout(() => next(), props.interval)
+    }
 
     // init layout,handle page visibility
     onMounted(() => {
       nextTick(() => {
-        if (viewportDOMRef.value !== null) {
-          viewportWidth.value = viewportDOMRef.value.clientWidth;
-        }
+        if (viewportDOMRef.value !== null)
+          viewportWidth.value = viewportDOMRef.value.clientWidth
 
-        if (props.autoplay) {
-          timer = setTimeout(() => next(), props.interval);
-        }
+        if (props.autoplay)
+          timer = setTimeout(() => next(), props.interval)
 
         document.addEventListener(
-          "visibilitychange",
-          handlePageVisiblityChange
-        );
-      });
-    });
+          'visibilitychange',
+          handlePageVisiblityChange,
+        )
+      })
+    })
     onUnmounted(() => {
-      clearTimeout(timer);
+      clearTimeout(timer)
 
       document.removeEventListener(
-        "visibilitychange",
-        handlePageVisiblityChange
-      );
-    });
+        'visibilitychange',
+        handlePageVisiblityChange,
+      )
+    })
 
     return {
       prev,
@@ -321,10 +278,45 @@ export default defineComponent({
       hasRightSlot: context.slots.right !== undefined,
       isLeftArrowVisiable,
       isRightArrowVisiable,
-    };
+    }
   },
-});
+})
 </script>
+
+<template>
+  <div
+    class="split-carousel"
+    :style="{
+      height: `${typeof height === 'string' ? height : `${height}px`}`,
+    }"
+  >
+    <div class="split-carousel__left" @click="prev">
+      <div v-show="isLeftArrowVisiable">
+        <slot v-if="hasLeftSlot" name="left" />
+        <button v-else class="split-carousel__left-button">
+          <div class="arrow left" />
+        </button>
+      </div>
+    </div>
+    <div
+      ref="viewportDOMRef"
+      class="split-carousel__viewport"
+      :class="{ 'split-carousel__viewport--static': layout.isStatic }"
+      @mouseenter="enter"
+      @mouseleave="leave"
+    >
+      <slot />
+    </div>
+    <div class="split-carousel__right" @click="next">
+      <div v-show="isRightArrowVisiable">
+        <slot v-if="hasRightSlot" name="right" />
+        <button v-else class="split-carousel__right-button">
+          <div class="arrow right" />
+        </button>
+      </div>
+    </div>
+  </div>
+</template>
 
 <style scoped lang="scss">
 .split-carousel {
@@ -342,7 +334,7 @@ export default defineComponent({
       display: flex;
       align-items: center;
       justify-content: space-between;
-      ::v-deep .split-carousel__item {
+      :deep(.split-carousel__item) {
         align-self: stretch;
       }
     }

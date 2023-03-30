@@ -73,18 +73,17 @@ support prefix option prevent name conflict while install component with `app.us
 ### Global Component
 
 ```js
-import Vue from "vue";
-import App from "./App.vue";
-import SplitCarousel from "vue-split-carousel";
+import Vue from 'vue'
+import SplitCarousel from 'vue-split-carousel'
+import App from './App.vue'
 
-const app = createApp(App);
-app.use(SplitCarousel);
+const app = createApp(App)
+app.use(SplitCarousel)
 
-//accpect prefix for component name conflict, use as `<ElSplitCarousel>` and `<ElSplitCarouselItem>`
-//app.use(SplitCarousel,{prefix:'El'});
+// accpect prefix for component name conflict, use as `<ElSplitCarousel>` and `<ElSplitCarouselItem>`
+// app.use(SplitCarousel,{prefix:'El'});
 
-app.mount("#app");
-
+app.mount('#app')
 ```
 
 ### import by `<script>`

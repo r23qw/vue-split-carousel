@@ -4,7 +4,7 @@
   ],
   "schedule": "after 10pm on sunday",
   "lockFileMaintenance": {
-    "enabled": true,
+    "enabled": false,
     "schedule": "after 10pm on sunday"
   },
   "labels": ["dependencies"],
