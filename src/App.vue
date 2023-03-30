@@ -1,3 +1,69 @@
+<template>
+  <div class="wrapper">
+    <SplitCarousel v-bind="option">
+      <SplitCarouselItem v-for="item in itemAmount" :key="item">
+        <div class="box">
+          {{ item }}
+        </div>
+      </SplitCarouselItem>
+    </SplitCarousel>
+    <details>
+      <summary>Component Code By Current Config</summary>
+      <pre class="code">{{ componentCode }}</pre>
+    </details>
+    <div class="operator">
+      <el-form label-suffix=":" label-width="120px">
+        <el-form-item label="item amount">
+          <el-input-number v-model="itemAmount" :min="1" />
+        </el-form-item>
+        <h3>props:</h3>
+        <el-form-item label="display-amount">
+          <el-input-number v-model="option.displayAmount" :min="1" />
+        </el-form-item>
+        <el-form-item label="autoplay">
+          <el-switch v-model="option.autoplay" />
+        </el-form-item>
+        <el-form-item label="loop">
+          <el-switch v-model="option.loop" />
+        </el-form-item>
+        <el-form-item label="pause-on-hover">
+          <el-switch v-model="option.pauseOnHover" />
+        </el-form-item>
+        <el-form-item label="arrow-visible">
+          <el-radio-group v-model="option.arrowVisible">
+            <el-radio-button label="default" />
+            <el-radio-button label="always" />
+          </el-radio-group>
+        </el-form-item>
+        <el-form-item label="timing-function">
+          <el-select v-model="option.timingFunction" style="width: 260px" placeholder="timing function">
+            <el-option v-for="item in timingFuntionOptions" :key="item.value" :label="item.label" :value="item.value" />
+          </el-select>
+          <span class="tips">
+            🌏more details reference:
+            <a style="color: seagreen" target="_blank"
+              href="https://developer.mozilla.org/en-US/docs/Web/CSS/transition-timing-function">
+              css transition timing function
+            </a>
+          </span>
+        </el-form-item>
+        <el-form-item label="speed">
+          <el-slider v-model="option.speed" :max="1500" />
+        </el-form-item>
+        <el-form-item label="interval">
+          <el-slider v-model="option.interval" :max="6000" />
+        </el-form-item>
+        <el-form-item v-if="typeof option.height === 'number'" label="height">
+          <el-slider v-model="option.height" :min="20" :max="200" />
+        </el-form-item>
+        <el-form-item label="item-width">
+          <el-slider v-model="option.itemWidth" :min="20" :max="200" />
+        </el-form-item>
+      </el-form>
+    </div>
+  </div>
+</template>
+
 <script setup lang="ts">
 import { computed, reactive, ref } from 'vue-demi'
 import SplitCarousel from './components/SplitCarousel.vue'
@@ -86,73 +152,7 @@ const componentCode = computed(() => {
 })
 </script>
 
-<template>
-  <div class="wrapper">
-    <SplitCarousel v-bind="option">
-      <SplitCarouselItem v-for="item in itemAmount" :key="item">
-        <div class="box">
-          {{ item }}
-        </div>
-      </SplitCarouselItem>
-    </SplitCarousel>
-    <details>
-      <summary>Component Code By Current Config</summary>
-      <pre class="code">{{ componentCode }}</pre>
-    </details>
-    <div class="operator">
-      <el-form label-suffix=":" label-width="120px">
-        <el-form-item label="item amount">
-          <el-input-number v-model="itemAmount" :min="1" />
-        </el-form-item>
-        <h3>props:</h3>
-        <el-form-item label="display-amount">
-          <el-input-number v-model="option.displayAmount" :min="1" />
-        </el-form-item>
-        <el-form-item label="autoplay">
-          <el-switch v-model="option.autoplay" />
-        </el-form-item>
-        <el-form-item label="loop">
-          <el-switch v-model="option.loop" />
-        </el-form-item>
-        <el-form-item label="pause-on-hover">
-          <el-switch v-model="option.pauseOnHover" />
-        </el-form-item>
-        <el-form-item label="arrow-visible">
-          <el-radio-group v-model="option.arrowVisible">
-            <el-radio-button label="default" />
-            <el-radio-button label="always" />
-          </el-radio-group>
-        </el-form-item>
-        <el-form-item label="timing-function">
-          <el-select v-model="option.timingFunction" style="width: 260px" placeholder="timing function">
-            <el-option v-for="item in timingFuntionOptions" :key="item.value" :label="item.label" :value="item.value" />
-          </el-select>
-          <span class="tips">
-            🌏more details reference:
-            <a
-              style="color: seagreen" target="_blank"
-              href="https://developer.mozilla.org/en-US/docs/Web/CSS/transition-timing-function"
-            >
-              css transition timing function
-            </a>
-          </span>
-        </el-form-item>
-        <el-form-item label="speed">
-          <el-slider v-model="option.speed" :max="1500" />
-        </el-form-item>
-        <el-form-item label="interval">
-          <el-slider v-model="option.interval" :max="6000" />
-        </el-form-item>
-        <el-form-item v-if="typeof option.height === 'number'" label="height">
-          <el-slider v-model="option.height" :min="20" :max="200" />
-        </el-form-item>
-        <el-form-item label="item-width">
-          <el-slider v-model="option.itemWidth" :min="20" :max="200" />
-        </el-form-item>
-      </el-form>
-    </div>
-  </div>
-</template>
+
 
 <style>
 #app {

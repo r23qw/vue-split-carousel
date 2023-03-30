@@ -66,9 +66,8 @@ export default defineComponent({
 
       let style: ComponentStyle = {
         width: `${itemWidth}px`,
-        transitionDuration: `${
-          noAnimate.value ? 0 : injectCarouselScope.speed.value
-        }ms`,
+        transitionDuration: `${noAnimate.value ? 0 : injectCarouselScope.speed.value
+          }ms`,
         transitionTimingFunction: injectCarouselScope.timingFunction.value,
       }
 
@@ -89,9 +88,8 @@ export default defineComponent({
         style = {
           ...style,
           display: 'block',
-          transform: `translateX(${
-            needReset ? appendPostion : prependPosition
-          }px)`,
+          transform: `translateX(${needReset ? appendPostion : prependPosition
+            }px)`,
         }
       }
       if (isAppend.value) {
@@ -99,9 +97,8 @@ export default defineComponent({
         style = {
           ...style,
           display: 'block',
-          transform: `translateX(${
-            needReset ? prependPosition : appendPostion
-          }px)`,
+          transform: `translateX(${needReset ? prependPosition : appendPostion
+            }px)`,
         }
       }
 
@@ -117,11 +114,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div
-    class="split-carousel__item"
-    :class="{ 'split-carousel__item--transition': !layout.isStatic }"
-    :style="itemStyle"
-  >
+  <div class="split-carousel__item" :class="{ 'split-carousel__item--transition': !layout.isStatic }" :style="itemStyle">
     <slot />
   </div>
 </template>
@@ -131,12 +124,14 @@ export default defineComponent({
   display: none;
   transition-property: transform;
   will-change: transfrom;
+
   &--transition {
     position: absolute;
     left: 0;
     top: 0;
     height: 100%;
   }
+
   &--stag {
     display: block;
   }

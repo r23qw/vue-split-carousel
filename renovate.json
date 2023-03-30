@@ -7,10 +7,14 @@
     "enabled": false,
     "schedule": "after 10pm on sunday"
   },
-  "labels": ["dependencies"],
+  "labels": [
+    "dependencies"
+  ],
   "packageRules": [
     {
-      "matchDepTypes": ["devDependencies"],
+      "matchDepTypes": [
+        "devDependencies"
+      ],
       "automerge": true
     }
   ]

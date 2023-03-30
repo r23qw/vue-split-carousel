@@ -24,11 +24,11 @@
   "exports": {
     ".": {
       "require": "./dist/vue-split-carousel.umd.js",
-      "import": "./dist/vue-split-carousel.mjs"
+      "import": "./dist/vue-split-carousel.es.js"
     }
   },
   "main": "./dist/vue-split-carousel.umd.js",
-  "module": "./dist/vue-split-carousel.mjs",
+  "module": "./dist/vue-split-carousel.es.js",
   "files": [
     "src/components",
     "src/bundle-entry.ts",
