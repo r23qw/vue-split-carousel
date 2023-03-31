@@ -16,7 +16,6 @@ import type {
   CarouselItem,
   CarouselLayout,
   CarouselReset,
-  ComponentUid,
   InjectCarouselScope,
 } from './carousel'
 
@@ -70,7 +69,7 @@ export default defineComponent({
 
     const items = ref<CarouselItem[]>([])
     const addItem = (item: CarouselItem) => items.value.push(item)
-    const removeItem = (uid: ComponentUid) => {
+    const removeItem = (uid:number) => {
       const index = items.value.findIndex(item => item.uid === uid)
       if (index !== -1)
         items.value.splice(index, 1)
@@ -278,6 +277,8 @@ export default defineComponent({
       hasRightSlot: context.slots.right !== undefined,
       isLeftArrowVisiable,
       isRightArrowVisiable,
+      activeIndex,
+      items
     }
   },
 })

@@ -1,5 +1,4 @@
 <script lang="ts">
-import type { ComponentInternalInstance } from 'vue-demi'
 import {
   computed,
   defineComponent,
@@ -14,7 +13,8 @@ import type { ComponentStyle, InjectCarouselScope } from './carousel'
 export default defineComponent({
   name: 'SplitCarouselItem',
   setup() {
-    const instance = getCurrentInstance() as ComponentInternalInstance
+    let instance = getCurrentInstance()!
+    let uid = Math.random()
     const injectCarouselScope: InjectCarouselScope = inject(
       'injectCarouselScope',
     ) as InjectCarouselScope
@@ -26,7 +26,7 @@ export default defineComponent({
     const { layout, stag, reset, addItem, removeItem } = injectCarouselScope
     // register/unregister
     onMounted(() => {
-      addItem({ uid: instance.uid })
+      addItem({ uid })
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
           isMounted.value = true
@@ -38,10 +38,10 @@ export default defineComponent({
     })
 
     // itemStyle
-    const isPrepend = computed(() => instance.uid === stag.value.prependUid)
-    const isAppend = computed(() => instance.uid === stag.value.appendUid)
+    const isPrepend = computed(() => uid === stag.value.prependUid)
+    const isAppend = computed(() => uid === stag.value.appendUid)
     const stagIndex = computed(() => {
-      return stag.value.stagUids.findIndex(uid => uid === instance.uid)
+      return stag.value.stagUids.findIndex(id => id === uid)
     })
 
     const inStag = computed(() => stagIndex.value !== -1)

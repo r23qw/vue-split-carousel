@@ -1,15 +1,14 @@
-import type { ComponentInternalInstance, ComputedRef, Ref } from 'vue'
+import type { ComputedRef, Ref } from 'vue-demi'
 
-export type ComponentUid = ComponentInternalInstance['uid']
 
 export interface CarouselItem {
-  uid: ComponentUid
+  uid: number
 }
 
 export interface CarouselStag {
-  prependUid: ComponentUid
-  stagUids: ComponentUid[]
-  appendUid: ComponentUid
+  prependUid: number
+  stagUids: number[]
+  appendUid: number
 }
 
 export interface CarouselReset {
