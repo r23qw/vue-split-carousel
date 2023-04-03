@@ -20,7 +20,7 @@ export default defineConfig({
       entry: resolve(__dirname, '../../packages/SplitCarousel/index.ts'),
       formats: ['es', 'cjs', 'umd'],
       name: 'VueSplitCarousel',
-      fileName: (format) => `vue-split-carousel.${format}.js`
+      fileName: (format) => `index.${format}.js`
     },
     rollupOptions: {
       external: ['vue','vue2.7'],

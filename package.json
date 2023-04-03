@@ -21,13 +21,26 @@
     "vue3",
     "vue components"
   ],
-  "main": "./dist/vue-split-carousel.umd.js",
-  "module": "./dist/vue-split-carousel.es.js",
+  "main": "./dist/v3/index.cjs.js",
+  "module": "./dist/v3/index.es.js",
   "exports": {
     ".": {
-      "require": "./dist/vue-split-carousel.umd.js",
-      "import": "./dist/vue-split-carousel.es.js"
-    }
+      "require": "./dist/v3/index.cjs.js",
+      "import": "./dist/v3/index.es.js"
+    },
+    "./style.css":"./dist/v3/style.css",
+    "./v2": {
+      "require": "./dist/v2/index.cjs.js",
+      "import": "./dist/v2/index.es.js"
+    },
+    "./v2/style.css":"./dist/v2/style.css",
+    "./v2.7": {
+      "require": "./dist/v2.7/index.cjs.js",
+      "import": "./dist/v2.7/index.es.js"
+    },
+    "./v2.7/style.css":"./dist/v2.7/style.css",
+    "./dist/*": "./dist/*"
+
   },
   "files": [
     "dist",
