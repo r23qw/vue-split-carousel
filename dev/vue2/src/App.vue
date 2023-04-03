@@ -1,4 +1,4 @@
-<script>
+<script setup>
 import {SplitCarousel,SplitCarouselItem} from "split-carousel"
 export default {
   components:{
