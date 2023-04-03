@@ -7,7 +7,6 @@ export default defineConfig({
   plugins: [vue()],
   resolve: {
     alias: {
-      vue: resolve(__dirname, './node_modules/vue/dist/vue.runtime.esm.js'),
       'vue-demi': resolve(__dirname, '../../node_modules/vue-demi/lib/v2/index.mjs')
     }
   },

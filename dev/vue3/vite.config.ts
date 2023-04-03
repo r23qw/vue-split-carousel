@@ -5,6 +5,11 @@ import {resolve} from 'path'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [vue()],
+  resolve:{
+    alias:{
+      'vue-demi': resolve(__dirname, '../../node_modules/vue-demi/lib/v3/index.mjs')
+    }
+  },
   optimizeDeps: {
     exclude: ['vue-demi','vue3']
   },

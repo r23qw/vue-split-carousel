@@ -1,5 +1,4 @@
-import { defineComponent as N, ref as b, computed as u, reactive as J, toRefs as K, provide as Q, watch as Y, onMounted as P, nextTick as Z, onUnmounted as O, getCurrentInstance as ee, inject as te } from "vue3";
-import { openBlock as A, createElementBlock as C, normalizeStyle as E, createElementVNode as y, withDirectives as B, renderSlot as k, vShow as L, normalizeClass as j, pushScopeId as ie, popScopeId as ne } from "vue";
+import { defineComponent as N, ref as b, computed as u, reactive as J, toRefs as K, provide as Q, watch as Y, onMounted as P, nextTick as Z, onUnmounted as O, openBlock as A, createElementBlock as C, normalizeStyle as E, createElementVNode as y, withDirectives as B, renderSlot as k, vShow as L, normalizeClass as j, pushScopeId as ee, popScopeId as te, getCurrentInstance as ie, inject as ne } from "vue";
 const le = N({
   name: "SplitCarousel",
   props: {
@@ -158,7 +157,7 @@ const q = (e, t) => {
   for (const [l, v] of t)
     a[l] = v;
   return a;
-}, D = (e) => (ie("data-v-d65c36fb"), e = e(), ne(), e), ae = {
+}, D = (e) => (ee("data-v-d65c36fb"), e = e(), te(), e), ae = {
   key: 1,
   class: "split-carousel__left-button"
 }, se = /* @__PURE__ */ D(() => /* @__PURE__ */ y("div", { class: "arrow left" }, null, -1)), oe = [
@@ -209,8 +208,8 @@ function ce(e, t, a, l, v, m) {
 const ve = /* @__PURE__ */ q(le, [["render", ce], ["__scopeId", "data-v-d65c36fb"]]), fe = N({
   name: "SplitCarouselItem",
   setup() {
-    let e = ee(), t = Math.random();
-    const a = te(
+    let e = ie(), t = Math.random();
+    const a = ne(
       "injectCarouselScope"
     ), l = b(!1);
     if (!e || !a)
@@ -276,12 +275,12 @@ function me(e, t, a, l, v, m) {
     k(e.$slots, "default", {}, void 0, !0)
   ], 6);
 }
-const pe = /* @__PURE__ */ q(fe, [["render", me], ["__scopeId", "data-v-e39df7ff"]]), ge = (e, t) => {
+const pe = /* @__PURE__ */ q(fe, [["render", me], ["__scopeId", "data-v-e39df7ff"]]), he = (e, t) => {
   const a = (t == null ? void 0 : t.prefix) || "";
   e.component(`${a}SplitCarousel`, ve), e.component(`${a}SplitCarouselItem`, pe);
 };
 export {
   ve as SplitCarousel,
   pe as SplitCarouselItem,
-  ge as install
+  he as install
 };

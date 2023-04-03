@@ -1,4 +1,4 @@
-import B, { defineComponent as V, ref as x, computed as c, reactive as X, toRefs as q, provide as E, watch as D, onMounted as W, nextTick as H, onUnmounted as k, getCurrentInstance as j, inject as z } from "vue2.7";
+import B, { defineComponent as V, ref as x, computed as c, reactive as X, toRefs as q, provide as E, watch as D, onMounted as W, nextTick as H, onUnmounted as k, getCurrentInstance as j, inject as z } from "vue";
 B.util.warn;
 const G = V({
   name: "SplitCarousel",
