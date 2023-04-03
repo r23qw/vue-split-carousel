@@ -34,7 +34,7 @@ export default defineComponent({
       })
     })
     onUnmounted(() => {
-      removeItem(instance.uid)
+      removeItem(uid)
     })
 
     // itemStyle
