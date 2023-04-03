@@ -1,6 +1,6 @@
 {
-  "name": "vue-split-carousel",
-  "version": "3.0.0",
+  "name": "split-carousel",
+  "version": "1.0.0",
   "description": "",
   "main": "index.ts",
   "scripts": {
@@ -8,7 +8,5 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "dependencies": {
-  }
+  "license": "ISC"
 }

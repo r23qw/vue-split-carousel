@@ -36,10 +36,12 @@
     "README*.md"
   ],
   "scripts": {
-    "switch:3":"vue-demi-switch 3",
-    "switch:2.7":"vue-demi-switch 2.7 vue2.7",
-    "switch:2":"vue-demi-switch 2 vue2"
-
+    "dev:2":"pnpm run switch:2 && pnpm run --filter=vue2 dev",
+    "dev:2.7":"pnpm run switch:2.7 && pnpm run --filter=vue2.7 dev",
+    "dev":"pnpm run switch:3 && pnpm run --filter=vue3 dev",
+    "switch:3": "vue-demi-switch 3 vue3",
+    "switch:2.7": "vue-demi-switch 2.7 vue2.7",
+    "switch:2": "vue-demi-switch 2 vue2"
   },
   "dependencies": {
     "vue-demi": "latest"
@@ -54,8 +56,10 @@
     }
   },
   "devDependencies": {
-    "vue": "^3.0.0",
-    "vue2.7":"npm:vue@^2.7.0",
-    "vue2":"npm:vue@~2.6.0"
+    "@types/node": "^18.15.11",
+    "vue3": "npm:vue@^3.0.0",
+    "vue2": "npm:vue@~2.6.0",
+    "vue2.7": "npm:vue@^2.7.0",
+		"@vue/composition-api": "^1.7.1"
   }
 }
