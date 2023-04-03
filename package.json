@@ -36,9 +36,14 @@
     "README*.md"
   ],
   "scripts": {
+    "dev":"pnpm run dev:3",
     "dev:2":"pnpm run switch:2 && pnpm run --filter=vue2 dev",
     "dev:2.7":"pnpm run switch:2.7 && pnpm run --filter=vue2.7 dev",
-    "dev":"pnpm run switch:3 && pnpm run --filter=vue3 dev",
+    "dev:3":"pnpm run switch:3 && pnpm run --filter=vue3 dev",
+    "build":"pnpm run build:2 && pnpm run build:2.7 && npm run build:3",
+    "build:2":"pnpm run switch:2 && pnpm run --filter=vue2 build",
+    "build:2.7":"pnpm run switch:2.7 && pnpm run --filter=vue2.7 build",
+    "build:3":"pnpm run switch:3 && pnpm run --filter=vue3 build",
     "switch:3": "vue-demi-switch 3 vue3",
     "switch:2.7": "vue-demi-switch 2.7 vue2.7",
     "switch:2": "vue-demi-switch 2 vue2"
