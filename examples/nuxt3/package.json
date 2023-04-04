@@ -8,6 +8,9 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
   },
+  "dependencies": {
+    "vue-split-carousel":"file:../../"
+  },
   "devDependencies": {
     "nuxt": "^3.3.3"
   }

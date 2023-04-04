@@ -1,5 +1,10 @@
+<script setup lang="ts">
+import {SplitCarousel,SplitCarouselItem} from 'vue-split-carousel'
+</script>
+
 <template>
-  <div>
-    <NuxtWelcome />
-  </div>
+  <SplitCarousel>
+    <SplitCarouselItem v-for="i in 8" :key="i">{{ i }}</SplitCarouselItem>
+  </SplitCarousel>
 </template>
+

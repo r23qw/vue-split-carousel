@@ -2,3 +2,4 @@ packages:
   - packages/*
   - dev/*
   - examples/*
+  - '!examples/nuxt3'
