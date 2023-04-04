@@ -1,7 +1,7 @@
 {
   "name": "vue-split-carousel",
   "type": "module",
-  "version": "2.2.3",
+  "version": "3.0.0",
   "description": "a carousel component for vue, display several carousel-item in carousel container",
   "author": "Aaron00101010",
   "license": "MIT",
@@ -23,24 +23,24 @@
   ],
   "main": "./dist/v3/index.cjs.js",
   "module": "./dist/v3/index.es.js",
+  "typings": "dist/typing/index.d.ts",
   "exports": {
     ".": {
       "require": "./dist/v3/index.cjs.js",
       "import": "./dist/v3/index.es.js"
     },
-    "./style.css":"./dist/v3/style.css",
+    "./style.css": "./dist/v3/style.css",
     "./v2": {
       "require": "./dist/v2/index.cjs.js",
       "import": "./dist/v2/index.es.js"
     },
-    "./v2/style.css":"./dist/v2/style.css",
+    "./v2/style.css": "./dist/v2/style.css",
     "./v2.7": {
       "require": "./dist/v2.7/index.cjs.js",
       "import": "./dist/v2.7/index.es.js"
     },
-    "./v2.7/style.css":"./dist/v2.7/style.css",
+    "./v2.7/style.css": "./dist/v2.7/style.css",
     "./dist/*": "./dist/*"
-
   },
   "files": [
     "dist",
@@ -49,17 +49,18 @@
     "README*.md"
   ],
   "scripts": {
-    "dev":"pnpm run dev:3",
-    "dev:2":"pnpm run switch:2 && pnpm run --filter=vue2 dev",
-    "dev:2.7":"pnpm run switch:2.7 && pnpm run --filter=vue2.7 dev",
-    "dev:3":"pnpm run switch:3 && pnpm run --filter=vue3 dev",
-    "build":"pnpm run build:2 && pnpm run build:2.7 && npm run build:3",
-    "build:2":"pnpm run switch:2 && pnpm run --filter=vue2 build",
-    "build:2.7":"pnpm run switch:2.7 && pnpm run --filter=vue2.7 build",
-    "build:3":"pnpm run switch:3 && pnpm run --filter=vue3 build",
-    "switch:3": "vue-demi-switch 3 vue3",
+    "dev": "pnpm run dev:3",
+    "build": "pnpm run build:2 && pnpm run build:2.7 && pnpm run build:3 && pnpm run build:typing",
+    "dev:2": "pnpm run switch:2 && pnpm run --filter=vue2 dev",
+    "dev:2.7": "pnpm run switch:2.7 && pnpm run --filter=vue2.7 dev",
+    "dev:3": "pnpm run switch:3 && pnpm run --filter=vue3 dev",
+    "build:2": "pnpm run switch:2 && pnpm run --filter=vue2 build",
+    "build:2.7": "pnpm run switch:2.7 && pnpm run --filter=vue2.7 build",
+    "build:3": "pnpm run switch:3 && pnpm run --filter=vue3 build",
+    "build:typing": "vue-tsc packages/SplitCarousel/index.ts  --declaration --emitDeclarationOnly --noEmit false  --outDir dist/typing",
+    "switch:2": "vue-demi-switch 2 vue2",
     "switch:2.7": "vue-demi-switch 2.7 vue2.7",
-    "switch:2": "vue-demi-switch 2 vue2"
+    "switch:3": "vue-demi-switch 3 vue3"
   },
   "dependencies": {
     "vue-demi": "latest"
@@ -75,9 +76,9 @@
   },
   "devDependencies": {
     "@types/node": "^18.15.11",
-    "vue3": "npm:vue@^3.0.0",
+    "@vue/composition-api": "^1.7.1",
     "vue2": "npm:vue@~2.6.0",
     "vue2.7": "npm:vue@^2.7.0",
-		"@vue/composition-api": "^1.7.1"
+    "vue3": "npm:vue@^3.0.0"
   }
 }
