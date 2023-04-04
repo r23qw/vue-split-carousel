@@ -1,6 +1,8 @@
 import { createApp } from 'vue'
 import App from './App.vue'
+import SplitCarousel from 'vue-split-carousel'
 
-import './assets/main.css'
+const app = createApp(App)
+app.use(SplitCarousel)
+app.mount('#app')
 
-createApp(App).mount('#app')

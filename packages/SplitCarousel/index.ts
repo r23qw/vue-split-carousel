@@ -12,4 +12,13 @@ const install = (app: App, option?: SplitCarouselOption): void => {
   app.component(`${prefix}SplitCarouselItem`, SplitCarouselItem as any);
 };
 
-export { SplitCarousel, SplitCarouselItem, install };
+export { SplitCarousel, SplitCarouselItem};
+export default install
+
+
+declare module 'vue' {
+  export interface GlobalComponents {
+      SplitCarousel: typeof SplitCarousel;
+      SplitCarouselItem: typeof SplitCarouselItem;
+  }
+}

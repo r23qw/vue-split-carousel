@@ -7,11 +7,12 @@ export default defineConfig({
   plugins: [vue()],
   resolve: {
     alias: {
+      'vue': resolve(__dirname,'./node_modules/vue/dist/vue.esm.js'),
       'vue-demi': resolve(__dirname, '../../node_modules/vue-demi/lib/v2/index.mjs')
     }
   },
   optimizeDeps: {
-    exclude: ['vue-demi','vue2']
+    exclude: ['vue-demi','vue2','vue']
   },
   build: {
     outDir: resolve(__dirname, '../../dist/v2'),

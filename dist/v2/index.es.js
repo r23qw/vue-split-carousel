@@ -351,5 +351,5 @@ const ue = /* @__PURE__ */ function() {
 export {
   ne as SplitCarousel,
   ue as SplitCarouselItem,
-  ve as install
+  ve as default
 };
