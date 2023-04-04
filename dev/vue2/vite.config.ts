@@ -1,10 +1,12 @@
 import { defineConfig } from 'vite';
 import {createVuePlugin as vue} from 'vite-plugin-vue2';
 import {resolve} from 'path';
+import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js';
+
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [vue(),cssInjectedByJsPlugin()],
   resolve: {
     alias: {
       'vue': resolve(__dirname,'./node_modules/vue/dist/vue.esm.js'),

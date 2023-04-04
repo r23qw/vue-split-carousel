@@ -38,6 +38,9 @@ importers:
       vite:
         specifier: ^4.2.0
         version: 4.2.0(@types/node@18.15.11)(sass@1.60.0)
+      vite-plugin-css-injected-by-js:
+        specifier: ^3.1.0
+        version: 3.1.0(vite@4.2.0)
       vite-plugin-vue2:
         specifier: ^2.0.3
         version: 2.0.3(vite@4.2.0)(vue-template-compiler@2.6.0)(vue@2.6.0)
@@ -62,6 +65,9 @@ importers:
       vite:
         specifier: ^4.2.0
         version: 4.2.0(@types/node@18.15.11)(sass@1.60.0)
+      vite-plugin-css-injected-by-js:
+        specifier: ^3.1.0
+        version: 3.1.0(vite@4.2.0)
       vue:
         specifier: ^2.7.14
         version: 2.7.14
@@ -108,6 +114,9 @@ importers:
       vue-server-renderer:
         specifier: ^2.7.10
         version: 2.7.10
+      vue-split-carousel:
+        specifier: file:../../
+        version: file:(@vue/composition-api@1.7.1)(vue@2.7.14)
       vue-template-compiler:
         specifier: ^2.7.10
         version: 2.7.14
@@ -11861,6 +11870,22 @@ packages:
     resolution: {integrity: sha512-vKl1skEKn8EK9f8P2ZzhRnuaRHLHrlt1sbRmazlvsx6EiC3A8oWF8YCBrMJzoN+W3OnElwIGbVjsx6/xelY1AA==}
     dev: false
 
+  /vue-demi@0.13.11(@vue/composition-api@1.7.1)(vue@2.7.14):
+    resolution: {integrity: sha512-IR8HoEEGM65YY3ZJYAjMlKygDQn25D5ajNFNoKh9RSDMQtlzCxtfQjdQgv9jjK+m3377SsJXY8ysq8kLCZL25A==}
+    engines: {node: '>=12'}
+    hasBin: true
+    requiresBuild: true
+    peerDependencies:
+      '@vue/composition-api': ^1.0.0-rc.1
+      vue: ^3.0.0-0 || ^2.6.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+    dependencies:
+      '@vue/composition-api': 1.7.1(vue@3.2.47)
+      vue: 2.7.14
+    dev: false
+
   /vue-demi@0.13.11(@vue/composition-api@1.7.1)(vue@3.2.47):
     resolution: {integrity: sha512-IR8HoEEGM65YY3ZJYAjMlKygDQn25D5ajNFNoKh9RSDMQtlzCxtfQjdQgv9jjK+m3377SsJXY8ysq8kLCZL25A==}
     engines: {node: '>=12'}
@@ -12460,6 +12485,23 @@ packages:
     optionalDependencies:
       commander: 9.5.0
     dev: true
+
+  file:(@vue/composition-api@1.7.1)(vue@2.7.14):
+    resolution: {directory: '', type: directory}
+    id: 'file:'
+    name: vue-split-carousel
+    version: 3.0.0
+    peerDependencies:
+      '@vue/composition-api': ^1.0.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+    dependencies:
+      '@vue/composition-api': 1.7.1(vue@3.2.47)
+      vue-demi: 0.13.11(@vue/composition-api@1.7.1)(vue@2.7.14)
+    transitivePeerDependencies:
+      - vue
+    dev: false
 
   file:(@vue/composition-api@1.7.1)(vue@3.2.47):
     resolution: {directory: '', type: directory}

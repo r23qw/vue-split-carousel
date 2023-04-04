@@ -2,19 +2,12 @@ import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import { resolve } from 'path';
 import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js';
-import dts from 'vite-plugin-dts';
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     vue(),
-    cssInjectedByJsPlugin(),
-    dts({
-      outputDir: resolve(__dirname, '../../typings'),
-      tsConfigFilePath: resolve(__dirname, '../../tsconfig.json'),
-      include: ["node_modules/split-carousel/**"],
-      exclude: ["src"]
-    }),
+    cssInjectedByJsPlugin()
   ],
   resolve: {
     alias: {
