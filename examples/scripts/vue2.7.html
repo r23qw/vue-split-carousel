@@ -17,7 +17,7 @@
     new Vue({
       template: `
       <split-carousel>
-        <split-carousel-item v-for="i in 8">{{i}}</split-carousel-item>
+        <split-carousel-item v-for="i in 8" :key="i">{{i}}</split-carousel-item>
       </split-carousel>
     `
     }).$mount('#app')
