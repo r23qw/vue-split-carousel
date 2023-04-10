@@ -5,7 +5,7 @@ interface SplitCarouselOption {
     prefix: string;
 }
 declare const install: (app: App, option?: SplitCarouselOption) => void;
-export { SplitCarousel, SplitCarouselItem };
+export { SplitCarousel, SplitCarouselItem, install };
 export default install;
 declare module 'vue' {
     interface GlobalComponents {

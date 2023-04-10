@@ -1,6 +1,5 @@
 {
   "name": "vue-split-carousel",
-  "type": "module",
   "version": "3.0.0",
   "description": "a carousel component for vue, display several carousel-item in carousel container",
   "author": "Aaron00101010",
@@ -29,17 +28,16 @@
       "require": "./dist/v3/index.cjs.js",
       "import": "./dist/v3/index.es.js"
     },
-    "./style.css": "./dist/v3/style.css",
     "./v2": {
       "require": "./dist/v2/index.cjs.js",
-      "import": "./dist/v2/index.es.js"
+      "import": "./dist/v2/index.es.js",
+      "types":"./dist/typing/index.d.ts"
     },
-    "./v2/style.css": "./dist/v2/style.css",
     "./v2.7": {
       "require": "./dist/v2.7/index.cjs.js",
-      "import": "./dist/v2.7/index.es.js"
+      "import": "./dist/v2.7/index.es.js",
+      "types":"./dist/typing/index.d.ts"
     },
-    "./v2.7/style.css": "./dist/v2.7/style.css",
     "./dist/*": "./dist/*"
   },
   "files": [

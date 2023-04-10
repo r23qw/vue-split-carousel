@@ -280,5 +280,6 @@ const ne = ie.exports, se = (e, t) => {
 export {
   Y as SplitCarousel,
   ne as SplitCarouselItem,
-  se as default
+  se as default,
+  se as install
 };

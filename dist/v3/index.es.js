@@ -283,5 +283,6 @@ const pe = /* @__PURE__ */ q(fe, [["render", me], ["__scopeId", "data-v-e39df7ff
 export {
   ve as SplitCarousel,
   pe as SplitCarouselItem,
-  he as default
+  he as default,
+  he as install
 };
