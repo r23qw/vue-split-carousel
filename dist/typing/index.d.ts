@@ -7,7 +7,7 @@ interface SplitCarouselOption {
 declare const install: (app: App, option?: SplitCarouselOption) => void;
 export { SplitCarousel, SplitCarouselItem, install };
 export default install;
-declare module 'vue' {
+declare module '@vue/runtime-core' {
     interface GlobalComponents {
         SplitCarousel: typeof SplitCarousel;
         SplitCarouselItem: typeof SplitCarouselItem;

@@ -8,6 +8,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@vue/runtime-core": "^3.2.47",
     "vue": "^3.2.47"
   }
 }

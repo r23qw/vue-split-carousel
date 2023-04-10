@@ -210,6 +210,9 @@ importers:
 
   packages/SplitCarousel:
     devDependencies:
+      '@vue/runtime-core':
+        specifier: ^3.2.47
+        version: 3.2.47
       vue:
         specifier: ^3.2.47
         version: 3.2.47
