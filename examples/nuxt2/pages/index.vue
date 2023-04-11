@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { SplitCarousel, SplitCarouselItem } from 'vue-split-carousel/dist/v2.7'
+import { SplitCarousel, SplitCarouselItem } from 'vue-split-carousel/dist/vue2.7'
 export default Vue.extend({
   name: 'IndexPage',
   components: {

@@ -10,7 +10,7 @@ export default defineConfig({
     alias: {
       'vue-demi': resolve(
         __dirname,
-        '../../node_modules/vue-demi/lib/v2.7/index.mjs'
+        '../../node_modules/vue-demi/lib/v2.7/index.cjs'
       ),
     },
   },
