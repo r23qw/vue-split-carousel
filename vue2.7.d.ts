@@ -1,3 +1,3 @@
-import install from './dist/typing/index';
-export * from './dist/typing/index';
+import install from './dist/vue2.7/index';
+export * from './dist/vue2.7/index';
 export default install;

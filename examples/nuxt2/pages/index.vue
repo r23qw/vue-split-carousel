@@ -4,9 +4,9 @@
   </SplitCarousel>
 </template>
 
-<script>
+<script lang="ts">
 import Vue from 'vue'
-import {SplitCarousel,SplitCarouselItem} from 'vue-split-carousel/dist/v2/index.cjs'
+import { SplitCarousel, SplitCarouselItem } from 'vue-split-carousel/dist/v2.7'
 export default Vue.extend({
   name: 'IndexPage',
   components: {

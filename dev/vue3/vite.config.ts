@@ -5,10 +5,7 @@ import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [
-    vue(),
-    cssInjectedByJsPlugin()
-  ],
+  plugins: [vue(), cssInjectedByJsPlugin()],
   resolve: {
     alias: {
       'vue-demi': resolve(
@@ -21,7 +18,7 @@ export default defineConfig({
     exclude: ['vue-demi', 'vue3'],
   },
   build: {
-    outDir: resolve(__dirname, '../../dist/v3'),
+    outDir: resolve(__dirname, '../../dist/vue3'),
     emptyOutDir: false,
     lib: {
       entry: resolve(__dirname, '../../packages/SplitCarousel/index.ts'),

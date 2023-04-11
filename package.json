@@ -20,26 +20,27 @@
     "vue3",
     "vue components"
   ],
-  "main": "./dist/v3/index.cjs.js",
-  "module": "./dist/v3/index.es.js",
-  "typings": "./dist/typing/index.d.ts",
+  "main": "./dist/vue3/index.cjs.js",
+  "module": "./dist/vue3/index.es.js",
+  "typings": "./dist/vue3/index.d.ts",
   "exports": {
     ".": {
-      "require": "./dist/v3/index.cjs.js",
-      "import": "./dist/v3/index.es.js",
-      "browser": "./dist/v3/index.umd.js"
+      "require": "./dist/vue3/index.cjs.js",
+      "import": "./dist/vue3/index.es.js",
+      "browser": "./dist/vue3/index.umd.js",
+      "types": "./dist/vue3/index.d.ts"
     },
     "./vue2": {
-      "require": "./dist/v2/index.cjs.js",
-      "import": "./dist/v2/index.es.js",
-      "browser": "./dist/v2/index.umd.js",
-      "types": "./dist/typing/index.d.ts"
+      "require": "./dist/vue2/index.cjs.js",
+      "import": "./dist/vue2/index.es.js",
+      "browser": "./dist/vue2/index.umd.js",
+      "types": "./dist/vue2/index.d.ts"
     },
     "./vue2.7": {
-      "require": "./dist/v2.7/index.cjs.js",
-      "import": "./dist/v2.7/index.es.js",
-      "browser": "./dist/v2.7/index.umd.js",
-      "types": "./dist/typing/index.d.ts"
+      "require": "./dist/vue2.7/index.cjs.js",
+      "import": "./dist/vue2.7/index.es.js",
+      "browser": "./dist/vue2.7/index.umd.js",
+      "types": "./dist/vue2.7/index.d.ts"
     },
     "./dist/*": "./dist/*"
   },
@@ -48,7 +49,8 @@
     "LICENSE",
     "package.json",
     "README*.md",
-    "*.d.ts"
+    "vue2.7.d.ts",
+    "vue2.d.ts"
   ],
   "scripts": {
     "dev": "pnpm run dev:3",
@@ -59,7 +61,8 @@
     "build:2": "pnpm run switch:2 && pnpm run --filter=vue2 build",
     "build:2.7": "pnpm run switch:2.7 && pnpm run --filter=vue2.7 build",
     "build:3": "pnpm run switch:3 && pnpm run --filter=vue3 build",
-    "build:typing": "vue-tsc packages/SplitCarousel/index.ts  --declaration --emitDeclarationOnly --noEmit false  --outDir dist/typing",
+    "build:typing": "pnpm run build:typing-base --outDir dist/vue2 && pnpm run build:typing-base --outDir dist/vue2.7 && pnpm run build:typing-base --outDir dist/vue3",
+    "build:typing-base": "vue-tsc packages/SplitCarousel/index.ts  --declaration --emitDeclarationOnly --noEmit false",
     "switch:2": "vue-demi-switch 2 vue2",
     "switch:2.7": "vue-demi-switch 2.7 vue2.7",
     "switch:3": "vue-demi-switch 3 vue3"
