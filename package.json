@@ -22,21 +22,24 @@
   ],
   "main": "./dist/v3/index.cjs.js",
   "module": "./dist/v3/index.es.js",
-  "typings": "dist/typing/index.d.ts",
+  "typings": "./dist/typing/index.d.ts",
   "exports": {
     ".": {
       "require": "./dist/v3/index.cjs.js",
-      "import": "./dist/v3/index.es.js"
+      "import": "./dist/v3/index.es.js",
+      "browser": "./dist/v3/index.umd.js"
     },
-    "./v2": {
+    "./vue2": {
       "require": "./dist/v2/index.cjs.js",
       "import": "./dist/v2/index.es.js",
-      "types":"./dist/typing/index.d.ts"
+      "browser": "./dist/v2/index.umd.js",
+      "types": "./dist/typing/index.d.ts"
     },
-    "./v2.7": {
+    "./vue2.7": {
       "require": "./dist/v2.7/index.cjs.js",
       "import": "./dist/v2.7/index.es.js",
-      "types":"./dist/typing/index.d.ts"
+      "browser": "./dist/v2.7/index.umd.js",
+      "types": "./dist/typing/index.d.ts"
     },
     "./dist/*": "./dist/*"
   },
@@ -44,7 +47,8 @@
     "dist",
     "LICENSE",
     "package.json",
-    "README*.md"
+    "README*.md",
+    "*.d.ts"
   ],
   "scripts": {
     "dev": "pnpm run dev:3",

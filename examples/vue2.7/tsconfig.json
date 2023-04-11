@@ -5,9 +5,11 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
-    }
+    },
   },
-
+  "extensions": [
+    ".vue"
+  ],
   "references": [
     {
       "path": "./tsconfig.config.json"

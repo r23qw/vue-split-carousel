@@ -1,5 +1,4 @@
 packages:
   - packages/*
   - dev/*
-  - examples/*
-  - '!examples/nuxt{2,3}'
+  - examples/vue3
