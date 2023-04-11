@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {SplitCarousel,SplitCarouselItem} from 'vue-split-carousel'
+import { SplitCarousel, SplitCarouselItem } from 'vue-split-carousel'
 </script>
 
 <template>
@@ -7,4 +7,3 @@ import {SplitCarousel,SplitCarouselItem} from 'vue-split-carousel'
     <SplitCarouselItem v-for="i in 8" :key="i">{{ i }}</SplitCarouselItem>
   </SplitCarousel>
 </template>
-

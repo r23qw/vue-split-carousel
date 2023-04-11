@@ -1,6 +1,6 @@
 /// <reference types="vite/client" />
-declare module "*.vue" {
-  import type { DefineComponent } from "vue-demi";
-  const component: DefineComponent<{}>;
+declare module '*.vue' {
+  import type { DefineComponent } from 'vue-demi';
+  const component: DefineComponent<>;
   export default component;
 }
