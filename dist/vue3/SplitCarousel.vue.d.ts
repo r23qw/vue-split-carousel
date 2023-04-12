@@ -57,6 +57,7 @@ declare const _default: import("vue-demi").DefineComponent<{
     items: import("vue-demi").Ref<{
         uid: number;
     }[]>;
+    isMounted: import("vue-demi").Ref<boolean>;
 }, unknown, {}, {}, import("vue-demi").ComponentOptionsMixin, import("vue-demi").ComponentOptionsMixin, {}, string, import("vue-demi").VNodeProps & import("vue-demi").AllowedComponentProps & import("vue-demi").ComponentCustomProps, Readonly<import("vue-demi").ExtractPropTypes<{
     autoplay: {
         type: BooleanConstructor;

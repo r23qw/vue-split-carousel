@@ -1,6 +1,6 @@
-(function(){"use strict";try{if(typeof document<"u"){var t=document.createElement("style");t.appendChild(document.createTextNode(".split-carousel[data-v-d65c36fb]{display:flex;width:100%;align-items:center;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.split-carousel__viewport[data-v-d65c36fb]{flex-grow:1;overflow:hidden;align-self:stretch;position:relative}.split-carousel__viewport--static[data-v-d65c36fb]{display:flex;align-items:center;justify-content:space-between}.split-carousel__viewport--static[data-v-d65c36fb] .split-carousel__item{align-self:stretch}.split-carousel__left[data-v-d65c36fb],.split-carousel__right[data-v-d65c36fb]{align-self:center;padding:5px}.split-carousel__left-button[data-v-d65c36fb],.split-carousel__right-button[data-v-d65c36fb]{height:30px;width:30px;text-align:center;line-height:30px;border:1px solid #dcdfe6;border-radius:50%;cursor:pointer;background-color:#fff;transition:border-color,background-color .15s;display:flex;align-items:center;justify-content:center}.split-carousel__left-button[data-v-d65c36fb]:hover,.split-carousel__right-button[data-v-d65c36fb]:hover{border-color:#c6e2ff;background-color:#ecf5ff}.split-carousel__left-button:hover .arrow[data-v-d65c36fb],.split-carousel__right-button:hover .arrow[data-v-d65c36fb]{border-top-color:#c6e2ff;border-left-color:#c6e2ff}.arrow[data-v-d65c36fb]{height:6px;width:6px;border:2px solid;transition:border-color .15s;border-top-color:#dcdfe6;border-left-color:#dcdfe6;border-right-color:transparent;border-bottom-color:transparent}.arrow.left[data-v-d65c36fb]{transform:translate(2px) rotate(-45deg)}.arrow.right[data-v-d65c36fb]{transform:translate(-2px) rotate(135deg)}.split-carousel__item[data-v-e39df7ff]{display:none;transition-property:transform;will-change:transfrom}.split-carousel__item--transition[data-v-e39df7ff]{position:absolute;left:0;top:0;height:100%}.split-carousel__item--stag[data-v-e39df7ff]{display:block}")),document.head.appendChild(t)}}catch(e){console.error("vite-plugin-css-injected-by-js",e)}})();
-import { defineComponent as N, ref as b, computed as u, reactive as J, toRefs as K, provide as Q, watch as Y, onMounted as P, nextTick as Z, onUnmounted as O, openBlock as A, createElementBlock as C, normalizeStyle as E, createElementVNode as y, withDirectives as B, renderSlot as k, vShow as L, normalizeClass as j, pushScopeId as ee, popScopeId as te, getCurrentInstance as ie, inject as ne } from "vue";
-const le = N({
+(function(){"use strict";try{if(typeof document<"u"){var e=document.createElement("style");e.appendChild(document.createTextNode(".split-carousel[data-v-411ee54d]{display:flex;width:100%;align-items:center;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.split-carousel__viewport[data-v-411ee54d]{flex-grow:1;overflow:hidden;align-self:stretch;position:relative}.split-carousel__viewport--static[data-v-411ee54d]{display:flex;align-items:center;justify-content:space-between}.split-carousel__viewport--static[data-v-411ee54d] .split-carousel__item{align-self:stretch}.split-carousel__left[data-v-411ee54d],.split-carousel__right[data-v-411ee54d]{align-self:center;padding:5px}.split-carousel__left-button[data-v-411ee54d],.split-carousel__right-button[data-v-411ee54d]{height:30px;width:30px;text-align:center;line-height:30px;border:1px solid #dcdfe6;border-radius:50%;cursor:pointer;background-color:#fff;transition:border-color,background-color .15s;display:flex;align-items:center;justify-content:center}.split-carousel__left-button[data-v-411ee54d]:hover,.split-carousel__right-button[data-v-411ee54d]:hover{border-color:#c6e2ff;background-color:#ecf5ff}.split-carousel__left-button:hover .arrow[data-v-411ee54d],.split-carousel__right-button:hover .arrow[data-v-411ee54d]{border-top-color:#c6e2ff;border-left-color:#c6e2ff}.arrow[data-v-411ee54d]{height:6px;width:6px;border:2px solid;transition:border-color .15s;border-top-color:#dcdfe6;border-left-color:#dcdfe6;border-right-color:transparent;border-bottom-color:transparent}.arrow.left[data-v-411ee54d]{transform:translate(2px) rotate(-45deg)}.arrow.right[data-v-411ee54d]{transform:translate(-2px) rotate(135deg)}.split-carousel__item[data-v-e39df7ff]{display:none;transition-property:transform;will-change:transfrom}.split-carousel__item--transition[data-v-e39df7ff]{position:absolute;left:0;top:0;height:100%}.split-carousel__item--stag[data-v-e39df7ff]{display:block}")),document.head.appendChild(e)}}catch(t){console.error("vite-plugin-css-injected-by-js",t)}})();
+import { defineComponent as O, ref as g, computed as u, reactive as K, toRefs as Q, provide as Y, watch as Z, onMounted as M, nextTick as ee, onUnmounted as E, openBlock as A, createElementBlock as C, normalizeStyle as j, createElementVNode as y, withDirectives as N, renderSlot as k, vShow as P, normalizeClass as q, pushScopeId as te, popScopeId as ie, getCurrentInstance as ne, inject as le } from "vue";
+const ae = O({
   name: "SplitCarousel",
   props: {
     autoplay: {
@@ -46,10 +46,10 @@ const le = N({
     }
   },
   setup(e, t) {
-    const a = b(null), l = b([]), v = (i) => l.value.push(i), m = (i) => {
-      const o = l.value.findIndex((x) => x.uid === i);
+    const a = g(null), l = g([]), v = (i) => l.value.push(i), m = (i) => {
+      const o = l.value.findIndex((F) => F.uid === i);
       o !== -1 && l.value.splice(o, 1);
-    }, n = b(0), p = u(() => {
+    }, n = g(0), p = u(() => {
       const i = (n.value - e.itemWidth * e.displayAmount) / (e.displayAmount - 1), o = i + e.itemWidth;
       return {
         isStatic: l.value.length <= e.displayAmount,
@@ -60,28 +60,28 @@ const le = N({
         prependPosition: -1 * o,
         appendPostion: n.value + i
       };
-    }), d = b(0), w = u(
+    }), d = g(0), w = u(
       () => d.value + e.displayAmount === l.value.length
     ), h = u(() => d.value === 0), I = u(
       () => e.displayAmount + 2 >= l.value.length
-    ), f = J({
+    ), f = K({
       resetting: !1,
       action: "next"
     }), T = u(() => {
-      var R, V;
-      const i = d.value, o = l.value, x = o.length - 1, X = Array.from({ length: e.displayAmount }).map(
-        (z, G) => {
-          var M;
-          return (M = o[(i + G) % o.length]) == null ? void 0 : M.uid;
+      var V, B;
+      const i = d.value, o = l.value, F = o.length - 1, z = Array.from({ length: e.displayAmount }).map(
+        (G, J) => {
+          var L;
+          return (L = o[(i + J) % o.length]) == null ? void 0 : L.uid;
         }
-      ), _ = {
-        prependUid: (R = o[h.value ? x : i - 1]) == null ? void 0 : R.uid,
-        stagUids: X,
-        appendUid: (V = o[(i + e.displayAmount) % o.length]) == null ? void 0 : V.uid
+      ), b = {
+        prependUid: (V = o[h.value ? F : i - 1]) == null ? void 0 : V.uid,
+        stagUids: z,
+        appendUid: (B = o[(i + e.displayAmount) % o.length]) == null ? void 0 : B.uid
       };
-      return _.prependUid === _.appendUid && (f.action === "prev" && (_.prependUid = -1), f.action === "next" && (_.appendUid = -1)), _;
-    }), U = K(e);
-    Q("injectCarouselScope", {
+      return b.prependUid === b.appendUid && (f.action === "prev" && (b.prependUid = -1), f.action === "next" && (b.appendUid = -1)), b;
+    }), U = Q(e);
+    Y("injectCarouselScope", {
       speed: U.speed,
       timingFunction: U.timingFunction,
       stag: T,
@@ -90,7 +90,7 @@ const le = N({
       removeItem: m,
       layout: p
     });
-    const g = u(() => !(e.arrowVisible === "default" && (p.value.isStatic || h.value && !e.loop))), W = u(() => !(e.arrowVisible === "default" && (p.value.isStatic || w.value && !e.loop))), $ = (i) => {
+    const S = u(() => !(e.arrowVisible === "default" && (p.value.isStatic || h.value && !e.loop))), W = u(() => !(e.arrowVisible === "default" && (p.value.isStatic || w.value && !e.loop))), $ = (i) => {
       if (p.value.isStatic || !e.loop && (i === "next" && w.value || i === "prev" && h.value))
         return;
       const o = () => {
@@ -111,84 +111,90 @@ const le = N({
       clearTimeout(s), $("next"), e.autoplay && (s = setTimeout(() => c(), e.interval));
     }, r = () => {
       clearTimeout(s), $("prev"), e.autoplay && (s = setTimeout(() => r(), e.interval));
-    }, S = () => {
+    }, _ = () => {
       e.autoplay && e.pauseOnHover && clearTimeout(s);
-    }, H = () => {
+    }, X = () => {
       e.autoplay && e.pauseOnHover && (clearTimeout(s), s = setTimeout(() => c(), e.interval));
     };
-    Y(
+    Z(
       () => e.autoplay,
       (i) => {
         i ? s = setTimeout(() => c(), e.interval) : clearTimeout(s);
       }
     );
-    const F = () => {
+    const R = () => {
       document.visibilityState === "hidden" && clearTimeout(s), document.visibilityState === "visible" && e.autoplay && (s = setTimeout(() => c(), e.interval));
     };
-    return P(() => {
-      Z(() => {
+    M(() => {
+      ee(() => {
         a.value !== null && (n.value = a.value.clientWidth), e.autoplay && (s = setTimeout(() => c(), e.interval)), document.addEventListener(
           "visibilitychange",
-          F
+          R
         );
       });
-    }), O(() => {
+    }), E(() => {
       clearTimeout(s), document.removeEventListener(
         "visibilitychange",
-        F
+        R
       );
+    });
+    const x = g(!1);
+    return M(() => {
+      x.value = !0;
     }), {
       prev: r,
       next: c,
-      enter: S,
-      leave: H,
+      enter: _,
+      leave: X,
       layout: p,
       viewportDOMRef: a,
       hasLeftSlot: t.slots.left !== void 0,
       hasRightSlot: t.slots.right !== void 0,
-      isLeftArrowVisiable: g,
+      isLeftArrowVisiable: S,
       isRightArrowVisiable: W,
       activeIndex: d,
-      items: l
+      items: l,
+      isMounted: x
     };
   }
 });
-const q = (e, t) => {
+const D = (e, t) => {
   const a = e.__vccOpts || e;
   for (const [l, v] of t)
     a[l] = v;
   return a;
-}, D = (e) => (ee("data-v-d65c36fb"), e = e(), te(), e), ae = {
+}, H = (e) => (te("data-v-411ee54d"), e = e(), ie(), e), se = {
   key: 1,
   class: "split-carousel__left-button"
-}, se = /* @__PURE__ */ D(() => /* @__PURE__ */ y("div", { class: "arrow left" }, null, -1)), oe = [
-  se
-], ue = {
+}, oe = /* @__PURE__ */ H(() => /* @__PURE__ */ y("div", { class: "arrow left" }, null, -1)), ue = [
+  oe
+], re = {
   key: 1,
   class: "split-carousel__right-button"
-}, re = /* @__PURE__ */ D(() => /* @__PURE__ */ y("div", { class: "arrow right" }, null, -1)), de = [
-  re
+}, de = /* @__PURE__ */ H(() => /* @__PURE__ */ y("div", { class: "arrow right" }, null, -1)), ce = [
+  de
 ];
-function ce(e, t, a, l, v, m) {
+function ve(e, t, a, l, v, m) {
   return A(), C("div", {
     class: "split-carousel",
-    style: E({
-      height: `${typeof e.height == "string" ? e.height : `${e.height}px`}`
+    style: j({
+      height: `${typeof e.height == "string" ? e.height : `${e.height}px`}`,
+      visibility: e.isMounted ? "visible" : "hidden"
     })
   }, [
     y("div", {
       class: "split-carousel__left",
       onClick: t[0] || (t[0] = (...n) => e.prev && e.prev(...n))
     }, [
-      B(y("div", null, [
-        e.hasLeftSlot ? k(e.$slots, "left", { key: 0 }, void 0, !0) : (A(), C("button", ae, oe))
+      N(y("div", null, [
+        e.hasLeftSlot ? k(e.$slots, "left", { key: 0 }, void 0, !0) : (A(), C("button", se, ue))
       ], 512), [
-        [L, e.isLeftArrowVisiable]
+        [P, e.isLeftArrowVisiable]
       ])
     ]),
     y("div", {
       ref: "viewportDOMRef",
-      class: j(["split-carousel__viewport", { "split-carousel__viewport--static": e.layout.isStatic }]),
+      class: q(["split-carousel__viewport", { "split-carousel__viewport--static": e.layout.isStatic }]),
       onMouseenter: t[1] || (t[1] = (...n) => e.enter && e.enter(...n)),
       onMouseleave: t[2] || (t[2] = (...n) => e.leave && e.leave(...n))
     }, [
@@ -198,45 +204,45 @@ function ce(e, t, a, l, v, m) {
       class: "split-carousel__right",
       onClick: t[3] || (t[3] = (...n) => e.next && e.next(...n))
     }, [
-      B(y("div", null, [
-        e.hasRightSlot ? k(e.$slots, "right", { key: 0 }, void 0, !0) : (A(), C("button", ue, de))
+      N(y("div", null, [
+        e.hasRightSlot ? k(e.$slots, "right", { key: 0 }, void 0, !0) : (A(), C("button", re, ce))
       ], 512), [
-        [L, e.isRightArrowVisiable]
+        [P, e.isRightArrowVisiable]
       ])
     ])
   ], 4);
 }
-const ve = /* @__PURE__ */ q(le, [["render", ce], ["__scopeId", "data-v-d65c36fb"]]), fe = N({
+const fe = /* @__PURE__ */ D(ae, [["render", ve], ["__scopeId", "data-v-411ee54d"]]), me = O({
   name: "SplitCarouselItem",
   setup() {
-    let e = ie(), t = Math.random();
-    const a = ne(
+    let e = ne(), t = Math.random();
+    const a = le(
       "injectCarouselScope"
-    ), l = b(!1);
+    ), l = g(!1);
     if (!e || !a)
       throw new Error("SplitCarouselItem Must include by SplitCarousel");
     const { layout: v, stag: m, reset: n, addItem: p, removeItem: d } = a;
-    P(() => {
+    M(() => {
       p({ uid: t }), requestAnimationFrame(() => {
         requestAnimationFrame(() => {
           l.value = !0;
         });
       });
-    }), O(() => {
+    }), E(() => {
       d(t);
     });
-    const w = u(() => t === m.value.prependUid), h = u(() => t === m.value.appendUid), I = u(() => m.value.stagUids.findIndex((g) => g === t)), f = u(() => I.value !== -1), T = u(() => !!(!l.value || n.resetting));
+    const w = u(() => t === m.value.prependUid), h = u(() => t === m.value.appendUid), I = u(() => m.value.stagUids.findIndex((S) => S === t)), f = u(() => I.value !== -1), T = u(() => !!(!l.value || n.resetting));
     return {
       itemStyle: u(() => {
         const {
-          itemWidth: g,
+          itemWidth: S,
           isStatic: W,
           itemBlockWidth: $,
           appendPostion: s,
           prependPosition: c
         } = v.value;
         let r = {
-          width: `${g}px`,
+          width: `${S}px`,
           transitionDuration: `${T.value ? 0 : a.speed.value}ms`,
           transitionTimingFunction: a.timingFunction.value
         };
@@ -247,19 +253,19 @@ const ve = /* @__PURE__ */ q(le, [["render", ce], ["__scopeId", "data-v-d65c36fb
           display: "block",
           transform: `translateX(${I.value * $}px)`
         }), w.value) {
-          const S = n.resetting && n.action === "next";
+          const _ = n.resetting && n.action === "next";
           r = {
             ...r,
             display: "block",
-            transform: `translateX(${S ? s : c}px)`
+            transform: `translateX(${_ ? s : c}px)`
           };
         }
         if (h.value) {
-          const S = n.resetting && n.action === "prev";
+          const _ = n.resetting && n.action === "prev";
           r = {
             ...r,
             display: "block",
-            transform: `translateX(${S ? c : s}px)`
+            transform: `translateX(${_ ? c : s}px)`
           };
         }
         return r;
@@ -268,21 +274,21 @@ const ve = /* @__PURE__ */ q(le, [["render", ce], ["__scopeId", "data-v-d65c36fb
     };
   }
 });
-function me(e, t, a, l, v, m) {
+function pe(e, t, a, l, v, m) {
   return A(), C("div", {
-    class: j(["split-carousel__item", { "split-carousel__item--transition": !e.layout.isStatic }]),
-    style: E(e.itemStyle)
+    class: q(["split-carousel__item", { "split-carousel__item--transition": !e.layout.isStatic }]),
+    style: j(e.itemStyle)
   }, [
     k(e.$slots, "default", {}, void 0, !0)
   ], 6);
 }
-const pe = /* @__PURE__ */ q(fe, [["render", me], ["__scopeId", "data-v-e39df7ff"]]), he = (e, t) => {
+const ye = /* @__PURE__ */ D(me, [["render", pe], ["__scopeId", "data-v-e39df7ff"]]), ge = (e, t) => {
   const a = (t == null ? void 0 : t.prefix) || "";
-  e.component(`${a}SplitCarousel`, ve), e.component(`${a}SplitCarouselItem`, pe);
+  e.component(`${a}SplitCarousel`, fe), e.component(`${a}SplitCarouselItem`, ye);
 };
 export {
-  ve as SplitCarousel,
-  pe as SplitCarouselItem,
-  he as default,
-  he as install
+  fe as SplitCarousel,
+  ye as SplitCarouselItem,
+  ge as default,
+  ge as install
 };

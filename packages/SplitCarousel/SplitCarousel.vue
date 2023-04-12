@@ -69,7 +69,7 @@ export default defineComponent({
 
     const items = ref<CarouselItem[]>([])
     const addItem = (item: CarouselItem) => items.value.push(item)
-    const removeItem = (uid:number) => {
+    const removeItem = (uid: number) => {
       const index = items.value.findIndex(item => item.uid === uid)
       if (index !== -1)
         items.value.splice(index, 1)
@@ -266,6 +266,11 @@ export default defineComponent({
       )
     })
 
+    const isMounted = ref(false)
+    onMounted(() => {
+      isMounted.value = true
+    })
+
     return {
       prev,
       next,
@@ -278,19 +283,18 @@ export default defineComponent({
       isLeftArrowVisiable,
       isRightArrowVisiable,
       activeIndex,
-      items
+      items,
+      isMounted
     }
   },
 })
 </script>
 
 <template>
-  <div
-    class="split-carousel"
-    :style="{
-      height: `${typeof height === 'string' ? height : `${height}px`}`,
-    }"
-  >
+  <div class="split-carousel" :style="{
+    height: `${typeof height === 'string' ? height : `${height}px`}`,
+    visibility: isMounted ? 'visible' : 'hidden'
+  }">
     <div class="split-carousel__left" @click="prev">
       <div v-show="isLeftArrowVisiable">
         <slot v-if="hasLeftSlot" name="left" />
@@ -299,13 +303,8 @@ export default defineComponent({
         </button>
       </div>
     </div>
-    <div
-      ref="viewportDOMRef"
-      class="split-carousel__viewport"
-      :class="{ 'split-carousel__viewport--static': layout.isStatic }"
-      @mouseenter="enter"
-      @mouseleave="leave"
-    >
+    <div ref="viewportDOMRef" class="split-carousel__viewport"
+      :class="{ 'split-carousel__viewport--static': layout.isStatic }" @mouseenter="enter" @mouseleave="leave">
       <slot />
     </div>
     <div class="split-carousel__right" @click="next">
@@ -326,25 +325,30 @@ export default defineComponent({
   align-items: center;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
   &__viewport {
     flex-grow: 1;
     overflow: hidden;
     align-self: stretch;
     position: relative;
+
     &--static {
       display: flex;
       align-items: center;
       justify-content: space-between;
+
       :deep(.split-carousel__item) {
         align-self: stretch;
       }
     }
   }
+
   &__left,
   &__right {
     align-self: center;
     padding: 5px;
   }
+
   &__left-button,
   &__right-button {
     height: 30px;
@@ -359,9 +363,11 @@ export default defineComponent({
     display: flex;
     align-items: center;
     justify-content: center;
+
     &:hover {
       border-color: #c6e2ff;
       background-color: #ecf5ff;
+
       .arrow {
         border-top-color: #c6e2ff;
         border-left-color: #c6e2ff;
@@ -369,6 +375,7 @@ export default defineComponent({
     }
   }
 }
+
 .arrow {
   height: 6px;
   width: 6px;
@@ -378,9 +385,11 @@ export default defineComponent({
   border-left-color: #dcdfe6;
   border-right-color: transparent;
   border-bottom-color: transparent;
+
   &.left {
     transform: translateX(2px) rotate(-45deg);
   }
+
   &.right {
     transform: translateX(-2px) rotate(135deg);
   }
