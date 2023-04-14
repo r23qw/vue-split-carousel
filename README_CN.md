@@ -81,9 +81,6 @@ Vue2 版本依赖 [@vue/composition-api](https://github.com/vuejs/composition-ap
   };
 </script>
 ```
-
-</details>
-
 ### 全局组件
 
 ```js
@@ -94,10 +91,7 @@ import App from './App.vue'
 const app = createApp(App)
 app.use(SplitCarousel) // Vue.use(SplitCarousel) in Vue2
 app.mount('#app')
-
-
 ```
-
 ### 通过 `<script>` 标签引入
 通过 `window.VueSplitCarousel` 变量访问, 脚本地址为 dist 目录下对应 Vue 版本目录下的的 `index.umd.js` 文件
 

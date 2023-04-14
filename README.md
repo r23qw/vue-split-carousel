@@ -82,9 +82,6 @@ Vue2 need install [@vue/composition-api](https://github.com/vuejs/composition-ap
   };
 </script>
 ```
-
-</details>
-
 ### Global Component
 
 ```js
