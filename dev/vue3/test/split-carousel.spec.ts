@@ -6,7 +6,7 @@ import {
 } from '../../../packages/SplitCarousel';
 
 let sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
-global.innerWidth = 800;
+
 let Component = {
   components: { SplitCarousel, SplitCarouselItem },
   props: {
@@ -24,7 +24,7 @@ let Component = {
   `,
 };
 describe('mount', () => {
-  test('static carousel', async () => {
+  test.concurrent('static carousel', async () => {
     let wrapper = mount(Component, {
       props: { count: 3, splitCarouselProps: {} },
     });
@@ -41,7 +41,7 @@ describe('mount', () => {
 });
 
 describe('loop', async () => {
-  test('loop on', async () => {
+  test.concurrent('loop on', async () => {
     let wrapper = mount(Component, {
       props: {
         count: 5,
@@ -62,7 +62,7 @@ describe('loop', async () => {
     await sleep(100);
     expect(items[0].attributes().style).toContain(`translateX(0px)`);
   });
-  test('loop off', async () => {
+  test.concurrent('loop off', async () => {
     let wrapper = mount(Component, {
       props: {
         count: 5,
@@ -82,7 +82,7 @@ describe('loop', async () => {
 });
 
 describe('arrow slot', () => {
-  test('arrow slot', async () => {
+  test.concurrent('arrow slot', async () => {
     let Component = {
       components: { SplitCarousel, SplitCarouselItem },
       template: `
@@ -102,7 +102,7 @@ describe('arrow slot', () => {
 });
 
 describe('pause on hover', () => {
-  test('pause on hover is on', async () => {
+  test.concurrent('pause on hover is on', async () => {
     let wrapper = mount(Component, {
       props: {
         count: 5,
@@ -128,7 +128,7 @@ describe('pause on hover', () => {
     expect(items[2].attributes().style).toContain(`translateX(0px)`);
   });
 
-  test('pause on hover is off', async () => {
+  test.concurrent('pause on hover is off', async () => {
     let wrapper = mount(Component, {
       props: {
         count: 5,
@@ -157,7 +157,7 @@ describe('pause on hover', () => {
 });
 
 describe('arrow', () => {
-  test('arrow click', async () => {
+  test.concurrent('arrow click', async () => {
     let wrapper = mount(Component, {
       props: {
         count: 5,
@@ -174,10 +174,10 @@ describe('arrow', () => {
     await sleep(10);
     expect(items[0].attributes().style).toContain('translateX(0px)');
     leftArrow.trigger('click');
-    await sleep(30);
+    await sleep(50);
     expect(items[4].attributes().style).toContain(`translateX(0px)`);
     rightArrow.trigger('click');
-    await sleep(30);
+    await sleep(50);
     expect(items[0].attributes().style).toContain(`translateX(0px)`);
   });
 });

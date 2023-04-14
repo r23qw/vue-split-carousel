@@ -54,7 +54,7 @@
   ],
   "scripts": {
     "dev": "pnpm run dev:3",
-    "build": "pnpm run build:2 && pnpm run build:2.7 && pnpm run build:3 && pnpm run build:typing",
+    "build": "pnpm run test run && pnpm run build:2 && pnpm run build:2.7 && pnpm run build:3 && pnpm run build:typing",
     "test": "pnpm run switch:3 && pnpm run --filter=vue3 test",
     "dev:2": "pnpm run switch:2 && pnpm run --filter=vue2 dev",
     "dev:2.7": "pnpm run switch:2.7 && pnpm run --filter=vue2.7 dev",
