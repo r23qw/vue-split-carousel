@@ -55,6 +55,7 @@
   "scripts": {
     "dev": "pnpm run dev:3",
     "build": "pnpm run build:2 && pnpm run build:2.7 && pnpm run build:3 && pnpm run build:typing",
+    "test": "pnpm run switch:3 && pnpm run --filter=vue3 test",
     "dev:2": "pnpm run switch:2 && pnpm run --filter=vue2 dev",
     "dev:2.7": "pnpm run switch:2.7 && pnpm run --filter=vue2.7 dev",
     "dev:3": "pnpm run switch:3 && pnpm run --filter=vue3 dev",
@@ -81,6 +82,7 @@
   "devDependencies": {
     "@types/node": "^18.15.11",
     "@vue/composition-api": "^1.7.1",
+    "vite": "^4.2.0",
     "vue-tsc": "^1.2.0",
     "vue2": "npm:vue@~2.6.0",
     "vue2.7": "npm:vue@^2.7.0",

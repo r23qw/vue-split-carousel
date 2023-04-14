@@ -34,25 +34,13 @@
           </el-radio-group>
         </el-form-item>
         <el-form-item label="timing-function">
-          <el-select
-            style="width: 260px"
-            v-model="option.timingFunction"
-            placeholder="timing function"
-          >
-            <el-option
-              v-for="item in timingFuntionOptions"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value"
-            />
+          <el-select style="width: 260px" v-model="option.timingFunction" placeholder="timing function">
+            <el-option v-for="item in timingFuntionOptions" :key="item.value" :label="item.label" :value="item.value" />
           </el-select>
           <span class="tips">
             🌏more details reference:
-            <a
-              style="color: seagreen"
-              target="_blank"
-              href="https://developer.mozilla.org/en-US/docs/Web/CSS/transition-timing-function"
-            >
+            <a style="color: seagreen" target="_blank"
+              href="https://developer.mozilla.org/en-US/docs/Web/CSS/transition-timing-function">
               css transition timing function
             </a>
           </span>
@@ -75,7 +63,7 @@
 </template>
 
 <script lang="ts">
-import {SplitCarousel,SplitCarouselItem} from 'split-carousel'
+import { SplitCarousel, SplitCarouselItem } from 'split-carousel'
 import { defineComponent } from "vue";
 const defaultConfig = {
   displayAmount: 4,
@@ -145,7 +133,7 @@ export default defineComponent({
   computed: {
     diffConfig() {
       const keys = Object.keys(defaultConfig) as (keyof typeof defaultConfig)[];
-      const result:Partial<typeof defaultConfig> = {};
+      const result: Partial<typeof defaultConfig> = {};
       keys.forEach((key) => {
         if (this.option[key] !== defaultConfig[key]) {
           result[key] = this.option[key] as any;
@@ -186,9 +174,10 @@ export default defineComponent({
 }
 
 .wrapper {
-  width: 800px;
+  width: 1024px;
   margin: 0 auto;
 }
+
 .box {
   border: 1px solid #eee;
   height: 100%;
@@ -197,12 +186,15 @@ export default defineComponent({
   justify-content: center;
   align-items: center;
 }
+
 .operator {
   padding: 30px 0;
 }
+
 .code {
   margin: 0;
 }
+
 details {
   padding: 25px 0 0 10px;
 }

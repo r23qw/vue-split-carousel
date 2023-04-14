@@ -1,0 +1,26 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`mount > mount snapshot 1`] = `
+"<div data-v-a36739b4=\\"\\" class=\\"split-carousel\\" style=\\"height: 80px; visibility: hidden;\\">
+  <div data-v-a36739b4=\\"\\" class=\\"split-carousel__left\\">
+    <div data-v-a36739b4=\\"\\" style=\\"display: none;\\"><button data-v-a36739b4=\\"\\" class=\\"split-carousel__left-button\\">
+        <div data-v-a36739b4=\\"\\" class=\\"arrow left\\"></div>
+      </button></div>
+  </div>
+  <div data-v-a36739b4=\\"\\" class=\\"split-carousel__viewport split-carousel__viewport--static\\">
+    <div data-v-7c1dd16a=\\"\\" class=\\"split-carousel__item\\" style=\\"width: 120px; transition-duration: 0ms; transition-timing-function: ease; display: block;\\">1</div>
+    <div data-v-7c1dd16a=\\"\\" class=\\"split-carousel__item\\" style=\\"width: 120px; transition-duration: 0ms; transition-timing-function: ease; display: block;\\">2</div>
+    <div data-v-7c1dd16a=\\"\\" class=\\"split-carousel__item\\" style=\\"width: 120px; transition-duration: 0ms; transition-timing-function: ease; display: block;\\">3</div>
+    <div data-v-7c1dd16a=\\"\\" class=\\"split-carousel__item\\" style=\\"width: 120px; transition-duration: 0ms; transition-timing-function: ease; display: block;\\">4</div>
+    <div data-v-7c1dd16a=\\"\\" class=\\"split-carousel__item\\" style=\\"width: 120px; transition-duration: 0ms; transition-timing-function: ease; display: block;\\">5</div>
+    <div data-v-7c1dd16a=\\"\\" class=\\"split-carousel__item\\" style=\\"width: 120px; transition-duration: 0ms; transition-timing-function: ease; display: block;\\">6</div>
+    <div data-v-7c1dd16a=\\"\\" class=\\"split-carousel__item\\" style=\\"width: 120px; transition-duration: 0ms; transition-timing-function: ease; display: block;\\">7</div>
+    <div data-v-7c1dd16a=\\"\\" class=\\"split-carousel__item\\" style=\\"width: 120px; transition-duration: 0ms; transition-timing-function: ease; display: block;\\">8</div>
+  </div>
+  <div data-v-a36739b4=\\"\\" class=\\"split-carousel__right\\">
+    <div data-v-a36739b4=\\"\\" style=\\"display: none;\\"><button data-v-a36739b4=\\"\\" class=\\"split-carousel__right-button\\">
+        <div data-v-a36739b4=\\"\\" class=\\"arrow right\\"></div>
+      </button></div>
+  </div>
+</div>"
+`;

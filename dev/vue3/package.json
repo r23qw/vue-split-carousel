@@ -6,18 +6,26 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "vitest",
+    "coverage": "vitest run --coverage"
   },
   "dependencies": {
     "split-carousel": "workspace:*",
+    "vitest": "^0.30.1",
     "vue": "^3.2.47"
   },
   "devDependencies": {
-    "vite-plugin-dts": "^2.2.0",
     "@vitejs/plugin-vue": "^4.1.0",
+    "@vitest/ui": "^0.30.1",
+    "@vue/test-utils": "^2.3.2",
     "element-plus": "^2.3.2",
+    "happy-dom": "^9.2.1",
+    "jsdom": "^21.1.1",
     "sass": "^1.60.0",
     "vite": "^4.2.0",
-    "vite-plugin-css-injected-by-js": "^3.1.0"
+    "vite-plugin-css-injected-by-js": "^3.1.0",
+    "vite-plugin-dts": "^2.2.0",
+    "vitest": "^0.30.1"
   }
 }
