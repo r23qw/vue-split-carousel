@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { SplitCarousel, SplitCarouselItem } from 'vue-split-carousel/vue2'
+// import { SplitCarousel, SplitCarouselItem } from 'vue-split-carousel/vue2'
 </script>
 
 <template>

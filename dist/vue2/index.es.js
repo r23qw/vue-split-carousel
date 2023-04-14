@@ -1,12 +1,12 @@
-(function(){"use strict";try{if(typeof document<"u"){var t=document.createElement("style");t.appendChild(document.createTextNode(".split-carousel[data-v-95170b3e]{display:flex;width:100%;align-items:center;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.split-carousel__viewport[data-v-95170b3e]{flex-grow:1;overflow:hidden;align-self:stretch;position:relative}.split-carousel__viewport--static[data-v-95170b3e]{display:flex;align-items:center;justify-content:space-between}.split-carousel__viewport--static[data-v-95170b3e] :deep(.split-carousel__item){align-self:stretch}.split-carousel__left[data-v-95170b3e],.split-carousel__right[data-v-95170b3e]{align-self:center;padding:5px}.split-carousel__left-button[data-v-95170b3e],.split-carousel__right-button[data-v-95170b3e]{height:30px;width:30px;text-align:center;line-height:30px;border:1px solid #dcdfe6;border-radius:50%;cursor:pointer;background-color:#fff;transition:border-color,background-color .15s;display:flex;align-items:center;justify-content:center}.split-carousel__left-button[data-v-95170b3e]:hover,.split-carousel__right-button[data-v-95170b3e]:hover{border-color:#c6e2ff;background-color:#ecf5ff}.split-carousel__left-button:hover .arrow[data-v-95170b3e],.split-carousel__right-button:hover .arrow[data-v-95170b3e]{border-top-color:#c6e2ff;border-left-color:#c6e2ff}.arrow[data-v-95170b3e]{height:6px;width:6px;border:2px solid;transition:border-color .15s;border-top-color:#dcdfe6;border-left-color:#dcdfe6;border-right-color:transparent;border-bottom-color:transparent}.arrow.left[data-v-95170b3e]{transform:translate(2px) rotate(-45deg)}.arrow.right[data-v-95170b3e]{transform:translate(-2px) rotate(135deg)}.split-carousel__item[data-v-10e86606]{display:none;transition-property:transform;will-change:transfrom}.split-carousel__item--transition[data-v-10e86606]{position:absolute;left:0;top:0;height:100%}.split-carousel__item--stag[data-v-10e86606]{display:block}")),document.head.appendChild(t)}}catch(e){console.error("vite-plugin-css-injected-by-js",e)}})();
-import R from "vue";
-import q, { defineComponent as L, ref as S, computed as c, reactive as D, toRefs as H, provide as z, watch as G, onMounted as T, nextTick as J, onUnmounted as P, getCurrentInstance as K, inject as Q } from "@vue/composition-api/dist/vue-composition-api.mjs";
-function Y(e) {
-  e = e || R, e && !e.__composition_api_installed__ && e.use(q);
+(function(){"use strict";try{if(typeof document<"u"){var t=document.createElement("style");t.appendChild(document.createTextNode(".split-carousel[data-v-f812babe]{display:flex;width:100%;align-items:center;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.split-carousel__viewport[data-v-f812babe]{flex-grow:1;overflow:hidden;align-self:stretch;position:relative}.split-carousel__viewport--static[data-v-f812babe]{display:flex;align-items:center;justify-content:space-between}.split-carousel__viewport--static[data-v-f812babe] :deep(.split-carousel__item){align-self:stretch}.split-carousel__left[data-v-f812babe],.split-carousel__right[data-v-f812babe]{align-self:center;padding:5px}.split-carousel__left-button[data-v-f812babe],.split-carousel__right-button[data-v-f812babe]{height:30px;width:30px;text-align:center;line-height:30px;border:1px solid #dcdfe6;border-radius:50%;cursor:pointer;background-color:#fff;transition:border-color,background-color .15s;display:flex;align-items:center;justify-content:center}.split-carousel__left-button[data-v-f812babe]:hover,.split-carousel__right-button[data-v-f812babe]:hover{border-color:#c6e2ff;background-color:#ecf5ff}.split-carousel__left-button:hover .arrow[data-v-f812babe],.split-carousel__right-button:hover .arrow[data-v-f812babe]{border-top-color:#c6e2ff;border-left-color:#c6e2ff}.arrow[data-v-f812babe]{height:6px;width:6px;border:2px solid;transition:border-color .15s;border-top-color:#dcdfe6;border-left-color:#dcdfe6;border-right-color:transparent;border-bottom-color:transparent}.arrow.left[data-v-f812babe]{transform:translate(2px) rotate(-45deg)}.arrow.right[data-v-f812babe]{transform:translate(-2px) rotate(135deg)}.split-carousel__item[data-v-be8f1d2c]{display:none;transition-property:transform;will-change:transfrom}.split-carousel__item--transition[data-v-be8f1d2c]{position:absolute;left:0;top:0;height:100%}.split-carousel__item--stag[data-v-be8f1d2c]{display:block}")),document.head.appendChild(t)}}catch(e){console.error("vite-plugin-css-injected-by-js",e)}})();
+import T from "vue";
+import j, { defineComponent as k, ref as C, computed as d, reactive as q, toRefs as D, provide as H, watch as z, onMounted as N, nextTick as G, onUnmounted as L, inject as J } from "@vue/composition-api/dist/vue-composition-api.mjs";
+function K(e) {
+  e = e || T, e && !e.__composition_api_installed__ && e.use(j);
 }
-Y(R);
-R.version;
-const Z = L({
+K(T);
+T.version;
+const Q = k({
   name: "SplitCarousel",
   props: {
     autoplay: {
@@ -51,144 +51,138 @@ const Z = L({
       default: "default"
     }
   },
-  setup(e, i) {
-    const t = S(null), o = S([]), f = (a) => o.value.push(a), p = (a) => {
-      const r = o.value.findIndex((I) => I.uid === a);
-      r !== -1 && o.value.splice(r, 1);
-    }, u = S(0), m = c(() => {
-      const a = (u.value - e.itemWidth * e.displayAmount) / (e.displayAmount - 1), r = a + e.itemWidth;
+  setup(e, n) {
+    const i = C(null), r = C([]), v = (a) => r.value.push(a), f = (a) => {
+      const u = r.value.findIndex((A) => A.uid === a);
+      u !== -1 && r.value.splice(u, 1);
+    }, m = C(0), _ = d(() => {
+      const a = (m.value - e.itemWidth * e.displayAmount) / (e.displayAmount - 1), u = a + e.itemWidth;
       return {
-        isStatic: o.value.length <= e.displayAmount,
+        isStatic: r.value.length <= e.displayAmount,
         gapWidth: a,
-        viewportWidth: u.value,
+        viewportWidth: m.value,
         itemWidth: e.itemWidth,
-        itemBlockWidth: r,
-        prependPosition: -1 * r,
-        appendPostion: u.value + a
+        itemBlockWidth: u,
+        prependPosition: -1 * u,
+        appendPostion: m.value + a
       };
-    }), n = S(0), d = c(
-      () => n.value + e.displayAmount === o.value.length
-    ), h = c(() => n.value === 0), y = c(
-      () => e.displayAmount + 2 >= o.value.length
-    ), s = D({
+    }), t = C(0), c = d(
+      () => t.value + e.displayAmount === r.value.length
+    ), p = d(() => t.value === 0), g = d(
+      () => e.displayAmount + 2 >= r.value.length
+    ), s = q({
       resetting: !1,
       action: "next"
-    }), C = c(() => {
-      var F, W;
-      const a = n.value, r = o.value, I = r.length - 1, B = Array.from({ length: e.displayAmount }).map(
-        (X, j) => {
-          var k;
-          return (k = r[(a + j) % r.length]) == null ? void 0 : k.uid;
+    }), w = d(() => {
+      var I, U;
+      const a = t.value, u = r.value, A = u.length - 1, B = Array.from({ length: e.displayAmount }).map(
+        (E, X) => {
+          var V;
+          return (V = u[(a + X) % u.length]) == null ? void 0 : V.uid;
         }
-      ), x = {
-        prependUid: (F = r[h.value ? I : a - 1]) == null ? void 0 : F.uid,
+      ), b = {
+        prependUid: (I = u[p.value ? A : a - 1]) == null ? void 0 : I.uid,
         stagUids: B,
-        appendUid: (W = r[(a + e.displayAmount) % r.length]) == null ? void 0 : W.uid
+        appendUid: (U = u[(a + e.displayAmount) % u.length]) == null ? void 0 : U.uid
       };
-      return x.prependUid === x.appendUid && (s.action === "prev" && (x.prependUid = -1), s.action === "next" && (x.appendUid = -1)), x;
-    }), g = H(e);
-    z("injectCarouselScope", {
-      speed: g.speed,
-      timingFunction: g.timingFunction,
-      stag: C,
+      return b.prependUid === b.appendUid && (s.action === "prev" && (b.prependUid = -1), s.action === "next" && (b.appendUid = -1)), b;
+    }), h = D(e);
+    H("injectCarouselScope", {
+      speed: h.speed,
+      timingFunction: h.timingFunction,
+      stag: w,
       reset: s,
-      addItem: f,
-      removeItem: p,
-      layout: m
+      addItem: v,
+      removeItem: f,
+      layout: _
     });
-    const b = c(() => !(e.arrowVisible === "default" && (m.value.isStatic || h.value && !e.loop))), A = c(() => !(e.arrowVisible === "default" && (m.value.isStatic || d.value && !e.loop))), $ = (a) => {
-      if (m.value.isStatic || !e.loop && (a === "next" && d.value || a === "prev" && h.value))
+    const x = d(() => !(e.arrowVisible === "default" && (_.value.isStatic || p.value && !e.loop))), $ = d(() => !(e.arrowVisible === "default" && (_.value.isStatic || c.value && !e.loop))), S = (a) => {
+      if (_.value.isStatic || !e.loop && (a === "next" && c.value || a === "prev" && p.value))
         return;
-      const r = () => {
-        a === "next" && (n.value = (n.value + 1) % o.value.length), a === "prev" && (n.value = h.value ? o.value.length - 1 : n.value - 1);
+      const u = () => {
+        a === "next" && (t.value = (t.value + 1) % r.value.length), a === "prev" && (t.value = p.value ? r.value.length - 1 : t.value - 1);
       };
-      if (!y.value) {
-        r();
+      if (!g.value) {
+        u();
         return;
       }
       s.resetting = !0, s.action = a, requestAnimationFrame(() => {
         requestAnimationFrame(() => {
-          s.resetting = !1, r();
+          s.resetting = !1, u();
         });
       });
     };
     let l;
-    const _ = () => {
-      clearTimeout(l), $("next"), e.autoplay && (l = setTimeout(() => _(), e.interval));
-    }, v = () => {
-      clearTimeout(l), $("prev"), e.autoplay && (l = setTimeout(() => v(), e.interval));
-    }, w = () => {
+    const o = () => {
+      clearTimeout(l), S("next"), e.autoplay && (l = setTimeout(() => o(), e.interval));
+    }, y = () => {
+      clearTimeout(l), S("prev"), e.autoplay && (l = setTimeout(() => y(), e.interval));
+    }, M = () => {
       e.autoplay && e.pauseOnHover && clearTimeout(l);
-    }, E = () => {
-      e.autoplay && e.pauseOnHover && (clearTimeout(l), l = setTimeout(() => _(), e.interval));
+    }, O = () => {
+      e.autoplay && e.pauseOnHover && (clearTimeout(l), l = setTimeout(() => o(), e.interval));
     };
-    G(
+    z(
       () => e.autoplay,
       (a) => {
-        a ? l = setTimeout(() => _(), e.interval) : clearTimeout(l);
+        a ? l = setTimeout(() => o(), e.interval) : clearTimeout(l);
       }
     );
-    const U = () => {
-      document.visibilityState === "hidden" && clearTimeout(l), document.visibilityState === "visible" && e.autoplay && (l = setTimeout(() => _(), e.interval));
+    const R = () => {
+      document.visibilityState === "hidden" && clearTimeout(l), document.visibilityState === "visible" && e.autoplay && (l = setTimeout(() => o(), e.interval));
     };
-    T(() => {
-      J(() => {
-        t.value !== null && (u.value = t.value.clientWidth), e.autoplay && (l = setTimeout(() => _(), e.interval)), document.addEventListener(
+    return N(() => {
+      G(() => {
+        i.value !== null && (m.value = i.value.clientWidth), e.autoplay && (l = setTimeout(() => o(), e.interval)), document.addEventListener(
           "visibilitychange",
-          U
+          R
         );
       });
-    }), P(() => {
+    }), L(() => {
       clearTimeout(l), document.removeEventListener(
         "visibilitychange",
-        U
+        R
       );
-    });
-    const V = S(!1);
-    return T(() => {
-      V.value = !0;
     }), {
-      prev: v,
-      next: _,
-      enter: w,
-      leave: E,
-      layout: m,
-      viewportDOMRef: t,
-      hasLeftSlot: i.slots.left !== void 0,
-      hasRightSlot: i.slots.right !== void 0,
-      isLeftArrowVisiable: b,
-      isRightArrowVisiable: A,
-      activeIndex: n,
-      items: o,
-      isMounted: V
+      prev: y,
+      next: o,
+      enter: M,
+      leave: O,
+      layout: _,
+      viewportDOMRef: i,
+      hasLeftSlot: n.slots.left !== void 0,
+      hasRightSlot: n.slots.right !== void 0,
+      isLeftArrowVisiable: x,
+      isRightArrowVisiable: $,
+      activeIndex: t,
+      items: r
     };
   }
 });
-var ee = function() {
-  var e = this, i = e.$createElement, t = e._self._c || i;
-  return t("div", {
+var Y = function() {
+  var e = this, n = e.$createElement, i = e._self._c || n;
+  return i("div", {
     staticClass: "split-carousel",
     style: {
-      height: `${typeof e.height == "string" ? e.height : `${e.height}px`}`,
-      visibility: e.isMounted ? "visible" : "hidden"
+      height: `${typeof e.height == "string" ? e.height : `${e.height}px`}`
     }
-  }, [t("div", {
+  }, [i("div", {
     staticClass: "split-carousel__left",
     on: {
       click: e.prev
     }
-  }, [t("div", {
+  }, [i("div", {
     directives: [{
       name: "show",
       rawName: "v-show",
       value: e.isLeftArrowVisiable,
       expression: "isLeftArrowVisiable"
     }]
-  }, [e.hasLeftSlot ? e._t("left") : t("button", {
+  }, [e.hasLeftSlot ? e._t("left") : i("button", {
     staticClass: "split-carousel__left-button"
-  }, [t("div", {
+  }, [i("div", {
     staticClass: "arrow left"
-  })])], 2)]), t("div", {
+  })])], 2)]), i("div", {
     ref: "viewportDOMRef",
     staticClass: "split-carousel__viewport",
     class: {
@@ -198,166 +192,163 @@ var ee = function() {
       mouseenter: e.enter,
       mouseleave: e.leave
     }
-  }, [e._t("default")], 2), t("div", {
+  }, [e._t("default")], 2), i("div", {
     staticClass: "split-carousel__right",
     on: {
       click: e.next
     }
-  }, [t("div", {
+  }, [i("div", {
     directives: [{
       name: "show",
       rawName: "v-show",
       value: e.isRightArrowVisiable,
       expression: "isRightArrowVisiable"
     }]
-  }, [e.hasRightSlot ? e._t("right") : t("button", {
+  }, [e.hasRightSlot ? e._t("right") : i("button", {
     staticClass: "split-carousel__right-button"
-  }, [t("div", {
+  }, [i("div", {
     staticClass: "arrow right"
   })])], 2)])]);
-}, te = [];
-function O(e, i, t, o, f, p, u, m) {
-  var n = typeof e == "function" ? e.options : e;
-  i && (n.render = i, n.staticRenderFns = t, n._compiled = !0), o && (n.functional = !0), p && (n._scopeId = "data-v-" + p);
-  var d;
-  if (u ? (d = function(s) {
+}, Z = [];
+function P(e, n, i, r, v, f, m, _) {
+  var t = typeof e == "function" ? e.options : e;
+  n && (t.render = n, t.staticRenderFns = i, t._compiled = !0), r && (t.functional = !0), f && (t._scopeId = "data-v-" + f);
+  var c;
+  if (m ? (c = function(s) {
     s = s || // cached call
     this.$vnode && this.$vnode.ssrContext || // stateful
-    this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !s && typeof __VUE_SSR_CONTEXT__ < "u" && (s = __VUE_SSR_CONTEXT__), f && f.call(this, s), s && s._registeredComponents && s._registeredComponents.add(u);
-  }, n._ssrRegister = d) : f && (d = m ? function() {
-    f.call(
+    this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !s && typeof __VUE_SSR_CONTEXT__ < "u" && (s = __VUE_SSR_CONTEXT__), v && v.call(this, s), s && s._registeredComponents && s._registeredComponents.add(m);
+  }, t._ssrRegister = c) : v && (c = _ ? function() {
+    v.call(
       this,
-      (n.functional ? this.parent : this).$root.$options.shadowRoot
+      (t.functional ? this.parent : this).$root.$options.shadowRoot
     );
-  } : f), d)
-    if (n.functional) {
-      n._injectStyles = d;
-      var h = n.render;
-      n.render = function(C, g) {
-        return d.call(g), h(C, g);
+  } : v), c)
+    if (t.functional) {
+      t._injectStyles = c;
+      var p = t.render;
+      t.render = function(w, h) {
+        return c.call(h), p(w, h);
       };
     } else {
-      var y = n.beforeCreate;
-      n.beforeCreate = y ? [].concat(y, d) : [d];
+      var g = t.beforeCreate;
+      t.beforeCreate = g ? [].concat(g, c) : [c];
     }
   return {
     exports: e,
-    options: n
+    options: t
   };
 }
-const M = {};
-var ie = /* @__PURE__ */ O(
+const F = {};
+var ee = /* @__PURE__ */ P(
+  Q,
+  Y,
   Z,
-  ee,
-  te,
   !1,
-  ne,
-  "95170b3e",
+  te,
+  "f812babe",
   null,
   null
 );
-function ne(e) {
-  for (let i in M)
-    this[i] = M[i];
+function te(e) {
+  for (let n in F)
+    this[n] = F[n];
 }
-const ae = /* @__PURE__ */ function() {
-  return ie.exports;
-}(), se = L({
+const ie = /* @__PURE__ */ function() {
+  return ee.exports;
+}(), ne = k({
   name: "SplitCarouselItem",
   setup() {
-    let e = K(), i = Math.random();
-    const t = Q(
+    let e = Math.random();
+    const n = J(
       "injectCarouselScope"
-    ), o = S(!1);
-    if (!e || !t)
-      throw new Error("SplitCarouselItem Must include by SplitCarousel");
-    const { layout: f, stag: p, reset: u, addItem: m, removeItem: n } = t;
-    T(() => {
-      m({ uid: i }), requestAnimationFrame(() => {
+    ), i = C(!1), { layout: r, stag: v, reset: f, addItem: m, removeItem: _ } = n;
+    N(() => {
+      m({ uid: e }), requestAnimationFrame(() => {
         requestAnimationFrame(() => {
-          o.value = !0;
+          i.value = !0;
         });
       });
-    }), P(() => {
-      n(i);
+    }), L(() => {
+      _(e);
     });
-    const d = c(() => i === p.value.prependUid), h = c(() => i === p.value.appendUid), y = c(() => p.value.stagUids.findIndex((b) => b === i)), s = c(() => y.value !== -1), C = c(() => !!(!o.value || u.resetting));
+    const t = d(() => e === v.value.prependUid), c = d(() => e === v.value.appendUid), p = d(() => v.value.stagUids.findIndex((h) => h === e)), g = d(() => p.value !== -1), s = d(() => !!(!i.value || f.resetting));
     return {
-      itemStyle: c(() => {
+      itemStyle: d(() => {
         const {
-          itemWidth: b,
-          isStatic: A,
+          itemWidth: h,
+          isStatic: x,
           itemBlockWidth: $,
-          appendPostion: l,
-          prependPosition: _
-        } = f.value;
-        let v = {
-          width: `${b}px`,
-          transitionDuration: `${C.value ? 0 : t.speed.value}ms`,
-          transitionTimingFunction: t.timingFunction.value
+          appendPostion: S,
+          prependPosition: l
+        } = r.value;
+        let o = {
+          width: `${h}px`,
+          transitionDuration: `${s.value ? 0 : n.speed.value}ms`,
+          transitionTimingFunction: n.timingFunction.value
         };
-        if (A)
-          return v.display = "block", v;
-        if (s.value && (v = {
-          ...v,
+        if (x)
+          return o.display = "block", o;
+        if (g.value && (o = {
+          ...o,
           display: "block",
-          transform: `translateX(${y.value * $}px)`
-        }), d.value) {
-          const w = u.resetting && u.action === "next";
-          v = {
-            ...v,
+          transform: `translateX(${p.value * $}px)`
+        }), t.value) {
+          const y = f.resetting && f.action === "next";
+          o = {
+            ...o,
             display: "block",
-            transform: `translateX(${w ? l : _}px)`
+            transform: `translateX(${y ? S : l}px)`
           };
         }
-        if (h.value) {
-          const w = u.resetting && u.action === "prev";
-          v = {
-            ...v,
+        if (c.value) {
+          const y = f.resetting && f.action === "prev";
+          o = {
+            ...o,
             display: "block",
-            transform: `translateX(${w ? _ : l}px)`
+            transform: `translateX(${y ? l : S}px)`
           };
         }
-        return v;
+        return o;
       }),
-      layout: f
+      layout: r
     };
   }
 });
-var le = function() {
-  var e = this, i = e.$createElement, t = e._self._c || i;
-  return t("div", {
+var ae = function() {
+  var e = this, n = e.$createElement, i = e._self._c || n;
+  return i("div", {
     staticClass: "split-carousel__item",
     class: {
       "split-carousel__item--transition": !e.layout.isStatic
     },
     style: e.itemStyle
   }, [e._t("default")], 2);
-}, oe = [];
-const N = {};
-var re = /* @__PURE__ */ O(
+}, se = [];
+const W = {};
+var le = /* @__PURE__ */ P(
+  ne,
+  ae,
   se,
-  le,
-  oe,
   !1,
-  ue,
-  "10e86606",
+  oe,
+  "be8f1d2c",
   null,
   null
 );
-function ue(e) {
-  for (let i in N)
-    this[i] = N[i];
+function oe(e) {
+  for (let n in W)
+    this[n] = W[n];
 }
-const de = /* @__PURE__ */ function() {
-  return re.exports;
-}(), fe = (e, i) => {
-  const t = (i == null ? void 0 : i.prefix) || "";
-  e.component(`${t}SplitCarousel`, ae), e.component(`${t}SplitCarouselItem`, de);
+const re = /* @__PURE__ */ function() {
+  return le.exports;
+}(), de = (e, n) => {
+  const i = (n == null ? void 0 : n.prefix) || "";
+  e.component(`${i}SplitCarousel`, ie), e.component(`${i}SplitCarouselItem`, re);
 };
 export {
-  ae as SplitCarousel,
-  de as SplitCarouselItem,
-  fe as default,
-  fe as install
+  ie as SplitCarousel,
+  re as SplitCarouselItem,
+  de as default,
+  de as install
 };

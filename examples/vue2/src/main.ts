@@ -7,8 +7,6 @@ import App from './App.vue';
 Vue.use(VueCompositionAPI);
 Vue.use(SplitCarousel);
 
-const app = new Vue({
+new Vue({
   render: (h) => h(App),
-});
-
-app.$mount('#app');
+}).$mount('#app');

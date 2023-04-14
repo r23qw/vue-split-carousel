@@ -1,7 +1,7 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`mount > mount snapshot 1`] = `
-"<div data-v-a36739b4=\\"\\" class=\\"split-carousel\\" style=\\"height: 80px; visibility: hidden;\\">
+"<div data-v-a36739b4=\\"\\" class=\\"split-carousel\\" style=\\"height: 80px;\\">
   <div data-v-a36739b4=\\"\\" class=\\"split-carousel__left\\">
     <div data-v-a36739b4=\\"\\" style=\\"display: none;\\"><button data-v-a36739b4=\\"\\" class=\\"split-carousel__left-button\\">
         <div data-v-a36739b4=\\"\\" class=\\"arrow left\\"></div>

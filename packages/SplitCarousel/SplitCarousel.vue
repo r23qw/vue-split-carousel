@@ -266,11 +266,6 @@ export default defineComponent({
       )
     })
 
-    const isMounted = ref(false)
-    onMounted(() => {
-      isMounted.value = true
-    })
-
     return {
       prev,
       next,
@@ -284,7 +279,6 @@ export default defineComponent({
       isRightArrowVisiable,
       activeIndex,
       items,
-      isMounted
     }
   },
 })
@@ -292,8 +286,7 @@ export default defineComponent({
 
 <template>
   <div class="split-carousel" :style="{
-    height: `${typeof height === 'string' ? height : `${height}px`}`,
-    visibility: isMounted ? 'visible' : 'hidden'
+    height: `${typeof height === 'string' ? height : `${height}px`}`
   }">
     <div class="split-carousel__left" @click="prev">
       <div v-show="isLeftArrowVisiable">
