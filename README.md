@@ -6,23 +6,40 @@
 ![GitHub](https://img.shields.io/github/license/aaron00101010/vue-split-carousel.svg)
 ![](https://img.shields.io/npm/v/vue-split-carousel.svg)
 
-A carousel component for vue,meanwhile display several carousel item.
+A carousel component for vue, meanwhile display several carousel item.  
+Supprot Vue3, Vue2.7, Vue2, Nuxt2, Nuxt3 , Script tag import, support Typescript.
 
 ![show](https://raw.githubusercontent.com/Aaron00101010/vue-split-carousel/30dec58c513814a306ddd0fba08096ad291e4a7d/examples/GIF.gif)  
 
-> ## 2.x version for vue 3
-> ## 1.x version for vue 2 
-[1.x version doc](https://github.com/Aaron00101010/vue-split-carousel/tree/1.x)
+## [Playground](https://codesandbox.io/s/elegant-bardeen-n6lg2?file=/src/App.vue) 
 
-## [Playground](https://codesandbox.io/s/elegant-bardeen-n6lg2?file=/src/App.vue)  
+## Demo
+  See the demo in the examples directory
+ | Vue3                                | Vue2.7                                | Vue2                                | Nuxt2                                    | Nuxt3                            | scripts tag imports                                                                                                                           |
+ | ----------------------------------- | ------------------------------------- | ----------------------------------- | ---------------------------------------- | -------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+ | [Demo](./examples/vue3/src/App.vue) | [Demo](./examples/vue2.7/src/App.vue) | [Demo](./examples/vue2/src/App.vue) | [Demo](./examples/nuxt2/pages/index.vue) | [Demo](./examples/nuxt3/app.vue) | [Vue3 Demo](./examples/scripts/vue3.html) <br/> [Vue2.7 Demo](./examples/scripts/vue2.7.html) <br/> [Vue2 Demo](./examples/scripts/vue2.html) |
+## Install
 
-## Browser Compatibility
+```bash
+# npm
+npm i vue-split-carousel
+# yarn 
+yarn add vue-split-carousel
+# pnpm 
+pnpm add vue-split-carousel
+``` 
+**Package path depends on the environment, the default is the Vue3 version, the package path for different environments:**  
+Vue2 need install [@vue/composition-api](https://github.com/vuejs/composition-api)
+ - Vue3: `vue-split-carousel`
+ - Vue2.7: `vue-split-carousel/vue2.7`
+ - Vue2: `vue-split-carousel/vue2` 
+ - Nuxt2: `vue-split-carousel/dist/vue2.7`
+ - Nuxt3: `vue-split-carousel`
+ - script 标签引入: `dist` 目录下对应 vue 版本下的 `index.umd.js`
 
-Modern browser, follow vue 3 compatibility.
+## Usage
 
-## Component Structure
-
-Use `<split-carousel-item>` in `<split-carousel>`,put your custom content in `split-carousel-item`.
+`<split-carousel-item>` is used in `<split-carousel>`, and custom content is placed inside `split-carousel-item`.
 
 ```html
 <split-carousel>
@@ -35,15 +52,6 @@ Use `<split-carousel-item>` in `<split-carousel>`,put your custom content in `sp
 </split-carousel>
 ```
 
-## Install
-
-```bash
-# use npm
-npm i vue-split-carousel
-# use yarn
-yarn add vue-split-carousel
-```
-support prefix option prevent name conflict while install component with `app.use`
 ### Local Component
 
 ```html
@@ -58,7 +66,14 @@ support prefix option prevent name conflict while install component with `app.us
 </template>
 
 <script>
-  import { SplitCarousel, SplitCarouselItem } from "vue-split-carousel";
+  // Vue3 && Nuxt3
+  import { SplitCarousel, SplitCarouselItem } from "vue-split-carousel"; 
+  // Vue2.7
+  // import { SplitCarousel, SplitCarouselItem } from "vue-split-carousel/vue2.7"; 
+  // Vue2
+  // import { SplitCarousel, SplitCarouselItem } from "vue-split-carousel/vue2"; 
+  // Nuxt2
+  // import { SplitCarousel, SplitCarouselItem } from "vue-split-carousel/dist/vue2.7"; 
   export default {
     components: {
       SplitCarousel,
@@ -78,23 +93,20 @@ import SplitCarousel from 'vue-split-carousel'
 import App from './App.vue'
 
 const app = createApp(App)
-app.use(SplitCarousel)
-
-// accpect prefix for component name conflict, use as `<ElSplitCarousel>` and `<ElSplitCarouselItem>`
-// app.use(SplitCarousel,{prefix:'El'});
-
+app.use(SplitCarousel) // Vue.use(SplitCarousel) in Vue2
 app.mount('#app')
+
+
 ```
 
-### import by `<script>`
+### Script tag imports
 
-can use vue-split-carousel.min.umd.js in the dist folder.
-
+access through `window.VueSplitCarousel` variable, script address is `index.umd.js` file under the corresponding Vue version directory under the dist directory
 
 ```html
 <div id="app"></div>
-<script src="https://unpkg.com/vue@next"></script>
-<script src="./vue-split-carousel.umd.min.js"></script>
+<script src="https://unpkg.com/vue@3"></script>
+<script src="./index.umd.js"></script>
 <script>
   const app = Vue.createApp({
     template:`
@@ -103,10 +115,11 @@ can use vue-split-carousel.min.umd.js in the dist folder.
       </split-carousel>
     `
   })
-  app.use(window['vue-split-carousel'])
+  app.use(window.VueSplitCarousel)
   app.mount('#app')
 </script>
 ```
+
 
 ## Props
 

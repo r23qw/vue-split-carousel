@@ -4,19 +4,37 @@
 ![GitHub](https://img.shields.io/github/license/aaron00101010/vue-split-carousel.svg)
 ![](https://img.shields.io/npm/v/vue-split-carousel.svg)
 
-A carousel component for vue,meanwhile display several carousel item.
+一个支持同时展示多个轮播项的轮播组件。
 
-![show](https://raw.githubusercontent.com/Aaron00101010/vue-split-carousel/30dec58c513814a306ddd0fba08096ad291e4a7d/examples/GIF.gif)  
+支持 Vue3, Vue2.7, Vue2, Nuxt2, Nuxt3 , Script 标签, 支持 Typescript。
 
-> ##  2.x 版本仅支持 Vue 3, Vue 2 使用 1.x 版本. 
+![show](https://raw.githubusercontent.com/Aaron00101010/vue-split-carousel/30dec58c513814a306ddd0fba08096ad291e4a7d/examples/GIF.gif)
 
-### [1.x 版本文档](https://github.com/Aaron00101010/vue-split-carousel/tree/1.x)
+## [Playground](https://codesandbox.io/s/elegant-bardeen-n6lg2?file=/src/App.vue) 
 
-## [Playground/Demo](https://codesandbox.io/s/elegant-bardeen-n6lg2?file=/src/App.vue)  
+## Demo
+ 参照 examples 目录下的 demo
+ | Vue3                                | Vue2.7                                | Vue2                                | Nuxt2                                    | Nuxt3                            | scripts 引入                                                                                                                                  |
+ | ----------------------------------- | ------------------------------------- | ----------------------------------- | ---------------------------------------- | -------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+ | [Demo](./examples/vue3/src/App.vue) | [Demo](./examples/vue2.7/src/App.vue) | [Demo](./examples/vue2/src/App.vue) | [Demo](./examples/nuxt2/pages/index.vue) | [Demo](./examples/nuxt3/app.vue) | [Vue3 Demo](./examples/scripts/vue3.html) <br/> [Vue2.7 Demo](./examples/scripts/vue2.7.html) <br/> [Vue2 Demo](./examples/scripts/vue2.html) |
+## 安装
 
-## 浏览器兼容性
-
-现代浏览器，跟随 Vue 3 兼容性
+```bash
+# npm
+npm i vue-split-carousel
+# yarn 
+yarn add vue-split-carousel
+# pnpm 
+pnpm add vue-split-carousel
+```
+**包路径根据不同环境而定，默认为 Vue3 版本, 不同环境下包路径：**  
+Vue2 版本依赖 [@vue/composition-api](https://github.com/vuejs/composition-api)
+ - Vue3: `vue-split-carousel`
+ - Vue2.7: `vue-split-carousel/vue2.7`
+ - Vue2: `vue-split-carousel/vue2` 
+ - Nuxt2: `vue-split-carousel/dist/vue2.7`
+ - Nuxt3: `vue-split-carousel`
+ - script 标签引入: `dist` 目录下对应 vue 版本下的 `index.umd.js`
 
 ## 组件结构
 
@@ -33,16 +51,6 @@ A carousel component for vue,meanwhile display several carousel item.
 </split-carousel>
 ```
 
-## 安装
-
-```bash
-# npm
-npm i vue-split-carousel
-# yarn 
-yarn add vue-split-carousel
-```
-当使用 `app.use` 安装组件时，支持 `prefix` 配置用于避免组件名冲突
-
 ### 局部组件
 
 ```html
@@ -57,7 +65,14 @@ yarn add vue-split-carousel
 </template>
 
 <script>
-  import { SplitCarousel, SplitCarouselItem } from "vue-split-carousel";
+  // Vue3 && Nuxt3
+  import { SplitCarousel, SplitCarouselItem } from "vue-split-carousel"; 
+  // Vue2.7
+  // import { SplitCarousel, SplitCarouselItem } from "vue-split-carousel/vue2.7"; 
+  // Vue2
+  // import { SplitCarousel, SplitCarouselItem } from "vue-split-carousel/vue2"; 
+  // Nuxt2
+  // import { SplitCarousel, SplitCarouselItem } from "vue-split-carousel/dist/vue2.7"; 
   export default {
     components: {
       SplitCarousel,
@@ -77,22 +92,19 @@ import SplitCarousel from 'vue-split-carousel'
 import App from './App.vue'
 
 const app = createApp(App)
-app.use(SplitCarousel)
-
-// 接收prefix选项用于解决命名冲突, 注册组件名为 `<ElSplitCarousel>` 和 `<ElSplitCarouselItem>`
-// app.use(SplitCarousel,{prefix:'El'});
-
+app.use(SplitCarousel) // Vue.use(SplitCarousel) in Vue2
 app.mount('#app')
+
+
 ```
 
 ### 通过 `<script>` 标签引入
-
-可以使用 dist 文件夹下的 vue-split-carousel.min.umd.js 安装 
+通过 `window.VueSplitCarousel` 变量访问, 脚本地址为 dist 目录下对应 Vue 版本目录下的的 `index.umd.js` 文件
 
 ```html
 <div id="app"></div>
-<script src="https://unpkg.com/vue@next"></script>
-<script src="./vue-split-carousel.umd.min.js"></script>
+<script src="https://unpkg.com/vue@3"></script>
+<script src="./index.umd.js"></script>
 <script>
   const app = Vue.createApp({
     template:`
@@ -101,7 +113,7 @@ app.mount('#app')
       </split-carousel>
     `
   })
-  app.use(window['vue-split-carousel'])
+  app.use(window.VueSplitCarousel)
   app.mount('#app')
 </script>
 ```
@@ -128,6 +140,10 @@ app.mount('#app')
 | left  | 自定义左箭头 |
 | right | 自定义右箭头 |
 
+## 浏览器兼容性
+
+- Vue2 : follow Vue2, but Internet Explorer required 10+
+- Vue3 : follow Vue3
 # License
 
 [MIT](./LICENSE)
