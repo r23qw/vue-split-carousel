@@ -92,8 +92,19 @@ const app = createApp(App)
 app.use(SplitCarousel) // Vue.use(SplitCarousel) in Vue2
 app.mount('#app')
 ```
-### 通过 `<script>` 标签引入
-通过 `window.VueSplitCarousel` 变量访问, 脚本地址为 dist 目录下对应 Vue 版本目录下的的 `index.umd.js` 文件
+### 通过 `<script>` 标签引入 
+
+通过 `window.VueSplitCarousel` 变量访问, 脚本地址为 dist 目录下对应 Vue 版本目录下的的 `index.umd.js` 文件。  
+也可以通过的 npm CDN 服务引入: 
+
+```html
+<!-- vue3 -->
+<script src="https://unpkg.com/vue-split-carousel@3.0.1/dist/vue3/index.umd.js"></script>
+<!-- vue2.7 -->
+<script src="https://unpkg.com/vue-split-carousel@3.0.1/dist/vue2.7/index.umd.js"></script>
+<!-- vue2 -->
+<script src="https://unpkg.com/vue-split-carousel@3.0.1/dist/vue2/index.umd.js"></script>
+```
 
 ```html
 <div id="app"></div>
