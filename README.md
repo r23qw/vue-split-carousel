@@ -98,7 +98,17 @@ app.mount('#app')
 
 ### Script tag imports
 
-access through `window.VueSplitCarousel` variable, script address is `index.umd.js` file under the corresponding Vue version directory under the dist directory
+access through `window.VueSplitCarousel` variable, script address is `index.umd.js` file under the corresponding Vue version directory under the dist directory.  
+Or use public npm package cdn: 
+
+```html
+<!-- vue3 -->
+<script src="https://unpkg.com/vue-split-carousel@3.0.1/dist/vue3/index.umd.js"></script>
+<!-- vue2.7 -->
+<script src="https://unpkg.com/vue-split-carousel@3.0.1/dist/vue2.7/index.umd.js"></script>
+<!-- vue2 -->
+<script src="https://unpkg.com/vue-split-carousel@3.0.1/dist/vue2/index.umd.js"></script>
+```
 
 ```html
 <div id="app"></div>
