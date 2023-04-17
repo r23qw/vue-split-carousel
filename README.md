@@ -15,7 +15,7 @@ Supprot Vue3, Vue2.7, Vue2, Nuxt2, Nuxt3 , Script tag import, support Typescript
 
 ## Demo
   See the demo in the examples directory
- | Vue3                                | Vue2.7                                | Vue2                                | Nuxt2                                    | Nuxt3                            | scripts tag imports                                                                                                                           |
+ | Vue3                                | Vue2.7                                | Vue2                                | Nuxt2                                    | Nuxt3                            | scripts tag import                                                                                                                           |
  | ----------------------------------- | ------------------------------------- | ----------------------------------- | ---------------------------------------- | -------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
  | [Demo](./examples/vue3/src/App.vue) | [Demo](./examples/vue2.7/src/App.vue) | [Demo](./examples/vue2/src/App.vue) | [Demo](./examples/nuxt2/pages/index.vue) | [Demo](./examples/nuxt3/app.vue) | [Vue3 Demo](./examples/scripts/vue3.html) <br/> [Vue2.7 Demo](./examples/scripts/vue2.7.html) <br/> [Vue2 Demo](./examples/scripts/vue2.html) |
 ## Install
@@ -35,7 +35,7 @@ Vue2 need install [@vue/composition-api](https://github.com/vuejs/composition-ap
  - Vue2: `vue-split-carousel/vue2` 
  - Nuxt2: `vue-split-carousel/dist/vue2.7`
  - Nuxt3: `vue-split-carousel`
- - script 标签引入: `dist` 目录下对应 vue 版本下的 `index.umd.js`
+ - script import: script address is `index.umd.js` file under the corresponding Vue version directory under the dist directory
 
 ## Usage
 
