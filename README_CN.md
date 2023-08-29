@@ -1,14 +1,14 @@
 
 ## Vue Split Carousel
 
-![GitHub](https://img.shields.io/github/license/aaron00101010/vue-split-carousel.svg)
+![GitHub](https://img.shields.io/github/license/r23qw/vue-split-carousel.svg)
 ![](https://img.shields.io/npm/v/vue-split-carousel.svg)
 
 一个支持同时展示多个轮播项的轮播组件。
 
 支持 Vue3, Vue2.7, Vue2, Nuxt2, Nuxt3 , Script 标签, 支持 Typescript。
 
-![show](https://raw.githubusercontent.com/Aaron00101010/vue-split-carousel/30dec58c513814a306ddd0fba08096ad291e4a7d/examples/GIF.gif)
+![example](https://raw.githubusercontent.com/r23qw/file-storage/main/image/vue-split-carousel-example.gif)
 
 ## [Playground](https://codesandbox.io/s/elegant-bardeen-n6lg2?file=/src/App.vue) 
 
@@ -140,7 +140,7 @@ app.mount('#app')
 
 ## Slots
 
-| Name  | Descrition   |
+|  名称  | 描述   |
 | ----- | ------------ |
 | left  | 自定义左箭头 |
 | right | 自定义右箭头 |

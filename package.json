@@ -1,16 +1,16 @@
 {
   "name": "vue-split-carousel",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "a carousel component for vue, display several carousel-item in carousel container",
-  "author": "Aaron00101010",
+  "author": "r23qw",
   "license": "MIT",
-  "homepage": "https://github.com/Aaron00101010/vue-split-carousel#readme",
+  "homepage": "https://github.com/r23qw/vue-split-carousel#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Aaron00101010/vue-split-carousel.git"
+    "url": "git+https://github.com/r23qw/vue-split-carousel.git"
   },
   "bugs": {
-    "url": "https://github.com/Aaron00101010/vue-split-carousel/issues"
+    "url": "https://github.com/r23qw/vue-split-carousel/issues"
   },
   "keywords": [
     "carousel split",

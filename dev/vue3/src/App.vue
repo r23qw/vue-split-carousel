@@ -1,8 +1,10 @@
 <template>
   <div class="wrapper">
     <SplitCarousel v-bind="option">
-      <SplitCarouselItem v-for="item in itemAmount" :key="item">
-        <div class="box">{{ item }}</div>
+      <SplitCarouselItem v-for="item in itemList" :key="item.name">
+        <div class="box">
+          <img :src="item.url" :alt="item.name">
+        </div>
       </SplitCarouselItem>
     </SplitCarousel>
     <details>
@@ -12,7 +14,7 @@
     <div class="operator">
       <el-form label-suffix=":" label-width="120px">
         <el-form-item label="item amount">
-          <el-input-number v-model="itemAmount" :min="1" />
+          <el-input-number v-model="itemAmount" :min="1" :max="26"/>
         </el-form-item>
         <h3>props:</h3>
         <el-form-item label="display-amount">
@@ -96,8 +98,9 @@ export default defineComponent({
   },
   data() {
     return {
-      itemAmount: 6,
+      itemAmount: 10,
       option: { ...defaultConfig },
+
       timingFuntionOptions: [
         {
           value: "ease",
@@ -158,6 +161,38 @@ export default defineComponent({
 </SplitCarousel>
 `;
     },
+    itemList(){
+      let icons = [
+        "html5",
+        "css3",
+        "nodejs",
+        "typescript",
+        "linux",
+        "mozilla",
+        "github",
+        "vuejs",
+        "webpack",
+        "nestjs",
+        "go",
+        "jquery",
+        "kubernetes",
+        "sveltejs",
+        "electron",
+        "element-ui",
+        "eslint",
+        "lit",
+        "nextjs",
+        "npm",
+        "prettier",
+        "rust",
+        "solidjs",
+        "vitejs",
+        "vitest",
+        "vs",
+        "webassembly",
+    ]
+      return icons.slice(0, this.itemAmount).map(key=>({name:key,url:`https://raw.githubusercontent.com/r23qw/file-storage/main/image/${key}.svg`}))
+    }
   },
 });
 </script>
@@ -174,17 +209,21 @@ export default defineComponent({
 }
 
 .wrapper {
-  width: 1024px;
+  width: 800px;
   margin: 0 auto;
 }
 
 .box {
-  border: 1px solid #eee;
   height: 100%;
   box-sizing: border-box;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.box img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .operator {
