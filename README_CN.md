@@ -125,7 +125,7 @@ app.mount('#app')
 
 ## Props
 
-| Attribute       | Description                                                                       | Type          | Accpected Values | Default |
+| 属性名       | 描述                                                                       | 类型          | 接收值 | 默认值 |
 | --------------- | --------------------------------------------------------------------------------- | ------------- | ---------------- | ------- |
 | speed           | 过渡动画时长                                                                      | Number        | -                | 500     |
 | autoplay        | 是否自动播放                                                                      | Boolean       | -                | true    |
@@ -147,9 +147,10 @@ app.mount('#app')
 
 ## 浏览器兼容性
 
-- Vue2 : follow Vue2, but Internet Explorer required 10+
-- Vue3 : follow Vue3
-# License
+- Vue2 : 跟随 Vue2 兼容性，IE10+
+- Vue3 : 跟随 Vue3
+
+## License
 
 [MIT](./LICENSE)
 
